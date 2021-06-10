@@ -18,9 +18,10 @@ class CreateShoesTable extends Migration
             $table->string('name');
             $table->string('category');
             $table->unsignedBigInteger('brand');
-            $table->string('SKU');
+            $table->string('sku');
             $table->unsignedInteger('price');
-            
+            $table->text('description')->nullable();
+            $table->unsignedTinyInteger('type');
             $table->timestamps();
         });
     }

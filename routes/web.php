@@ -20,3 +20,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Shoe Routes
+Route::get('/shoes', [App\Http\Controllers\ShoesController::class, 'index'])->name('shoes.home');
+Route::post('/shoes', [App\Http\Controllers\ShoesController::class, 'store'])->name('shoes.store');
+Route::get('/shoes/create', [App\Http\Controllers\ShoesController::class, 'create']);
+Route::get('/shoes/view', [App\Http\Controllers\ShoesController::class, 'view']);
+Route::patch('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'update']);
+Route::get('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'show'])->name('shoes.show');
+Route::delete('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'destroy'])->name('shoes.destroy');
+Route::get('/shoes/{shoe}/edit', [App\Http\Controllers\ShoesController::class, 'edit']);
+
+// Brand Routes
+Route::get('/brands', [App\Http\Controllers\BrandsController::class, 'index'])->name('brands.home');
+Route::post('/brands', [App\Http\Controllers\BrandsController::class, 'store'])->name('brands.store');
+Route::get('/brands/create', [App\Http\Controllers\BrandsController::class, 'create']);
+Route::get('/brands/view', [App\Http\Controllers\BrandsController::class, 'view'])->name('brands.view');
+

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Shoe extends Model
+class Brand extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    public function brand()
-    {
-        return $this->belongsTo(Brand::class, 'id');
-    }
+    public $timestamps = false;
     
+    public function shoes()
+    {
+        return $this->hasMany(Shoe::class, 'brand');
+    }
 }
