@@ -15,4 +15,8 @@ class Shoe extends Model
         return $this->belongsTo(Brand::class, 'id');
     }
     
+    public function shoeImages()
+    {
+        return $this->hasMany(ShoeImages::class, 'shoe_id');
+    }
 }

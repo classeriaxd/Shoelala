@@ -31,9 +31,14 @@ Route::get('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'show'
 Route::delete('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'destroy'])->name('shoes.destroy');
 Route::get('/shoes/{shoe}/edit', [App\Http\Controllers\ShoesController::class, 'edit']);
 
+// Shoe Images Routes
+
+Route::get('/shoes/{shoe}/images', [App\Http\Controllers\ShoeImagesController::class, 'index'])->name('shoeimage.home');
+
 // Brand Routes
 Route::get('/brands', [App\Http\Controllers\BrandsController::class, 'index'])->name('brands.home');
 Route::post('/brands', [App\Http\Controllers\BrandsController::class, 'store'])->name('brands.store');
 Route::get('/brands/create', [App\Http\Controllers\BrandsController::class, 'create']);
 Route::get('/brands/view', [App\Http\Controllers\BrandsController::class, 'view'])->name('brands.view');
+
 

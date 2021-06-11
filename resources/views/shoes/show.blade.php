@@ -53,7 +53,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">Images</div>
+                <div class="card-header d-flex flex-row justify-content-between">
+                    <div class="my-auto h5">Images</div>
+                    <div>
+                        <a href="/shoes/{{$shoe->id}}/images">
+                            <button class="btn btn-primary">View all Images</button>
+                        </a>
+                    </div>
+                </div>
                 <div class="card-body text-center">
                     <div class="row justify-content-center">
                         <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
