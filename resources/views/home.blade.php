@@ -16,6 +16,15 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <div class="card-header">Choices</div>
+                <div class="card-body text-center">
+                    <a href="/shoes">
+                        <button class="btn btn-primary">Shoes</button>
+                    </a>
+                    <a href="/brands">
+                        <button class="btn btn-primary">Brands</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
