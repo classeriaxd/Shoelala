@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">Add New Brand</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('brands.store')}}" enctype="multipart/form-data" id="shoesForm">
+                    <form method="POST" action="{{ route('brand.store')}}" enctype="multipart/form-data" id="brandsForm">
                         @csrf
                         <div class="form-group row">{{-- brand name --}}
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -25,7 +25,7 @@
                         <div class="form-group row">
                             <label for="logo" class="col-md-4 col-form-label text-md-right">Brand Logo</label>
                             <div class="col-md-6">
-                                <input type="file" class="form-control-file @error('logo') is-invalid @enderror" id="logo" name="logo">
+                                <input type="file" class="form-control-file @error('logo') is-invalid @enderror" id="logo" name="logo" required>
                                 @error('logo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

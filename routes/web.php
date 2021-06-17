@@ -34,11 +34,13 @@ Route::get('/shoes/{shoe}/edit', [App\Http\Controllers\ShoesController::class, '
 // Shoe Images Routes
 
 Route::get('/shoes/{shoe}/images', [App\Http\Controllers\ShoeImagesController::class, 'index'])->name('shoeimage.home');
+Route::get('/shoes/{shoe}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'create'])->name('shoeimage.create');
+Route::post('/shoes/{shoe}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'store'])->name('shoeimage.store');
 
 // Brand Routes
-Route::get('/brands', [App\Http\Controllers\BrandsController::class, 'index'])->name('brands.home');
-Route::post('/brands', [App\Http\Controllers\BrandsController::class, 'store'])->name('brands.store');
+Route::get('/brands', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.home');
+Route::post('/brands', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store');
 Route::get('/brands/create', [App\Http\Controllers\BrandsController::class, 'create']);
-Route::get('/brands/view', [App\Http\Controllers\BrandsController::class, 'view'])->name('brands.view');
-
+Route::get('/brands/view', [App\Http\Controllers\BrandsController::class, 'view'])->name('brand.view');
+Route::get('/brands/{brand}', [App\Http\Controllers\BrandsController::class, 'show'])->name('brand.show');
 

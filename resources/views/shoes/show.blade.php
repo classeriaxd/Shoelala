@@ -10,15 +10,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                                {{--edit ang haba, pwede ata makuha gamit yung brand table --}}
-                                @php
-                                foreach($brands as $brand):
-                                    if($shoe->brand == $brand->id):
-                                        $shoe_brand = $brand->name;
-                                    endif;
-                                endforeach;
-                                @endphp
-                                <p>Brand: {{$shoe_brand ?? ''}}</p>
+                                <p>Brand: {{$brand}}</p>
                                 <p>Price: ₱{{$shoe->price}}</p>
                                 <p>SKU: {{$shoe->sku}}</p>
                             @php
@@ -63,21 +55,16 @@
                 </div>
                 <div class="card-body text-center">
                     <div class="row justify-content-center">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
-                        <img src="https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here" class="mr-2 mb-2">
+                    @foreach($shoeImages as $shoeImage)
+                        <img src="{{'/storage/'.$shoeImage->image}}" class="mr-2 mb-2" style="max-width:200px; max-height:200px;min-width:200px; min-height:200px;">
+                    @endforeach
+                        
                     </div>
                 </div>    
             </div>
             <hr>
             <div class="row justify-content-center pt-1">
-                <a href="/shoes">
+                <a href="/shoes/view">
                     <button class="btn btn-secondary">Go back</button>
                 </a>
             </div>

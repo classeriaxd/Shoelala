@@ -7,6 +7,7 @@ use Illuminate\Validation\Rule;
 
 use \App\Models\Brand;
 use \App\Models\Shoe;
+use \App\Models\ShoeImage;
 
 use \App\Rules\ShoeSKU;
 
@@ -32,16 +33,24 @@ class ShoesController extends Controller
     }
     public function show(Shoe $shoe)
     {
-        $brands = Brand::all();
-        return view('shoes.show', compact('shoe', 'brands'));
+        $brand = Brand::where('id', $shoe->brand)->value('name');
+        $shoeImages = ShoeImage::where('shoe_id', $shoe->id)
+        ->orderBy('angle', 'ASC')
+        ->get();
+        return view('shoes.show', compact('shoe', 'brand', 'shoeImages'));
     }
     public function view()
     {
         $brands = Brand::with(['shoes' => function ($query) {
-                    $query->orderBy('created_at', 'DESC');}])
+                    $query->orderBy('created_at', 'DESC');}, 
+                    'shoes.shoeImages' => function ($query) {
+                    $query->where('angle', '1')->pluck('image');},
+                ])
             ->orderBy('name', 'ASC')
             ->get();
+        //dd($brands);
         return view('shoes.view', compact('brands'));
+
     }
     public function destroy(Shoe $shoe)
     {

@@ -27,7 +27,7 @@
                             <label for="brand" class="col-md-4 col-form-label text-md-right">{{ __('Brand') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" required> 
-                                    <option value="0">Select Brand</option>
+                                    <option value="-1">Select Brand</option>
                                 @foreach($brands as $brand)
                                     <option {{ old('brand')==$brand->id ? 'selected="selected"' : '' }} value="{{$brand->id}}">{{$brand->name}}</option>
                                 @endforeach
@@ -44,10 +44,10 @@
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required> 
-                                    <option {{ old('type')=="0" ? 'selected="selected"' : '' }} value="-1">Select Shoe Type</option>
-                                    <option {{ old('type')=="1" ? 'selected="selected"' : '' }} value="0">Men</option>
-                                    <option {{ old('type')=="2" ? 'selected="selected"' : '' }} value="1">Women</option>
-                                    <option {{ old('type')=="3" ? 'selected="selected"' : '' }} value="2">Kids</option>
+                                    <option {{ old('type')=="-1" ? 'selected="selected"' : '' }} value="-1">Select Shoe Type</option>
+                                    <option {{ old('type')=="1" ? 'selected="selected"' : '' }} value="1">Men</option>
+                                    <option {{ old('type')=="2" ? 'selected="selected"' : '' }} value="2">Women</option>
+                                    <option {{ old('type')=="3" ? 'selected="selected"' : '' }} value="3">Kids</option>
 
                                 {{-- use this if will load using db
                                     @foreach($categories as $category)

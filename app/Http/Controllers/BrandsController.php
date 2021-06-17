@@ -11,7 +11,7 @@ use Intervention\Image\Facades\Image;
 
 class BrandsController extends Controller
 {
-        // *missing: SHOW, EDIT, UPDATE, DESTROY*
+        // *missing: EDIT, UPDATE, DESTROY*
     public function __construct()
     {
     	$this->middleware('auth');
@@ -41,17 +41,16 @@ class BrandsController extends Controller
                 'logo' => $logoPath,
             ]);
         }
-        return redirect()->route('brands.view');
+        return redirect()->route('brand.view');
     }
     public function view()
     {
         $brands = Brand::all();
         return view('brands.view', compact('brands'));
     }
+    public function show(Brand $brand)
+    {
+        return view('brands.show', compact('brand'));
+    }
 
-    //public function destroy()
-    //{
-    //    $shoe->delete($shoe);
-    //    return redirect()->route('shoes.home');
-    //}
 }
