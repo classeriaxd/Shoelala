@@ -4,20 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Brand extends Model
+class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
     
     protected $guarded = [];
-    protected $table = 'brands';
+    protected $table = 'categories';
     public $timestamps = false;
-    protected $primaryKey = 'brand_id';
+    protected $primaryKey = 'category_id';
 
 
     public function shoes()
     {
-        return $this->hasMany(Shoe::class, 'brand_id');
+        return $this->hasMany(Shoe::class, 'category_id');
     }
 }

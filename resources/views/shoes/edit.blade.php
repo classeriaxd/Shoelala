@@ -8,13 +8,13 @@
             <div class="card">
                 <div class="card-header">Edit {{$shoe->name}}</div>
                 <div class="card-body">
-                    <form method="POST" action="/shoes/{{$shoe->id}}" enctype="multipart/form-data" id="shoesForm">
+                    <form method="POST" action="/shoes/{{$shoe->shoe_id}}" enctype="multipart/form-data" id="shoesForm">
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">{{-- shoe name --}}
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $shoe->name }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $shoe->name }}" required autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <select class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" required> 
                                 @foreach($brands as $brand)
-                                    <option {{ $shoe->brand==$brand->id ? 'selected="selected"' : '' }} value="{{$brand->id}}">{{$brand->name}}</option>
+                                    <option {{ $shoe->brand_id==$brand->brand_id ? 'selected="selected"' : '' }} value="{{$brand->brand_id}}">{{$brand->name}}</option>
                                 @endforeach
                                 </select>
                                 @error('brand')
@@ -43,17 +43,10 @@
                         <div class="form-group row">{{-- type --}}
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
                             <div class="col-md-6">
-                                <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required> 
-                                    <option {{ $shoe->type=="1" ? 'selected="selected"' : '' }} value="1">Men</option>
-                                    <option {{ $shoe->type=="2" ? 'selected="selected"' : '' }} value="2">Women</option>
-                                    <option {{ $shoe->type=="3" ? 'selected="selected"' : '' }} value="3">Kids</option>
-
-                                {{-- use this if will load using db
-                                    @foreach($categories as $category)
-                                    <option>{{$category->name}}</option>
-                                    @endforeach
-                                --}}
-
+                                <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
+                                @foreach($types as $type)
+                                    <option {{ $shoe->type_id==$type->type_id ? 'selected="selected"' : '' }} value="{{$type->type_id}}">{{$type->type}}</option>
+                                @endforeach 
                                 </select>
 
                                 @error('type')
@@ -68,13 +61,9 @@
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control @error('category') is-invalid @enderror" id="category" name="category" required> 
-                                    <option {{ $shoe->category=="1" ? 'selected="selected"' : '' }} value="1">Running Shoes</option>
-                                {{-- use this if will load using db
-                                    @foreach($categories as $category)
-                                    <option>{{$category->name}}</option>
-                                    @endforeach
-                                --}}
-
+                                @foreach($categories as $category)
+                                    <option {{ $shoe_category_id==$category->category_id ? 'selected="selected"' : '' }} value="{{$category->category_id}}">{{$category->category}}</option>
+                                @endforeach
                                 </select>
 
                                 @error('category')
@@ -88,7 +77,7 @@
                         <div class="form-group row">{{-- SKU --}}
                             <label for="sku" class="col-md-4 col-form-label text-md-right">{{ __('SKU') }}</label>
                             <div class="col-md-6">
-                                <input id="sku" type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" value="{{ old('sku') ?? $shoe->sku }}" required autocomplete="sku">
+                                <input id="sku" type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" value="{{ old('sku') ?? $shoe->sku }}" required>
 
                                 @error('sku')
                                     <span class="invalid-feedback" role="alert">
@@ -102,6 +91,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
                             <div class="col-md-6">
                                 <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" rows="3">{{ old('description') ?? $shoe->description }}</textarea>
+
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -134,7 +124,7 @@
             </div>
             <hr>
             <div class="row justify-content-center pt-1">
-                <a href="/shoes/{{$shoe->id}}">
+                <a href="/shoes/{{$shoe->shoe_id}}">
                     <button class="btn btn-secondary">Go back</button>
                 </a>
             </div>

@@ -9,7 +9,7 @@
                 <div class="card-header text-center">Brands</div>
                 <div class="card-body d-flex flex-row justify-content-center">
                 @foreach($brands as $brand)
-                    <a href="/brands/{{$brand->id}}">
+                    <a href="/brands/{{$brand->brand_id}}">
                         <div class="card mr-2" style="width: 100%; color: black; max-width: 200px;">               
                             <img src="/storage/{{$brand->logo}}" class="card-img-top m-auto" style="max-width: 200px; max-height: 100px;">
                             <div class="card-body text-center" style="text-decoration: none; color: inherit;">

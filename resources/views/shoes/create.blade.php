@@ -13,7 +13,7 @@
                         <div class="form-group row">{{-- shoe name --}}
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -29,9 +29,10 @@
                                 <select class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" required> 
                                     <option value="-1">Select Brand</option>
                                 @foreach($brands as $brand)
-                                    <option {{ old('brand')==$brand->id ? 'selected="selected"' : '' }} value="{{$brand->id}}">{{$brand->name}}</option>
+                                    <option {{ old('brand')==$brand->brand_id ? 'selected="selected"' : '' }} value="{{$brand->brand_id}}">{{$brand->name}}</option>
                                 @endforeach
                                 </select>
+
                                 @error('brand')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,16 +46,9 @@
                             <div class="col-md-6">
                                 <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required> 
                                     <option {{ old('type')=="-1" ? 'selected="selected"' : '' }} value="-1">Select Shoe Type</option>
-                                    <option {{ old('type')=="1" ? 'selected="selected"' : '' }} value="1">Men</option>
-                                    <option {{ old('type')=="2" ? 'selected="selected"' : '' }} value="2">Women</option>
-                                    <option {{ old('type')=="3" ? 'selected="selected"' : '' }} value="3">Kids</option>
-
-                                {{-- use this if will load using db
-                                    @foreach($categories as $category)
-                                    <option>{{$category->name}}</option>
-                                    @endforeach
-                                --}}
-
+                                @foreach($types as $type)
+                                    <option {{ old('type')==$type->type_id ? 'selected="selected"' : '' }} value="{{$type->type_id}}">{{$type->type}}</option>
+                                @endforeach
                                 </select>
 
                                 @error('type')
@@ -70,13 +64,9 @@
                             <div class="col-md-6">
                                 <select class="form-control @error('category') is-invalid @enderror" id="category" name="category" required> 
                                     <option {{ old('category')=="0" ? 'selected="selected"' : '' }} value="-1">Select Category</option>
-                                    <option {{ old('category')=="1" ? 'selected="selected"' : '' }} value="1">Running Shoes</option>
-                                {{-- use this if will load using db
-                                    @foreach($categories as $category)
-                                    <option>{{$category->name}}</option>
-                                    @endforeach
-                                --}}
-
+                                @foreach($categories as $category)
+                                    <option {{ old('category')==$category->category_id ? 'selected="selected"' : '' }} value="{{$category->category_id}}">{{$category->category}}</option>
+                                @endforeach
                                 </select>
 
                                 @error('category')
@@ -90,7 +80,7 @@
                         <div class="form-group row">{{-- SKU --}}
                             <label for="sku" class="col-md-4 col-form-label text-md-right">{{ __('SKU') }}</label>
                             <div class="col-md-6">
-                                <input id="sku" type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" value="{{ old('sku') }}" required autocomplete="sku">
+                                <input id="sku" type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" value="{{ old('sku') }}" required>
 
                                 @error('sku')
                                     <span class="invalid-feedback" role="alert">

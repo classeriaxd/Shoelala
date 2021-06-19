@@ -7,6 +7,7 @@ use Illuminate\Validation\Rule;
 
 use \App\Models\Shoe;
 use \App\Models\ShoeImage;
+use \App\Models\ImageAngle;
 
 use Intervention\Image\Facades\Image;
 
@@ -22,12 +23,13 @@ class ShoeImagesController extends Controller
     }
     public function create(Shoe $shoe)
     {
-        return view('shoeimages.create', compact('shoe'));
+        $image_angles = ImageAngle::all();
+        return view('shoeimages.create', compact('shoe', 'image_angles'));
     }
     public function store(Shoe $shoe)
     {
         $data = request()->validate([
-            'angle' => ['required', Rule::in([1, 2, 3, 4, 5, 6])],
+            'angle' => 'required|exists:image_angles,image_angle_id',
             'shoe_image' => 'required|image|file|max:2048',
         ]);
         if(request('shoe_image'))
@@ -38,9 +40,9 @@ class ShoeImagesController extends Controller
             $image->save();
 
             ShoeImage::create([
-                'shoe_id' => $shoe->id,
+                'shoe_id' => $shoe->shoe_id,
                 'image' => $shoeImagePath,
-                'angle' => $data['angle'],
+                'image_angle_id' => $data['angle'],
             ]);
         }
         return redirect()->route('shoeimage.home', $shoe);

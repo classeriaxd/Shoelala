@@ -14,12 +14,12 @@ class CreateShoeImagesTable extends Migration
     public function up()
     {
         Schema::create('shoe_images', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('shoe_id');
+            $table->foreignId('shoe_id');
             $table->string('image');
-            $table->unsignedTinyInteger('angle');
+            $table->foreignId('image_angle_id');
 
-            $table->timestamps();
+            $table->foreign('shoe_id')->references('shoe_id')->on('shoes');
+            $table->foreign('image_angle_id')->references('image_angle_id')->on('image_angles');
         });
     }
 
@@ -31,5 +31,7 @@ class CreateShoeImagesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('shoe_images');
+        $table->dropForeign('shoe_id');
+        $table->dropForeign('image_angle_id');
     }
 }

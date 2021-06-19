@@ -13,27 +13,14 @@
                                 <p>Brand: {{$brand}}</p>
                                 <p>Price: ₱{{$shoe->price}}</p>
                                 <p>SKU: {{$shoe->sku}}</p>
-                            @php
-                                $shoe_category="";
-                                if($shoe->type == 1):
-                                    $shoe_category = $shoe_category."Men's ";
-                                elseif($shoe->type == 2):
-                                    $shoe_category = $shoe_category."Women's ";
-                                elseif($shoe->type == 3):
-                                    $shoe_category = $shoe_category."Kid's ";
-                                endif;
-                                if($shoe->category == 1):
-                                    $shoe_category = $shoe_category."Running Shoes";
-                                endif;
-                            @endphp
-                                <p>Category: {{$shoe_category}}</p>
+                                <p>Type and Category: {{$type."'s"." ".$category}}</p>
                                 <p>Description: {{($shoe->description == NULL)?"None":$shoe->description}}</p>
                         </div>
                         <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
-                            <a href="/shoes/{{$shoe->id}}/edit" class="mb-2">
+                            <a href="/shoes/{{$shoe->shoe_id}}/edit" class="mb-2">
                                 <button class="btn btn-primary" style="width: 100%">Edit</button>
                             </a>
-                            <form action="{{route('shoes.destroy', $shoe->id)}}" method="POST">
+                            <form action="{{route('shoes.destroy', $shoe->shoe_id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger" style="width: 100%">Delete</button>
@@ -48,7 +35,7 @@
                 <div class="card-header d-flex flex-row justify-content-between">
                     <div class="my-auto h5">Images</div>
                     <div>
-                        <a href="/shoes/{{$shoe->id}}/images">
+                        <a href="/shoes/{{$shoe->shoe_id}}/images">
                             <button class="btn btn-primary">View all Images</button>
                         </a>
                     </div>

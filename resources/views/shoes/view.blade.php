@@ -10,7 +10,7 @@
                 <div class="card-header text-center">{{$brand->name}}</div>
                 <div class="card-body d-flex flex-row justify-content-center">
                     @foreach($brand->shoes as $shoe)
-                    <a href="/shoes/{{$shoe->id}}" class="mr-2 mb-1">
+                    <a href="/shoes/{{$shoe->shoe_id}}" class="mr-2 mb-1">
                         <div class="card" style="width: 100%; color: black;">
 @php
     $front_image = 'https://via.placeholder.com/200.jpg?text=Sample+Shoe+Image+here';
