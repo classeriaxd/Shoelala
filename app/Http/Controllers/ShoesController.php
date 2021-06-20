@@ -56,14 +56,13 @@ class ShoesController extends Controller
                 ])
             ->orderBy('name', 'ASC')
             ->get();
-        //dd($brands);
         return view('shoes.view', compact('brands'));
 
     }
     public function destroy(Shoe $shoe)
     {
         $shoe->delete($shoe);
-        return redirect()->route('shoes.home');
+        return redirect()->route('shoes.view');
     }
     public function store()
     {
@@ -99,7 +98,16 @@ class ShoesController extends Controller
             'price' => 'required|numeric',
             'description' => 'nullable',
         ]);
-        $shoe->update($data);
+        $shoe_data = [
+            'name' => $data['name'],
+            'category_id' => $data['category'],
+            'brand_id' => $data['brand'],
+            'type_id' => $data['type'],
+            'sku' => $data['sku'],
+            'price' => $data['price'],
+            'description' => $data['description'],
+        ];
+        $shoe->update($shoe_data);
         return redirect()->route('shoes.show',['shoe' => $shoe->shoe_id]);
     }
 }

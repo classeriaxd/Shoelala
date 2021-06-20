@@ -26,7 +26,7 @@ class ShoeSKU implements Rule
      */
     public function passes($attribute, $value)
     {
-       return (Shoe::where('sku', $value)->doesntExist() || ($sku = Shoe::where('id', $this->shoe_id)->first()->sku) == $value);
+       return (Shoe::where('sku', $value)->doesntExist() || ($sku = Shoe::where('shoe_id', $this->shoe_id)->first()->sku) == $value);
     }
 
     /**
