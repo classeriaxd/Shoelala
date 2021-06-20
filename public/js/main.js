@@ -3,7 +3,7 @@ let logo = document.querySelector('.loader');
 let logoSpan = document.querySelectorAll('.loader-logo');
 
 
-const hb = document.querySelector('.hamburger');
+const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLink = document.querySelectorAll(".nav-link");
 
@@ -34,11 +34,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
     })
 })
 
-hb.addEventListener("click", mobileMenu);
+hamburger.addEventListener("click", mobileMenu);
 
 function mobileMenu()
 {
-    hb.classList.toggle("active");
+    hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
 }
 

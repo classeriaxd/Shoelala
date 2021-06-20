@@ -63,17 +63,23 @@
             </nav>
         </header>
 
-    <!--Carousel Wrapper-->
-    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-      
+  <!--Carousel Wrapper-->
+  <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+    
+    <div>
+      <span class="cardnew">NEW PAIRS</span>
+    </div> 
+
+    <ol class="carousel-indicators">
+      <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+      <li data-target="#multi-item-example" data-slide-to="1"></li>
+    </ol>
+
     <!--Slides-->
     <div class="carousel-inner" role="listbox">
-        <div>
-            <span class="card-new">NEW HEAT</span>
-        </div> 
-  
+        
       <!--First slide-->
-      <div class="carousel-item active" data-interval="20000">
+      <div class="carousel-item active" data-interval="2500">
   
         <div class="col-md-3" style="float:left">
          <div class="card mb-2">
@@ -86,7 +92,7 @@
               <p class="card-text">
                   Price: ₱9,695.00 
               </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
@@ -94,15 +100,15 @@
         <div class="col-md-3" style="float:left">
           <div class="card mb-2">
             <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
+              src="imgs/J4-MN.png" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
+              <h4 class="card-title">Jordan 4 Manila</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's content.</p>
               <p class="card-text">
-                Price: ₱9,695.00 
+                Price: ₱349,695.00 
               </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
@@ -110,15 +116,15 @@
         <div class="col-md-3" style="float:left">
           <div class="card mb-2">
             <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
+              src="imgs/J1-DI.png" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
+              <h4 class="card-title">Jordan 1 Low Dior</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's content.</p>
               <p class="card-text">
-                Price: ₱9,695.00 
+                Price: ₱259,695.00 
                </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
@@ -126,15 +132,15 @@
          <div class="col-md-3" style="float:left">
          <div class="card mb-2">
             <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
+              src="imgs/YZ350.png" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
+              <h4 class="card-title">Yeezy 350</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's content.</p>
               <p class="card-text">
-                Price: ₱9,695.00 
+                Price: ₱19,695.00 
               </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
@@ -143,20 +149,20 @@
       <!--/.First slide-->
   
       <!--Second slide-->
-      <div class="carousel-item" data-interval="10000">
+      <div class="carousel-item" data-interval="2500">
   
         <div class="col-md-3" style="float:left">
           <div class="card mb-2">
             <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
+              src="imgs/YZ700.png" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
+              <h4 class="card-title">Yeezy 700</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's content.</p>
               <p class="card-text">
-                Price: ₱9,695.00 
+                Price: ₱29,695.00 
               </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
@@ -164,15 +170,15 @@
         <div class="col-md-3" style="float:left">
           <div class="card mb-2">
             <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
+              src="imgs/J4-UB.png" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
+              <h4 class="card-title">Jordan 4 University Blue</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's content.</p>
               <p class="card-text">
-                Price: ₱9,695.00 
+                Price: ₱19,695.00 
               </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
@@ -180,15 +186,15 @@
         <div class="col-md-3" style="float:left">
           <div class="card mb-2">
             <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
+              src="imgs/J1-HR.png" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
+              <h4 class="card-title">Jordan 1 Hyper Royal</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's content.</p>
               <p class="card-text">
-                Price: ₱9,695.00 
+                Price: ₱129,695.00 
             </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
@@ -196,51 +202,36 @@
         <div class="col-md-3" style="float:left">
           <div class="card mb-2">
             <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
+              src="imgs/J4-CJ.png" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
+              <h4 class="card-title">Jordan 4 Cactus Jack</h4>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                 card's content.</p>
               <p class="card-text">
-                Price: ₱9,695.00 
+                Price: ₱259,695.00 
             </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn btn-primary">Buy</a>
+              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
             </div>
           </div>
         </div>
-  
       </div>
       <!--/.Second slide-->
   
-     
-  
     </div>
     <!--/.Slides-->
-  
+
   </div>
 
-        <!--
-        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div id="bgshoe" class="carousel-item active" data-interval="10000">
-                <img src="imgs/2.png" class="d-block w-100" alt="bgpic">
-              </div>
-              <div id="bgshoe" class="carousel-item" data-interval="10000">
-                <img src="imgs/2.png" class="d-block w-100" alt="bgpic">
-              </div>
-              <div id="bgshoe" class="carousel-item" data-interval="10000">
-                <img src="imgs/2.png" class="d-block w-100" alt="bgpic">
-              </div>
-            </div>
-        </div>
-        -->
-        <!--
-        <div class="trnsbg">
-            <div class="bgcontent">
-                <img class="bgshoe" src="imgs/2.png" alt="bgcontent">
-            </div>
-        </div>
-         -->
+  <!-- Footer -->
+  <footer class="page-footer font-small blue">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+      © YEAR 2021 :
+      <a href="https://mdbootstrap.com/" style="color: #ff0000;"> ShoeLala.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
         
         <script src="js/main.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -260,29 +251,5 @@
         -->
         
         <!--
-                    @if (Route::has('login'))
-                    <div id="nbar-buttons" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-                        @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-                        
-                        @if (Route::has('register'))
-                        <a  href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                        @endauth
-                    </div>
-                    @endif -->
+                    
         <!--
-            
-        <div id="card" class="card" style="width: 18rem; margin-top: 10rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div> -->
-        <!--
-        
-        -->
