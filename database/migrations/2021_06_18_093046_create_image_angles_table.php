@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrandsTable extends Migration
+class CreateImageAnglesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
-            $table->id('brand_id');
-            $table->string('name');
-            $table->string('logo');
-            $table->softDeletes();
+        Schema::create('image_angles', function (Blueprint $table) {
+            $table->id('image_angle_id');
+            $table->string('angle');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('image_angles');
     }
 }

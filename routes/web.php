@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/shoes', [App\Http\Controllers\ShoesController::class, 'index'])->name('shoes.home');
 Route::post('/shoes', [App\Http\Controllers\ShoesController::class, 'store'])->name('shoes.store');
 Route::get('/shoes/create', [App\Http\Controllers\ShoesController::class, 'create']);
-Route::get('/shoes/view', [App\Http\Controllers\ShoesController::class, 'view']);
+Route::get('/shoes/view', [App\Http\Controllers\ShoesController::class, 'view'])->name('shoes.view');
 Route::patch('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'update']);
 Route::get('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'show'])->name('shoes.show');
 Route::delete('/shoes/{shoe}', [App\Http\Controllers\ShoesController::class, 'destroy'])->name('shoes.destroy');

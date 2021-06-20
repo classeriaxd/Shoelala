@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-header text-center card-title">Options</div>
                 <div class="card-body text-center">
-                    <a href="/shoes/{{$shoe->id}}/images/create" class="mr-2">
+                    <a href="/shoes/{{$shoe->shoe_id}}/images/create" class="mr-2">
                         <button class="btn btn-primary">Add Images</button>
                     </a>
                     <a href="" class="mr-2">

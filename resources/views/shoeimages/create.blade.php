@@ -15,12 +15,9 @@
                             <div class="col-md-6">
                                 <select class="form-control @error('angle') is-invalid @enderror" id="angle" name="angle" required> 
                                     <option value="-1">Select Angle</option>
-                                    <option {{ old('angle')==1 ? 'selected="selected"' : '' }} value="1">Front</option>
-                                    <option {{ old('angle')==2 ? 'selected="selected"' : '' }} value="2">Back</option>
-                                    <option {{ old('angle')==3 ? 'selected="selected"' : '' }} value="3">Right</option>
-                                    <option {{ old('angle')==4 ? 'selected="selected"' : '' }} value="4">Left</option>
-                                    <option {{ old('angle')==5 ? 'selected="selected"' : '' }} value="5">Insole</option>
-                                    <option {{ old('angle')==6 ? 'selected="selected"' : '' }} value="6">Outsole</option>
+                                @foreach($image_angles as $image_angle)
+                                    <option {{ old('angle')==$image_angle->image_angle_id ? 'selected="selected"' : '' }} value="{{$image_angle->image_angle_id}}">{{$image_angle->angle}}</option>
+                                @endforeach
                                 </select>
                                 @error('angle')
                                     <span class="invalid-feedback" role="alert">

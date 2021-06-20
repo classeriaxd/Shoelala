@@ -12,6 +12,7 @@ use Intervention\Image\Facades\Image;
 class BrandsController extends Controller
 {
         // *missing: EDIT, UPDATE, DESTROY*
+        // *possible feature: update logo, instead of deleting and re-adding
     public function __construct()
     {
     	$this->middleware('auth');
