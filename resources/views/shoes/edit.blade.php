@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">Edit {{$shoe->name}}</div>
                 <div class="card-body">
-                    <form method="POST" action="/shoes/{{$shoe->shoe_id}}" enctype="multipart/form-data" id="shoesForm">
+                    <form method="POST" action="/s/{{$shoebrandslug}}/{{$shoe->slug}}" enctype="multipart/form-data" id="shoesForm">
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">{{-- shoe name --}}

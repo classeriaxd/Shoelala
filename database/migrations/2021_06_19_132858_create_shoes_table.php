@@ -22,6 +22,7 @@ class CreateShoesTable extends Migration
             $table->string('sku');
             $table->unsignedInteger('price');
             $table->text('description')->nullable();
+            $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
 

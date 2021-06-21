@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-header">Choices</div>
                 <div class="card-body text-center">
-                    <a href="/shoes">
+                    <a href="/s">
                         <button class="btn btn-primary">Shoes</button>
                     </a>
                     <a href="/b">

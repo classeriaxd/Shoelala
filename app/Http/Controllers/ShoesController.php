@@ -16,43 +16,7 @@ use \App\Rules\ShoeSKU;
 
 class ShoesController extends Controller
 {
-    public function __construct()
-    {
-    	$this->middleware('auth');
-    }
     public function index()
-    {
-    	return view('shoes.index');
-    }
-    public function create()
-    {
-        $brands = Brand::all();
-        $types = Type::all();
-        $categories = Category::all();
-        return view('shoes.create', compact('brands', 'types', 'categories'));
-    }
-    public function edit(Shoe $shoe)
-    {
-        $brands = Brand::all();
-        $types = Type::all();
-        $categories = Category::all();
-        return view('shoes.edit', compact('shoe', 'brands', 'types', 'categories'));
-    }
-    public function show(Shoe $shoe)
-    {
-        
-        $brand = Brand::where('brand_id', $shoe->brand_id)->value('name');
-        $shoeImages = ShoeImage::where('shoe_id', $shoe->shoe_id)
-            ->orderBy('image_angle_id', 'ASC')
-            ->get();
-        $type = Type::where('type_id', $shoe->type_id)->value('type');
-        $category = Category::where('category_id', $shoe->category_id)->value('category');
-
-        //$url = secure_url(Str::slug($brand,'-').'/'.Str::slug($shoe->name,'-').'/'.Str::replace(' ', '-',$shoe->sku));
-        //dd($url);
-        return view('shoes.show', compact('shoe', 'brand', 'shoeImages', 'type', 'category'));
-    }
-    public function view()
     {
         $brands = Brand::with(['shoes' => function ($query) {
                     $query->orderBy('created_at', 'DESC');}, 
@@ -61,22 +25,58 @@ class ShoesController extends Controller
                 ])
             ->orderBy('name', 'ASC')
             ->get();
-        return view('shoes.view', compact('brands'));
-
+        return view('shoes.index', compact('brands'));
     }
-    public function destroy(Shoe $shoe)
+    public function create()
     {
-        $shoe->delete($shoe);
-        return redirect()->route('shoes.view');
+        $this->middleware('auth');
+        $brands = Brand::all();
+        $types = Type::all();
+        $categories = Category::all();
+        return view('shoes.create', compact('brands', 'types', 'categories'));
+    }
+    public function edit($brand_slug, $shoe_slug)
+    {
+        $this->middleware('auth');
+        $shoe = Shoe::where('slug', $shoe_slug)->first();
+        $shoebrandslug = Brand::where('slug', $brand_slug)->value('slug');
+        $brands = Brand::all();
+        $types = Type::all();
+        $categories = Category::all();
+        return view('shoes.edit', compact('shoe', 'shoebrandslug', 'brands', 'types', 'categories'));
+    }
+    public function show($brand_slug, $shoe_slug)
+    {
+        $shoe = Shoe::where('slug', $shoe_slug)->first();
+        $brand = Brand::where('slug', $brand_slug)->first();
+        $shoeImages = ShoeImage::where('shoe_id', $shoe->shoe_id)
+            ->orderBy('image_angle_id', 'ASC')
+            ->get();
+        $type = Type::where('type_id', $shoe->type_id)->value('type');
+        $category = Category::where('category_id', $shoe->category_id)->value('category');
+
+        return view('shoes.show', compact('shoe', 'brand', 'shoeImages', 'type', 'category'));
+    }
+    public function destroy($brand_slug, $shoe_slug)
+    {
+        $this->middleware('auth');
+        if (Shoe::where('slug', $shoe_slug)->delete())
+        {
+            return redirect()->route('shoes.index');
+        }
+        else
+            abort(404);
+        
     }
     public function store()
     {
+        $this->middleware('auth');
         $data = request()->validate([
-            'name' => 'required',
+            'name' => 'required|regex:/^[\w\-\s]+$/|min:2|max:255',
             'category' => 'required|exists:categories,category_id',
             'brand' => 'required|exists:brands,brand_id',
             'type' => 'required|exists:types,type_id', 
-            'sku' => 'required|unique:shoes,sku',
+            'sku' => 'required|alpha_dash|unique:shoes,sku',
             'price' => 'required|numeric',
             'description' => 'nullable',
         ]);
@@ -88,18 +88,22 @@ class ShoesController extends Controller
             'sku' => $data['sku'],
             'price' => $data['price'],
             'description' => $data['description'],
+            'slug' => Str::replace(' ', '-', $data['name']).'-'.Str::replace(' ', '-', $data['sku']),
         ])->shoe_id;
+        $shoe = Shoe::where('shoe_id', $shoe_id)->first();
+        $brand = Brand::where('brand_id', $shoe->brand_id)->first();
 
-        return redirect()->route('shoes.show',['shoe' => $shoe_id]);
+        return redirect()->route('shoes.show',['brand_slug' => $brand->slug, 'shoe_slug' => $shoe->slug]);
     }
-    public function update(Shoe $shoe)
+    public function update($brand_slug, $shoe_slug)
     {
+        $this->middleware('auth');
         $data = request()->validate([
-            'name' => 'required',
+            'name' => 'required|regex:/^[\w\-\s]+$/|min:2|max:255',
             'category' => 'required|exists:categories,category_id',
             'brand' => 'required|exists:brands,brand_id',
             'type' => 'required|exists:types,type_id',
-            'sku' => ['required', new ShoeSKU($shoe->shoe_id)],
+            'sku' => ['required','alpha_dash', new ShoeSKU($shoe_slug)],
             'price' => 'required|numeric',
             'description' => 'nullable',
         ]);
@@ -111,8 +115,19 @@ class ShoesController extends Controller
             'sku' => $data['sku'],
             'price' => $data['price'],
             'description' => $data['description'],
+            'slug' => Str::replace(' ', '-', $data['name']).'-'.Str::replace(' ', '-', $data['sku']),
         ];
-        $shoe->update($shoe_data);
-        return redirect()->route('shoes.show',['shoe' => $shoe->shoe_id]);
+        $shoe = Shoe::where('slug', $shoe_slug)->first();
+
+        if (Shoe::where('slug', $shoe_slug)->update($shoe_data))
+        {
+            $shoe = Shoe::where('shoe_id', $shoe->shoe_id)->first();
+            $shoe_slug = Shoe::where('slug', $shoe->slug)->value('slug');
+            $brand_slug = Brand::where('brand_id', $shoe->brand_id)->value('slug');
+            return redirect()->route('shoes.show',['brand_slug' => $brand_slug, 'shoe_slug' => $shoe_slug]);
+        }
+        else
+            abort(404);
+        
     }
 }
