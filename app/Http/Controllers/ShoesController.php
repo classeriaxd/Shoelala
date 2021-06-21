@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 use \App\Models\Brand;
 use \App\Models\Shoe;
@@ -39,12 +40,16 @@ class ShoesController extends Controller
     }
     public function show(Shoe $shoe)
     {
+        
         $brand = Brand::where('brand_id', $shoe->brand_id)->value('name');
         $shoeImages = ShoeImage::where('shoe_id', $shoe->shoe_id)
             ->orderBy('image_angle_id', 'ASC')
             ->get();
         $type = Type::where('type_id', $shoe->type_id)->value('type');
         $category = Category::where('category_id', $shoe->category_id)->value('category');
+
+        //$url = secure_url(Str::slug($brand,'-').'/'.Str::slug($shoe->name,'-').'/'.Str::replace(' ', '-',$shoe->sku));
+        //dd($url);
         return view('shoes.show', compact('shoe', 'brand', 'shoeImages', 'type', 'category'));
     }
     public function view()

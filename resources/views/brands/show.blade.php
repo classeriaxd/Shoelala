@@ -17,7 +17,7 @@
             </div>
         <hr>
         <div class="row justify-content-center pt-1">
-            <a href="/brands/view">
+            <a href="/b">
                 <button class="btn btn-secondary">Go back</button>
             </a>
         </div>

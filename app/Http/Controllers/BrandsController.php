@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 use \App\Models\Brand;
 
@@ -13,22 +14,21 @@ class BrandsController extends Controller
 {
         // *missing: EDIT, UPDATE, DESTROY*
         // *possible feature: update logo, instead of deleting and re-adding
-    public function __construct()
-    {
-    	$this->middleware('auth');
-    }
     public function index()
     {
-    	return view('brands.index');
+    	$brands = Brand::all();
+        return view('brands.index', compact('brands'));
     }
     public function create()
     {
+        $this->middleware('auth');
         return view('brands.create');
     }
     public function store()
     {
+        $this->middleware('auth');
         $data = request()->validate([
-            'name' => 'required|unique:brands,name',
+            'name' => 'required|regex:/^[\w\-\s]+$/|unique:brands,name|max:255',
             'logo' => 'required|image|file|max:2048',
         ]);
         if(request('logo'))
@@ -40,17 +40,14 @@ class BrandsController extends Controller
             Brand::create([
                 'name' => $data['name'],
                 'logo' => $logoPath,
+                'slug' => Str::replace(' ', '-', $data['name']),
             ]);
         }
-        return redirect()->route('brand.view');
+        return redirect()->route('brand.index');
     }
-    public function view()
+    public function show($brand_slug)
     {
-        $brands = Brand::all();
-        return view('brands.view', compact('brands'));
-    }
-    public function show(Brand $brand)
-    {
+        $brand = Brand::where('slug', $brand_slug)->first();
         return view('brands.show', compact('brand'));
     }
 

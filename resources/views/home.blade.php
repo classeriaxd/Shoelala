@@ -21,7 +21,7 @@
                     <a href="/shoes">
                         <button class="btn btn-primary">Shoes</button>
                     </a>
-                    <a href="/brands">
+                    <a href="/b">
                         <button class="btn btn-primary">Brands</button>
                     </a>
                 </div>
