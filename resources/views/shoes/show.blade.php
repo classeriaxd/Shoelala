@@ -39,11 +39,16 @@
             <div class="card">
                 <div class="card-header d-flex flex-row justify-content-between">
                     <div class="my-auto h5">Images</div>
+                     {{-- TODO: PERMISSIONS AND ROLES --}}
+                @if (Route::has('login'))
+                    @auth
                     <div>
-                        <a href="/shoes/{{$shoe->shoe_id}}/images">
-                            <button class="btn btn-primary">View all Images</button>
+                        <a href="/s/{{$brand->slug}}/{{$shoe->slug}}/images/create">
+                            <button class="btn btn-primary">Add Image</button>
                         </a>
                     </div>
+                    @endauth
+                @endif
                 </div>
                 <div class="card-body text-center">
                     <div class="row justify-content-center">

@@ -90,6 +90,7 @@ class ShoesController extends Controller
             'description' => $data['description'],
             'slug' => Str::replace(' ', '-', $data['name']).'-'.Str::replace(' ', '-', $data['sku']),
         ])->shoe_id;
+        // todo: db error handling
         $shoe = Shoe::where('shoe_id', $shoe_id)->first();
         $brand = Brand::where('brand_id', $shoe->brand_id)->first();
 
@@ -126,6 +127,7 @@ class ShoesController extends Controller
             $brand_slug = Brand::where('brand_id', $shoe->brand_id)->value('slug');
             return redirect()->route('shoes.show',['brand_slug' => $brand_slug, 'shoe_slug' => $shoe_slug]);
         }
+        // todo: db error handling
         else
             abort(404);
         

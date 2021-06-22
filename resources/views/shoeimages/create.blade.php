@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">Add New Shoe Image</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('shoeimage.store', $shoe)}}" enctype="multipart/form-data" id="shoeimagesForm">
+                    <form method="POST" action="{{ route('shoeimage.store', [$brand_slug, $shoe_slug])}}" enctype="multipart/form-data" id="shoeimagesForm">
                         @csrf
                         <div class="form-group row">{{-- angles --}}
                             <label for="angle" class="col-md-4 col-form-label text-md-right">{{ __('Image Angle') }}</label>
@@ -48,7 +48,7 @@
             </div>
             <hr>
             <div class="row justify-content-center pt-1">
-                <a href="{{ route('shoeimage.home', $shoe)}}">
+                <a href="{{ route('shoes.show', [$brand_slug, $shoe_slug])}}">
                     <button class="btn btn-secondary">Go back</button>
                 </a>
             </div>

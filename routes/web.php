@@ -40,15 +40,11 @@ Route::get('/s', [App\Http\Controllers\ShoesController::class, 'index'])->name('
 Route::post('/s', [App\Http\Controllers\ShoesController::class, 'store'])->name('shoes.store')->middleware('auth');
 
 
-
-
-
-
 // Shoe Images Routes
 
 Route::get('/shoes/{shoe}/images', [App\Http\Controllers\ShoeImagesController::class, 'index'])->name('shoeimage.home');
-Route::get('/shoes/{shoe}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'create'])->name('shoeimage.create');
-Route::post('/shoes/{shoe}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'store'])->name('shoeimage.store');
+Route::get('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'create'])->name('shoeimage.create');
+Route::post('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'store'])->name('shoeimage.store');
 
 // Brand Routes
 // Todo: custom brand 404, 403

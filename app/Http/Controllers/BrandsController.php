@@ -37,18 +37,25 @@ class BrandsController extends Controller
             $image = Image::make(public_path("storage/{$logoPath}"));
             $image->save();
 
+            if(
             Brand::create([
                 'name' => $data['name'],
                 'logo' => $logoPath,
-                'slug' => Str::replace(' ', '-', $data['name']),
-            ]);
+                'slug' => Str::replace(' ', '-', $data['name']),])
+            )
+            {
+                return redirect()->route('brand.index');
+            }//Todo db errorhandling
+            else
+                abort(404);
         }
-        return redirect()->route('brand.index');
+        
     }
     public function show($brand_slug)
     {
         $brand = Brand::where('slug', $brand_slug)->first();
         return view('brands.show', compact('brand'));
     }
+    
 
 }

@@ -19,7 +19,7 @@ class CreateShoesTable extends Migration
             $table->foreignId('category_id');
             $table->foreignId('brand_id');
             $table->foreignId('type_id');
-            $table->string('sku');
+            $table->string('sku')->unique();
             $table->unsignedInteger('price');
             $table->text('description')->nullable();
             $table->string('slug');

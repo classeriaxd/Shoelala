@@ -17,16 +17,12 @@ class ShoeImagesController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index(Shoe $shoe)
-    {
-        return view('shoeimages.index', compact('shoe'));
-    }
-    public function create(Shoe $shoe)
+    public function create($brand_slug, $shoe_slug)
     {
         $image_angles = ImageAngle::all();
-        return view('shoeimages.create', compact('shoe', 'image_angles'));
+        return view('shoeimages.create', compact('brand_slug', 'shoe_slug', 'image_angles'));
     }
-    public function store(Shoe $shoe)
+    public function store($brand_slug, $shoe_slug)
     {
         $data = request()->validate([
             'angle' => 'required|exists:image_angles,image_angle_id',
@@ -38,13 +34,18 @@ class ShoeImagesController extends Controller
             $image = Image::make(public_path("storage/{$shoeImagePath}"));
             // insert proper sizing, sizes, reso
             $image->save();
-
-            ShoeImage::create([
+            $shoe = Shoe::where('slug', $shoe_slug)->first();
+            if (ShoeImage::create([
                 'shoe_id' => $shoe->shoe_id,
                 'image' => $shoeImagePath,
-                'image_angle_id' => $data['angle'],
-            ]);
+                'image_angle_id' => $data['angle'],])
+                )
+            {
+                return redirect()->route('shoes.show', ['brand_slug' => $brand_slug, 'shoe_slug' => $shoe_slug]);
+            }
+            //TODO db error handling
+            else
+                abort(404);
         }
-        return redirect()->route('shoeimage.home', $shoe);
     }
 }

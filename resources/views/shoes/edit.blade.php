@@ -124,7 +124,7 @@
             </div>
             <hr>
             <div class="row justify-content-center pt-1">
-                <a href="/shoes/{{$shoe->shoe_id}}">
+                <a href="/s/{{$shoebrandslug}}/{{$shoe->slug}}">
                     <button class="btn btn-secondary">Go back</button>
                 </a>
             </div>
