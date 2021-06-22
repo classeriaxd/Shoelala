@@ -32,8 +32,6 @@
                         @endauth
                     @endif
                     </div>
-                    
-                    
                 </div>
             </div>
             <div class="card">
@@ -55,7 +53,6 @@
                     @foreach($shoeImages as $shoeImage)
                         <img src="{{'/storage/'.$shoeImage->image}}" class="mr-2 mb-2" style="max-width:200px; max-height:200px;min-width:200px; min-height:200px;">
                     @endforeach
-                        
                     </div>
                 </div>    
             </div>
@@ -66,7 +63,6 @@
                 </a>
             </div>
         </div>
-
     </div>
 </div>
 @endsection

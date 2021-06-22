@@ -7,12 +7,20 @@
             <h2 class="display-2 text-center">Brand View</h2>
             <div class="card mb-2" style="width: 100%">
                 <div class="card-header text-center">{{$brand->name}}</div>
-                <img src="/storage/{{$brand->logo}}" class="card-img-top m-auto" >
+                <img src="/storage/{{$brand->logo}}" class="card-img-top m-auto w-50" >
                 <div class="card-body text-center">
                     <hr>
+                {{-- TODO: PERMISSIONS AND ROLES --}}
+                @if (Route::has('login'))
+                    @auth
                     <h5 class="card-title">Option</h5>
-                    <button class="btn btn-danger" disabled>Delete</button>
-                    <p class="text-muted">(wip)</p>
+                    <form action="{{route('brand.destroy', $brand->slug)}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger" style="width: 100%">Delete</button>
+                    </form> 
+                    @endauth
+                @endif    
                 </div>
             </div>
         <hr>

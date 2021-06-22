@@ -19,6 +19,11 @@ class BrandsController extends Controller
     	$brands = Brand::all();
         return view('brands.index', compact('brands'));
     }
+    public function show($brand_slug)
+    {
+        $brand = Brand::where('slug', $brand_slug)->first();
+        return view('brands.show', compact('brand'));
+    }
     public function create()
     {
         $this->middleware('auth');
@@ -49,13 +54,16 @@ class BrandsController extends Controller
             else
                 abort(404);
         }
-        
     }
-    public function show($brand_slug)
+    public function destroy($brand_slug)
     {
-        $brand = Brand::where('slug', $brand_slug)->first();
-        return view('brands.show', compact('brand'));
+        $this->middleware('auth');
+        if (Brand::where('slug', $brand_slug)->delete())
+        {
+            return redirect()->route('brand.index');
+        }
+        else
+            abort(404);
     }
-    
 
 }

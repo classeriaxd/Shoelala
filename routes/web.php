@@ -21,16 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
-// Shoe Routes
-// /s -> index all shoes (contains view) /
-// /s/{shoe_slug} -> shoe show
-
-// validation needed
-// /s/create -> shoe create
-// post::/s -> shoe store
-// patch::/s/{shoe_slug} -> shoe update
-// delete::/s/{shoe_slug} -> shoe delete
-//
+// Todo: custom shoe 404, 403
 Route::get('/s/{brand_slug}/{shoe_slug}/edit', [App\Http\Controllers\ShoesController::class, 'edit']);
 Route::get('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'show'])->name('shoes.show')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
 Route::patch('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'update'])->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
@@ -51,6 +42,7 @@ Route::post('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\S
 
 Route::get('/b/create', [App\Http\Controllers\BrandsController::class, 'create'])->middleware('auth');
 Route::get('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'show'])->name('brand.show')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$');
+Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'destroy'])->name('brand.destroy')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$');
 Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
 Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware('auth');
 //404 Routes
