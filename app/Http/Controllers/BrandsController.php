@@ -58,7 +58,8 @@ class BrandsController extends Controller
     public function destroy($brand_slug)
     {
         $this->middleware('auth');
-        if (Brand::where('slug', $brand_slug)->delete())
+        $brand = Brand::where('slug', $brand_slug)->first();
+        if ($brand->delete())
         {
             return redirect()->route('brand.index');
         }
