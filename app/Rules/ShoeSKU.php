@@ -12,9 +12,9 @@ class ShoeSKU implements Rule
      *
      * @return void
      */
-    public function __construct($shoe_id)
+    public function __construct($shoe_slug)
     {
-        $this->shoe_id = $shoe_id;
+        $this->shoe_slug = $shoe_slug;
     }
 
     /**
@@ -26,7 +26,7 @@ class ShoeSKU implements Rule
      */
     public function passes($attribute, $value)
     {
-       return (Shoe::where('sku', $value)->doesntExist() || ($sku = Shoe::where('shoe_id', $this->shoe_id)->first()->sku) == $value);
+       return (Shoe::where('sku', $value)->doesntExist() || ($sku = Shoe::where('slug', $this->shoe_slug)->first()->sku) == $value);
     }
 
     /**

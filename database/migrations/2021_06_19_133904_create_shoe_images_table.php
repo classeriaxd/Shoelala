@@ -17,8 +17,8 @@ class CreateShoeImagesTable extends Migration
             $table->foreignId('shoe_id');
             $table->string('image');
             $table->foreignId('image_angle_id');
-
-            $table->foreign('shoe_id')->references('shoe_id')->on('shoes');
+            $table->softDeletes();
+            $table->foreign('shoe_id')->references('shoe_id')->on('shoes')->onDelete('cascade');
             $table->foreign('image_angle_id')->references('image_angle_id')->on('image_angles');
         });
     }

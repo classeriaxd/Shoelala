@@ -19,14 +19,16 @@ class CreateShoesTable extends Migration
             $table->foreignId('category_id');
             $table->foreignId('brand_id');
             $table->foreignId('type_id');
-            $table->string('sku');
+            $table->string('sku')->unique();
             $table->unsignedInteger('price');
             $table->text('description')->nullable();
+            $table->string('slug');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('category_id')->references('category_id')->on('categories');
-            $table->foreign('brand_id')->references('brand_id')->on('brands');
+            $table->foreign('brand_id')->references('brand_id')->on('brands')
+            ->onDelete('cascade');
             $table->foreign('type_id')->references('type_id')->on('types');
         });
     }
