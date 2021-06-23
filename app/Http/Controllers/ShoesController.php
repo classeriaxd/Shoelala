@@ -60,7 +60,8 @@ class ShoesController extends Controller
     public function destroy($brand_slug, $shoe_slug)
     {
         $this->middleware('auth');
-        if (Shoe::where('slug', $shoe_slug)->delete())
+        $shoe = Shoe::where('slug', $shoe_slug)->first();
+        if ($shoe->delete())
         {
             return redirect()->route('shoes.index');
         }

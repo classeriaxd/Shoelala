@@ -8,8 +8,10 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 
 use \App\Models\Brand;
+use \App\Models\Shoe;
 
 use \App\Observers\BrandObserver;
+use \App\Observers\ShoeObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Shoe::observe(ShoeObserver::class);
         Brand::observe(BrandObserver::class);
     }
 }
