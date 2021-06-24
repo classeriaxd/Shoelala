@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Models\Brand;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $brands = Brand::with(['shoes' => function ($query) {
+        $query->orderBy('created_at', 'DESC');}, 
+        'shoes.shoeImages' => function ($query) {
+        $query->where('image_angle_id', '3')->pluck('image');},])
+    ->orderBy('name', 'ASC')
+    ->get();
+    return view('welcome', compact('brands'));
 });
 
 Auth::routes();

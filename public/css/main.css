@@ -31,6 +31,12 @@ html, body
     height: 100vh;
 }
 
+#cardimg
+{
+    height: 200px;
+    object-fit: fill;
+}
+
 .loader-wrapper
 {
     position: fixed;

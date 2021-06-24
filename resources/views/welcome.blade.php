@@ -31,7 +31,7 @@
 
         <header class="header">
             <nav id="navbar" class="navbar fixed-top">
-                <div class="container">          
+                <div class="container">           
                     <a class="navbar-brand" href="#">
                         <span>Shoelala</span>
                     </a>
@@ -85,7 +85,7 @@
     </div> 
 
     <ol class="carousel-indicators">
-      <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+      <li data-target="#multi-item-example" data-slide-to="0" class="active"></i></li>
       <li data-target="#multi-item-example" data-slide-to="1"></li>
     </ol>
 
@@ -94,22 +94,28 @@
         
       <!--First slide-->
       <div class="carousel-item active" data-interval="2500">
-  
-        <div class="col-md-3" style="float:left">
-         <div class="card mb-2">
-            <img class="card-img-top"
-              src="imgs/2.png" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">Jordan 4 Taupe Haze</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                card's content.</p>
-              <p class="card-text">
-                  Price: ₱9,695.00 
-              </p>
-              <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
+        @foreach($brands as $brand)
+        @foreach($brand->shoes as $shoe)
+            <div class="col-md-3" style="float:left">
+                <div class="card mb-2">
+                    @foreach($shoe->shoeImages as $image)
+                    @if($image->image_angle_id == 3)
+                    <img id="cardimg" class="card-img-top"
+                      src="{{'/storage/'.$image->image}}" alt="Card image cap">
+                    @endif
+                    @endforeach
+                    <div class="card-body">
+                      <h4 class="card-title">{{$shoe->name}}</h4>
+                      <p class="card-text">{{$shoe->description}}</p>
+                      <p class="card-text">
+                        Price: ₱ {{$shoe->price}} 
+                      </p>
+                      <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
+        @endforeach
+    @endforeach
   
         <div class="col-md-3" style="float:left">
           <div class="card mb-2">
