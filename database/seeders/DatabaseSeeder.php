@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             CategorySeeder::class,
             SizeSeeder::class,
+            BrandSeeder::class,
+            ShoeSeeder::class,
+            ShoeImageSeeder::class,
         ]);
     }
 }
