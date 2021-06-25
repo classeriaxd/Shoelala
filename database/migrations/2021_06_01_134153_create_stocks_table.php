@@ -14,11 +14,15 @@ class CreateStocksTable extends Migration
     public function up()
     {
         Schema::create('stocks', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('shoe_id');
-            $table->decimal('size', $precision = 3, $scale = 1);
-            $table->unsignedInteger('stocks');
+            $table->id('stock_id');
+            $table->foreginId('shoe_id');
+            $table->foreignId('size_id');
+            $table->unsignedInteger('stocks')->default('0');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('shoe_id')->references('shoe_id')->on('shoes')->onDelete('cascade');
+            $table->foreign('size_id')->references('size_id')->on('sizes');
         });
     }
 
@@ -29,6 +33,8 @@ class CreateStocksTable extends Migration
      */
     public function down()
     {
+        $table->dropForeign('shoe_id');
+        $table->dropForeign('size_id');
         Schema::dropIfExists('stocks');
     }
 }
