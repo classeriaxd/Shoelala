@@ -33,12 +33,12 @@
             <nav id="navbar" class="navbar fixed-top">
                 <div class="container">           
                     <a class="navbar-brand" href="#">
-                        <span>Shoelala</span>
+                        <img id="navbar-logo" src="/imgs/re-logo2.png" alt="logo">
                     </a>
                                     
                         <ul class="nav-menu">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">HOME</a>
+                                <a class="nav-link" href="#" style="border-bottom: 2px solid; border-color: #010302;">HOME</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#">SHOP</a>
@@ -164,6 +164,22 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-3" style="float:left">
+          <div class="card mb-2">
+             <img class="card-img-top"
+               src="imgs/2.png" alt="Card image cap">
+             <div class="card-body">
+               <h4 class="card-title">J4 Taupe Haze</h4>
+               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                 card's content.</p>
+               <p class="card-text">
+                 Price: ₱19,695.00 
+               </p>
+               <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
+             </div>
+           </div>
+         </div>
   
       </div>
       <!--/.First slide-->
@@ -235,6 +251,7 @@
           </div>
         </div>
       </div>
+
       <!--/.Second slide-->
   
     </div>
@@ -247,7 +264,7 @@
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
       © YEAR 2021 :
-      <a href="https://mdbootstrap.com/" style="color: #ff0000;"> ShoeLala.com</a>
+      <a href="https://mdbootstrap.com/" style="color: #165495;"> ShoeLala.com</a>
     </div>
     <!-- Copyright -->
   </footer>

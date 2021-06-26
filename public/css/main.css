@@ -40,7 +40,7 @@ html, body
 .loader-wrapper
 {
     position: fixed;
-    z-index: 100;
+    z-index: 5000;
     left: 0;
     top: 0;
     width: 100%;
@@ -59,9 +59,14 @@ html, body
     color: whitesmoke;
 }
 
+#shoe
+{
+    color: #FFFDF5;
+}
+
 #lala
 {
-    color: #ff4d00;
+    color: #155395;
 }
 
 .loader-logo
@@ -86,11 +91,6 @@ html, body
     transition: ease-in-out 0.5s;
 }
 
-#bgshoe
-{
-    margin-top: 50px;
-}
-
 #nbar-buttons a
 {
     background-color: black; 
@@ -103,40 +103,17 @@ html, body
     font-size: 15px;   
 }
 
+.navbar-brand img:hover
+{
+    transform: scale(1.15);
+}
+
 .navbar
 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-}
-
-.navbar-brand span
-{
-    margin-top: -5px;
-    font-size: 2.1em;
-    font-weight: 600;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    display: inline-block;
-    color: wheat;
-    overflow: hidden;
-
-    background: linear-gradient(to right, #ff0000, #ff4d00 50%, #272121 50%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
-    background-position: 100%;
-    transition: background-position 275ms ease;
-    animation: gradient 10s ease-in;
-}
-
-.navbar-brand span:hover
-{
-    background-position: 0 100%;
-    font-weight: 800;
 }
 
 #nbar-buttons a
@@ -165,17 +142,17 @@ html, body
     margin-top: 25px;
     position: relative;
     display: inline-block;
-    color: wheat;
+    color: #272121;
     overflow: hidden;
 
-    background: linear-gradient(to right, #ff0000, #ff4d00 50%, #272121 50%);
+    background: linear-gradient(to right, #217FE1, #217FE1 50%, #272121 50%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 100%;
     background-position: 100%;
     transition: background-position 275ms ease;
-    animation: gradient 10s ease-in ;
+    animation: gradient 7s ease-in ;
 }
 
 .nav-link:hover
@@ -201,10 +178,11 @@ html, body
 .dropdown-item:hover
 {
     background-position: 0 100%;
-    color: #ff4d00;
+    color: #1F7DE0;
     border-bottom: 2px solid;
     border-color: #010302;
     font-weight: 800;
+    transition: .5s;
 }
 
 .hamburger
@@ -300,7 +278,7 @@ html, body
     position: relative;
     overflow: hidden;
 
-    background: radial-gradient(#FC5404,#ff0000, #ff4d00, #CE1212, #272121, #F54748);
+    background: radial-gradient(#1F7DE0,#1a65b4, #030C15, #165495, #0883d4, #165495);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -345,7 +323,7 @@ html, body
     transform: scale(1.15);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 8px 12px rgba(0,0,0,.06);
     z-index: 200;
-    background: #ff9564;
+    background: #449DED;
     border-radius: 4px;
 }
 
