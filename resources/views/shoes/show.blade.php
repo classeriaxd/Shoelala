@@ -17,8 +17,7 @@
                                 <p>Description: {{($shoe->description == NULL)?"None":$shoe->description}}</p>
                         </div>
                      {{-- TODO: PERMISSIONS AND ROLES --}}
-                    @if (Route::has('login'))
-                        @auth
+                    @role('Super Admin')
                         <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
                             <a href='/s/{{$brand->slug}}/{{$shoe->slug}}/edit' class="mb-2">
                                 <button class="btn btn-primary" style="width: 100%">Edit</button>
@@ -29,8 +28,8 @@
                                 <button class="btn btn-danger" style="width: 100%">Delete</button>
                             </form> 
                         </div>
-                        @endauth
-                    @endif
+                        
+                    @endrole
                     </div>
                 </div>
             </div>
