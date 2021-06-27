@@ -45,6 +45,10 @@ Route::get('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'sh
 Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'destroy'])->name('brand.destroy')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$');
 Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
 Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware('auth');
+
+// Stock Routes
+Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->middleware('auth');
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);

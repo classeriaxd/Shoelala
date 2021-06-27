@@ -15,7 +15,7 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id('stock_id');
-            $table->foreginId('shoe_id');
+            $table->foreignId('shoe_id');
             $table->foreignId('size_id');
             $table->unsignedInteger('stocks')->default('0');
             $table->timestamps();
