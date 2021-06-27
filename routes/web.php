@@ -26,9 +26,9 @@ Route::get('/s/{brand_slug}/{shoe_slug}/edit', [App\Http\Controllers\ShoesContro
 Route::get('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'show'])->name('shoes.show')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
 Route::patch('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'update'])->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
 Route::delete('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'destroy'])->name('shoes.destroy')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
-Route::get('/s/create', [App\Http\Controllers\ShoesController::class, 'create'])->middleware('auth');
+Route::get('/s/create', [App\Http\Controllers\ShoesController::class, 'create'])->middleware(['auth','role_auth:Super Admin']);
 Route::get('/s', [App\Http\Controllers\ShoesController::class, 'index'])->name('shoes.index');
-Route::post('/s', [App\Http\Controllers\ShoesController::class, 'store'])->name('shoes.store')->middleware('auth');
+Route::post('/s', [App\Http\Controllers\ShoesController::class, 'store'])->name('shoes.store')->middleware(['auth','role_auth:Super Admin']);
 
 
 // Shoe Images Routes
