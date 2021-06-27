@@ -3,7 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use \App\Models\Role;
 
 class RolesAuth
@@ -15,10 +18,10 @@ class RolesAuth
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role)
     {
-        $role = Role::findOrFail(auth()->user()->role_id);
-        $permissions = $role->permissions;
-        return $next($request);
+        $user_role = Role::findOrFail(auth()->user()->role->name);
+        if ($role == $user_role && Auth::check())
+            return $next($request);
     }
 }
