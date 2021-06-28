@@ -27,7 +27,6 @@ class StocksController extends Controller
             //->sum('stocks.stocks')
             ->whereNull('stocks.deleted_at')
             ->groupBy('stocks.shoe_id')
-            ->orderBy('stocks.created_at', 'ASC')
             ->get();
             //dd($stocks);
         return view('stocks.index', compact('stocks'));
@@ -74,7 +73,8 @@ class StocksController extends Controller
     {
         //softdelete stock
         $this->middleware('auth');
-        $stocks = Stock::where('size_id', $size_id)->first();
+        $shoe = Shoe::where('slug', $shoe_slug)->first();
+        $stocks = Stock::where(['shoe_id' => $shoe->shoe_id, 'size_id' => $size_id])->first();
         if ($stocks->delete())
         {
             return redirect()->route('stocks.index');
