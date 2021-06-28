@@ -45,6 +45,11 @@ Route::get('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'sh
 Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'destroy'])->name('brand.destroy')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
 Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware(['auth','role_auth:Super Admin']);
+
+//Order Routes
+Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::get('/orders/scan', [App\Http\Controllers\OrdersController::class, 'scanQRView'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);
