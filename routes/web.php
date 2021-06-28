@@ -19,9 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-<<<<<<< Updated upstream
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 // Todo: custom shoe 404, 403
@@ -63,4 +60,3 @@ Route::get('/{any}', function () {
     abort(404);
 });
 
->>>>>>> Stashed changes
