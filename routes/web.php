@@ -45,6 +45,16 @@ Route::get('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'sh
 Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'destroy'])->name('brand.destroy')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
 Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware(['auth','role_auth:Super Admin']);
+
+// Stock Routes
+Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
+Route::get('/stocks/{brand_slug}/{shoe_slug}', [App\Http\Controllers\StocksController::class, 'show'])->name('stocks.show')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::delete('/stocks/{brand_slug}/{shoe_slug}/{size_id}', [App\Http\Controllers\StocksController::class, 'destroy'])->name('stocks.destroy')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::get('/stocks/{brand_slug}/{shoe_slug}/{size_id}/edit', [App\Http\Controllers\StocksController::class, 'edit']);
+Route::patch('/stocks/{brand_slug}/{shoe_slug}/{size_id}', [App\Http\Controllers\StocksController::class, 'update'])->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::get('/stocks/create', [App\Http\Controllers\StocksController::class, 'create'])->middleware('auth');
+Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])->name('stocks.store')->middleware('auth');
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);
