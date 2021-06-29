@@ -34,4 +34,9 @@ class Shoe extends Model
     {
         return $this->hasMany(ShoeImage::class, 'shoe_id');
     }
+
+    public function sizes()
+    {
+        return $this->hasMany(Sizes::class, 'size_id');
+    }
 }

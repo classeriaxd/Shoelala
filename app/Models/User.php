@@ -19,8 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'email', 
-        'password', 
-        'role',      
+        'password',  
         'first_name',
         'middle_name',
         'last_name',
@@ -48,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     protected $primaryKey = 'user_id';
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

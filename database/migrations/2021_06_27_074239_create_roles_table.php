@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStocksTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('stocks', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('shoe_id');
-            $table->decimal('size', $precision = 3, $scale = 1);
-            $table->unsignedInteger('stocks');
-            $table->timestamps();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id('role_id');
+            $table->string('name');
+            $table->string('description')->nullable();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('roles');
     }
 }
