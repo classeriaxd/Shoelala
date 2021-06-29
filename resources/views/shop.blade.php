@@ -22,13 +22,6 @@
     </head>
     <body id="body" class="antialiased">
 
-        <div class="loader-wrapper">
-            <h1 class="loader">
-                <span id="shoe" class="loader-logo">Shoe</span>                
-                <span id="lala" class="loader-logo">lala</span>                
-            </h1>
-        </div>
-
         <header class="header">
             <nav id="navbar" class="navbar fixed-top">
                 <div class="container">           
@@ -79,10 +72,6 @@
 
   <!--Carousel Wrapper-->
   <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-    
-    <div>
-      <span class="cardnew">NEW PAIRS</span>
-    </div> 
 
     <ol class="carousel-indicators">
       <li data-target="#multi-item-example" data-slide-to="0" class="active"></i></li>
