@@ -37,7 +37,6 @@ Route::get('/s/create', [App\Http\Controllers\ShoesController::class, 'create'])
 Route::get('/s', [App\Http\Controllers\ShoesController::class, 'index'])->name('shoes.index');
 Route::post('/s', [App\Http\Controllers\ShoesController::class, 'store'])->name('shoes.store')->middleware('auth');
 
-
 // Shoe Images Routes
 
 Route::get('/shoes/{shoe}/images', [App\Http\Controllers\ShoeImagesController::class, 'index'])->name('shoeimage.home');
@@ -47,13 +46,19 @@ Route::post('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\S
 // Brand Routes
 // Todo: custom brand 404, 403
 
+
 Route::get('/b/create', [App\Http\Controllers\BrandsController::class, 'create'])->middleware('auth');
 Route::get('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'show'])->name('brand.show')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$');
 Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'destroy'])->name('brand.destroy')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$');
 Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
 Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware('auth');
+
+
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);
 });
+
+
 
