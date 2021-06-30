@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Brand;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\ShoesController;
+use App\Http\Controllers\TransactionsController;
+>>>>>>> Stashed changes
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +57,20 @@ Route::get('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'sh
 Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'destroy'])->name('brand.destroy')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$');
 Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
 Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware('auth');
+
+// Shoe Details Routes
+Route::get("/d/{shoe_slug}",[App\Http\Controllers\ShoesController::class,'detail']);
+
+// Add to Cart Routes
+Route::post('/c/add_to_cart', [App\Http\Controllers\TransactionsController::class, 'addToCart']);
+Route::get('/c/cartlist', [App\Http\Controllers\TransactionsController::class, 'cartlist'])->name('cart.cartlist');
+Route::get('/c/cartlist/{id}', [App\Http\Controllers\TransactionsController::class, 'removeFromCart']);
+
+//order routes
+Route::get('/order', [App\Http\Controllers\TransactionsController::class, 'order']);
+Route::get('/orderSucess', [App\Http\Controllers\TransactionsController::class, 'orderSuccess']);
+
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);

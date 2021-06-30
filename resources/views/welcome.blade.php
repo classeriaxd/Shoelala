@@ -111,7 +111,11 @@
                               <p class="card-text">
                                 Price: {{$shoe->price}} 
                               </p>
+<<<<<<< Updated upstream
                               <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn  ">Buy</a>
+=======
+                              <a href="/s/{{$brand->slug}}/{{$shoe->slug}}" class="btn  ">Buy</a>
+>>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>

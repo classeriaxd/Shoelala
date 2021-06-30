@@ -1,3 +1,7 @@
+<?php
+use App\Http\Controllers\TransactionsController;
+$total=TransactionsController::cartItem();
+?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -68,7 +72,11 @@
                                         @csrf
                                     </form>
                                 </div>
+                                
                             </li>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/c/cartlist">cart({{$total}})</a></li>
+                            </ul>
                         @endguest
                     </ul>
                 </div>
