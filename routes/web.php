@@ -82,7 +82,7 @@ Route::get('/stocks/create', [App\Http\Controllers\StocksController::class, 'cre
 Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])->name('stocks.store')->middleware('auth');
 
 // Shop Route
-Route::get('/shop', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
+Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
 
 
 //Order Routes
