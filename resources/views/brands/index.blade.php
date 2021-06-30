@@ -22,12 +22,10 @@
                     </div>
                 </div>
             </div>
-            {{-- TODO: PERMISSIONS AND ROLES --}}
-        @if (Route::has('login'))
-            @auth
+@role('Super Admin')
             <div class="row">
                 <div class="card">
-                    <div class="card-header">Options (only available when logged in)</div>
+                    <div class="card-header">Options</div>
                     <div class="card-body text-center">
                         <a href="/b/create" class="mr-2">
                             <button class="btn btn-primary">Add a Brand</button>
@@ -35,9 +33,7 @@
                     </div>
                 </div>
             </div>
-            @endauth
-        @endif
-            
+@endrole
         <hr>
         <div class="row justify-content-center pt-1">
             <a href="/">
