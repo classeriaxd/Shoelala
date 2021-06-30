@@ -133,4 +133,10 @@ class ShoesController extends Controller
             abort(404);
         
     }
+    public function detail($shoe_id)
+    {
+        $data =Shoe::with('shoeImages')->find($shoe_id);
+        return view('detail',compact('data'));
+    }
+    
 }

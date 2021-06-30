@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Models\Brand;
+
+use App\Models\Brand;
+
+use App\Http\Controllers\ShoesController;
+use App\Http\Controllers\TransactionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +20,14 @@ use \App\Models\Brand;
 
 Route::get('/', function () {
     $brands = Brand::with(['shoes' => function ($query) {
+
         $query->orderBy('created_at', 'DESC');}, 
         'shoes.shoeImages' => function ($query) {
         $query->where('image_angle_id', '3')->pluck('image');},])
     ->orderBy('name', 'ASC')
     ->get();
     return view('welcome', compact('brands'));
+
 });
 
 Auth::routes();
@@ -53,6 +59,19 @@ Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 
 Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
 Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware('auth');
 
+
+// Shoe Details Routes
+Route::get("/d/{shoe_slug}",[App\Http\Controllers\ShoesController::class,'detail']);
+
+// Add to Cart Routes
+Route::post('/c/add_to_cart', [App\Http\Controllers\TransactionsController::class, 'addToCart']);
+Route::get('/c/cartlist', [App\Http\Controllers\TransactionsController::class, 'cartlist'])->name('cart.cartlist');
+Route::get('/c/cartlist/{id}', [App\Http\Controllers\TransactionsController::class, 'removeFromCart']);
+
+//order routes
+Route::get('/order', [App\Http\Controllers\TransactionsController::class, 'order']);
+Route::get('/orderSucess', [App\Http\Controllers\TransactionsController::class, 'orderSuccess']);
+
 // Stock Routes
 Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
 Route::get('/stocks/{brand_slug}/{shoe_slug}', [App\Http\Controllers\StocksController::class, 'show'])->name('stocks.show')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
@@ -64,6 +83,7 @@ Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])-
 
 // Shop Route
 Route::get('/shop', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
+
 
 //404 Routes
 Route::get('/{any}', function () {

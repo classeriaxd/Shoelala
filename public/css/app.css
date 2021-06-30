@@ -10001,4 +10001,9 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+  .cartlist-divider{
+    border-bottom:1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
 }

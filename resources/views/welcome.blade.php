@@ -94,6 +94,28 @@
         
       <!--First slide-->
       <div class="carousel-item active" data-interval="2500">
+      @foreach($brands as $brand)
+                @foreach($brand->shoes as $shoe)
+                    <div class="col-md-3" style="float:left">
+                        <div class="card mb-2">
+                            @foreach($shoe->shoeImages as $image)
+                            @if($image->image_angle_id == 1)
+                            <img class="card-img-top"
+                              src="{{'/storage/'.$image->image}}" alt="Card image cap">
+                            @endif
+                            @endforeach
+                            <div class="card-body">
+                              <h4 class="card-title">{{$shoe->name}}</h4>
+                              <p class="card-text">{{$shoe->description}}</p>
+                              <p class="card-text">
+                                Price: {{$shoe->price}} 
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endforeach
+  
         @foreach($brands as $brand)
         @foreach($brand->shoes as $shoe)
             <div class="col-md-3" style="float:left">
@@ -180,10 +202,12 @@
              </div>
            </div>
          </div>
+
   
       </div>
       <!--/.First slide-->
   
+
       <!--Second slide-->
       <div class="carousel-item" data-interval="2500">
   
@@ -253,6 +277,7 @@
       </div>
 
       <!--/.Second slide-->
+
   
     </div>
     <!--/.Slides-->
