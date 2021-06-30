@@ -8,12 +8,18 @@
                 <div class="card">
                     <div class="card-header">{{ __('Scan Here') }}</div>
                     <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <video id="preview" width="320" height="240"></video>
+                        <hr>
+                            <button id="cameraToggle" onclick="openCamera();">Turn ON Camera</button>
+                            <button id="cameraToggle" onclick="getCameras();">getCameras();</button>
+                        <hr>
+                        <h5>Camera Details</h5>
+                        <select id='videoSource'></select>
+                        <h6 id="cameraName"></h6>
+                        <h6 id="cameraID"></h6>
+                        <hr>
+                        <h4 id='code'>Code Appears Here...</h4>
+
                     </div>
                 </div>
             <hr>
@@ -25,4 +31,6 @@
         </div>
     </div>
 </div>
+
 @endsection
+

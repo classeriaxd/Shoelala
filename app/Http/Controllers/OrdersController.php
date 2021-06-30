@@ -12,7 +12,8 @@ class OrdersController extends Controller
     }
     public function scanQRView()
     {
-        return view('orders.scanView');
+        $instascanJS = true;
+        return view('orders.scanView', compact('instascanJS'));
     }
     public function scanQR()
     {
