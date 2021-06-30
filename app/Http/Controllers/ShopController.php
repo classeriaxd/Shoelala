@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\DB;
 
 use \App\Models\Brand;
@@ -19,16 +19,29 @@ class ShopController extends Controller
     public function index()
     {
         //$this->middleware('auth');
+        $brand = Brand::all();
+
         $brands = Brand::with(['shoes' => function ($query) {
 
-            $query->orderBy('created_at', 'DESC')->limit(3);}, 
+            $query->orderBy('created_at', 'DESC');}, 
             'shoes.shoeImages' => function ($query) {
             $query->where('image_angle_id', '3')->pluck('image');},])
         ->orderBy('name', 'ASC')
         ->get();
         
+        if(Request::get('filterbrand')){
+
+            $checked = $_GET['filterbrand'];
+            $brands = Brand::with(['shoes' => function ($query) {
+                $query->orderBy('created_at', 'DESC');}, 
+                'shoes.shoeImages' => function ($query) {
+                $query->where('image_angle_id', '3')->pluck('image');},])
+            ->whereIn('brand_id', $checked)
+            ->orderBy('name', 'ASC')
+            ->get();
+        }
     
-        return view('shop.index', compact('brands'));
+        return view('shop.index', compact('brand', 'brands'));
     }
 
 }
