@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Blade::if('role', function ($role) {
+            $isAuth = false;
+            if ( (auth()->user()) && (auth()->user()->role->name == $role) )        
+                $isAuth = true;
+        return $isAuth;
+        });
     }
 }

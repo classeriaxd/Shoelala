@@ -15,11 +15,13 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $data = [
-            ['category' => 'Running Shoes'],
-            ['category' => 'Basketball Shoes'],
+            ['category' => 'Running'],
+            ['category' => 'Basketball'],
             ['category' => 'Sneakers'],
-            ['category' => 'Old Skool'],
             ['category' => 'Chuck Taylor'],
+            ['category' => 'Lifestyle'],
+            ['category' => 'Casual'],
+            ['category' => 'Sportswear'],
         ];
         DB::table('categories')->insert($data);
     }

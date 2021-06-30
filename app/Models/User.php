@@ -19,8 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'email', 
-        'password', 
-        'role',      
+        'password',  
         'first_name',
         'middle_name',
         'last_name',
@@ -49,8 +48,5 @@ class User extends Authenticatable
     ];
     protected $primaryKey = 'user_id';
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class, 'order_id');
     }
 }
