@@ -26,7 +26,7 @@ class ShoeImagesController extends Controller
     {
         $data = request()->validate([
             'angle' => 'required|exists:image_angles,image_angle_id',
-            'shoe_image' => 'required|image|file|max:2048',
+            'shoe_image' => 'required|image|file|mimes:png,svg|max:2048',
         ]);
         if(request('shoe_image'))
         {

@@ -34,7 +34,7 @@ class BrandsController extends Controller
         $this->middleware('auth');
         $data = request()->validate([
             'name' => 'required|regex:/^[\w\-\s]+$/|unique:brands,name|min:2|max:255',
-            'logo' => 'required|image|file|mimes:png,jpg,svg|max:2048',
+            'logo' => 'required|image|file|mimes:png,svg|max:2048',
         ]);
         if(request('logo'))
         {
