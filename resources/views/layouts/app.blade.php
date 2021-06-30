@@ -98,7 +98,7 @@ $total=TransactionsController::cartItem();
     @if($instascanJS ?? false)
         <script type="text/javascript">
             let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
-
+            let videoConstraints = {};
             function closeCamera()
             {
                 document.getElementById('cameraToggle').onclick = openCamera;
