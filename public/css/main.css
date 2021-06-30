@@ -31,12 +31,6 @@ html, body
     height: 100vh;
 }
 
-#cardimg
-{
-    height: 200px;
-    object-fit: fill;
-}
-
 .loader-wrapper
 {
     position: fixed;
@@ -292,12 +286,18 @@ html, body
     }
 }	
 
+.title-wrapper
+{
+    padding-top: 100px;
+    margin-bottom: -120px;
+}
+
 .cardnew
 {
     left: 43%;
     border-bottom: 2px solid;
-    font-size: 60px;
     transform: translate(-50%,-50%);
+    font-size: 60px;
     position: relative;
     overflow: hidden;
 
@@ -352,14 +352,26 @@ html, body
 
 #multi-item-example
 {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    top: 10%;
+}
+
+.card
+{
+    padding-top: 10px;
+    justify-self: center;
+}
+
+#cardimg
+{
+    height: 200px;
+    width: 200px;
 }
 
 .carousel-item
 {
-    margin-top: 30px;
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .btn
@@ -370,15 +382,12 @@ html, body
     padding: 13px 30px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
 }
 
 .btn:hover
 {
-    background-color: #ff0000;
-    border: solid 2px;
-    border-color: #ff0000;
-    color: #ffffff;
+    background-color: #EEEAEA;
+    color: #144B85;
 }
 
