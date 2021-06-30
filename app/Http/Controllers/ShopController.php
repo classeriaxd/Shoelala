@@ -21,7 +21,7 @@ class ShopController extends Controller
         //$this->middleware('auth');
         $brands = Brand::with(['shoes' => function ($query) {
 
-            $query->orderBy('created_at', 'DESC')->limit(3);}, 
+            $query->orderBy('created_at', 'DESC');}, 
             'shoes.shoeImages' => function ($query) {
             $query->where('image_angle_id', '3')->pluck('image');},])
         ->orderBy('name', 'ASC')

@@ -2,7 +2,6 @@ let loaderWrapper = document.querySelector('.loader-wrapper');
 let logo = document.querySelector('.loader');
 let logoSpan = document.querySelectorAll('.loader-logo');
 
-
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLink = document.querySelectorAll(".nav-link");

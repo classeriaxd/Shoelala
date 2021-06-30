@@ -38,7 +38,7 @@
                                     
                         <ul class="nav-menu">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/" style="border-bottom: 2px solid; border-color: #010302;">HOME</a>
+                                <a class="nav-link" href="/">HOME</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="/shop">SHOP</a>

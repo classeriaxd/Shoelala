@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-4">
-      <span class="cardnew">NEW PAIRS</span>
+      <span class="cardnew">SHOP SHOES</span>
     </div>
       <div class="container-fluid content-row">
         <div class="row">
