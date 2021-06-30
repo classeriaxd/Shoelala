@@ -16,14 +16,27 @@ class RolesAuth
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $required_role)
+    /**
+     * Maximum of 3 Roles
+     * -Super Admin
+     * -Admin
+     * -User
+     */
+    public function handle(Request $request, Closure $next, ...$required_roles)
     {
         $user_role = Role::where('role_id', auth()->user()->role_id)->value('name');
-
-        if(auth()->user() && $user_role == $required_role)
+        $isAuth = false;
+        foreach($required_roles as $required_role)
         {
-            return $next($request);
+            if(auth()->user() && $user_role == $required_role)
+            {
+                $isAuth = true;
+                break 1;
+            }
         }
+        
+        if ($isAuth)
+            return $next($request);
         else
             return back();
         
