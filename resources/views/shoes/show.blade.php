@@ -27,6 +27,13 @@
                                 @csrf
                                 <button class="btn btn-danger" style="width: 100%">Delete</button>
                             </form> 
+                            <br><br>
+                            <form action="/c/add_to_cart" method="POST">
+                                @csrf
+                                <input type="hidden" name="shoe_id" value="{{$shoe->shoe_id}}">
+                            <button class="btn btn-primary">Add to cart</button>
+                            </form>
+                            <br><br>
                         </div>
                         
                     @endrole
