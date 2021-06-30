@@ -32,5 +32,22 @@
     </div>
 </div>
 
+@if($instascanJS ?? false)
+
+    @push('scripts')
+        {{-- Instascan JS --}}
+        <script src="{{ asset('js/instascan/adapter.min.js') }}"></script>
+        <script src="{{ asset('js/instascan/vue.min.js') }}"></script>
+        <script src="{{ asset('js/instascan/instascan.min.js') }}"></script>
+    @endpush
+
+    @push('custom-scripts')
+        {{-- Instascan Custom JS --}}
+        <script type="text/javascript" src="{{ asset('js/instascan/custom-instascan.js') }}"></script>
+    @endpush
+@endif
+
+@endsection
+
 @endsection
 
