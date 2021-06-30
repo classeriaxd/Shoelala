@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @role('Super Admin')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Add Shoes</h2>
@@ -131,7 +132,6 @@
             </div>
         </div>
     </div>
+    @endrole
 </div>
-
-
 @endsection
