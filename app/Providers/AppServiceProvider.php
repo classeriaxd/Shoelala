@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use \App\Models\Role;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         \Blade::if('role', function ($role) {
             $isAuth = false;
-            if ( (auth()->user()) && (auth()->user()->role->name == $role) )        
+            $user_role = Role::where('role_id', auth()->user()->role_id)->value('name');
+            if ( (auth()->user()) && ($user_role == $role) )        
                 $isAuth = true;
         return $isAuth;
         });
