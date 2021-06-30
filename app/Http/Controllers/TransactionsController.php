@@ -47,8 +47,13 @@ class TransactionsController extends Controller
 
     static public function cartItem()
     {
-        $user_id=Auth::user()->user_id;
+        if (Auth::check())
+        {
+            $user_id=Auth::user()->user_id;
         return Cart::where('user_id',$user_id)->count();
+        }
+        
+        
     }
     
     public function cartlist()
