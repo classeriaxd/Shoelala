@@ -85,6 +85,10 @@ Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])-
 Route::get('/shop', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
 
 
+//Order Routes
+Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::get('/orders/scan', [App\Http\Controllers\OrdersController::class, 'scanQRView'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);
