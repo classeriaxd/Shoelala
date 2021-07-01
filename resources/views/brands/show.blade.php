@@ -8,20 +8,17 @@
             <div class="card mb-2" style="width: 100%">
                 <div class="card-header text-center">{{$brand->name}}</div>
                 <img src="/storage/{{$brand->logo}}" class="card-img-top m-auto w-50" >
+@role('Super Admin')
                 <div class="card-body text-center">
                     <hr>
-                {{-- TODO: PERMISSIONS AND ROLES --}}
-                @if (Route::has('login'))
-                    @auth
                     <h5 class="card-title">Option</h5>
                     <form action="{{route('brand.destroy', $brand->slug)}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" style="width: 100%">Delete</button>
-                    </form> 
-                    @endauth
-                @endif    
+                    </form>  
                 </div>
+@endrole
             </div>
         <hr>
         <div class="row justify-content-center pt-1">

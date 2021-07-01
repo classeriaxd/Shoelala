@@ -26,21 +26,20 @@ class BrandsController extends Controller
     }
     public function create()
     {
-        $this->middleware('auth');
         return view('brands.create');
     }
     public function store()
     {
-        $this->middleware('auth');
         $data = request()->validate([
             'name' => 'required|regex:/^[\w\-\s]+$/|unique:brands,name|min:2|max:255',
-            'logo' => 'required|image|file|mimes:png,jpg,svg|max:2048',
+            'logo' => 'required|image|file|mimes:png,svg|max:2048',
         ]);
         if(request('logo'))
         {
             $logoPath = request('logo')->store('uploads/logo','public');
             $image = Image::make(public_path("storage/{$logoPath}"));
-            $image->save();
+            // Resize Brand Logo to 400x200 size
+            $image->resize(400,200)->save();
 
             if(
             Brand::create([
@@ -57,7 +56,6 @@ class BrandsController extends Controller
     }
     public function destroy($brand_slug)
     {
-        $this->middleware('auth');
         $brand = Brand::where('slug', $brand_slug)->first();
         if ($brand->delete())
         {
