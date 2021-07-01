@@ -56,7 +56,7 @@ body
 
 .nav-item
 {
-    margin-left: 6rem;
+    margin-left: 5rem;
 }
 
 .nav-link
@@ -86,7 +86,7 @@ body
 
 .nav-link::after
 {
-    content: '';
+    content: ' ';
     display: block;
     width: 0;
     height: 2px;

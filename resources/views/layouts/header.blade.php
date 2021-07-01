@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>yeet</title>
+        <title>Shoelala</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,13 +21,6 @@
         
     </head>
     <body id="body" class="antialiased">
-
-        <!--<div class="loader-wrapper">
-            <h1 class="loader">
-                <span id="shoe" class="loader-logo">Shoe</span>                
-                <span id="lala" class="loader-logo">lala</span>                
-            </h1>
-        </div>-->
 
         <header class="header">
             <nav id="navbar" class="navbar navbar-expand-xl fixed-top">

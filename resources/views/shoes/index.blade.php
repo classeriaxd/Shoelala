@@ -6,10 +6,26 @@
         
         <div id="main-container" class="col-md-8">
             <div class="row justify-content-center pt-1">
-            <a href="/home">
-                <button class="btn btn-secondary">Go back</button>
-            </a>
-            </div>
+                <a href="/home">
+                    <button class="btn btn-secondary">Go back</button>
+                </a>
+                <hr>
+                    {{-- TODO: PERMISSIONS AND ROLES --}}
+                    @if (Route::has('login'))
+                        @auth
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">Options (only available when logged in)</div>
+                                <div class="card-body text-center">
+                                    <a href="/s/create" class="mr-2">
+                                        <button class="btn btn-primary">Add a Shoe</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @endauth
+                    @endif
+                </div>
             <h2 class="display-2 text-center">Shoes View</h2>
             @foreach($brands as $brand)
             <div class="row">
@@ -37,21 +53,7 @@
                 </div>
             </div>
             @endforeach
-                {{-- TODO: PERMISSIONS AND ROLES --}}
-            @if (Route::has('login'))
-                @auth
-                <div class="row">
-                    <div class="card">
-                        <div class="card-header">Options (only available when logged in)</div>
-                        <div class="card-body text-center">
-                            <a href="/s/create" class="mr-2">
-                                <button class="btn btn-primary">Add a Shoe</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endauth
-            @endif
+        
         <hr>
         </div>
     </div>

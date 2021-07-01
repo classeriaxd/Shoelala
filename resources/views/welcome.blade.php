@@ -2,6 +2,12 @@
 
 @section('content')
 <br>
+        <div class="loader-wrapper">
+            <h1 class="loader">
+                <span id="shoe" class="loader-logo">Shoe</span>                
+                <span id="lala" class="loader-logo">lala</span>                
+            </h1>
+        </div>
   <!--Carousel Wrapper-->
   
   <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -75,5 +81,9 @@
   </div>
     
   <script src="js/main.js"></script>
+  <script>
+    document.body.style.overflow = 'hidden';
+  </script>
+  
 
 @endsection
