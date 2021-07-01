@@ -29,7 +29,6 @@ class ShoesController extends Controller
     }
     public function create()
     {
-        $this->middleware('auth');
         $brands = Brand::all();
         $types = Type::all();
         $categories = Category::all();
@@ -37,7 +36,6 @@ class ShoesController extends Controller
     }
     public function edit($brand_slug, $shoe_slug)
     {
-        $this->middleware('auth');
         $shoe = Shoe::where('slug', $shoe_slug)->first();
         $shoebrandslug = Brand::where('slug', $brand_slug)->value('slug');
         $brands = Brand::all();
@@ -59,19 +57,16 @@ class ShoesController extends Controller
     }
     public function destroy($brand_slug, $shoe_slug)
     {
-        $this->middleware('auth');
         $shoe = Shoe::where('slug', $shoe_slug)->first();
+        
         if ($shoe->delete())
-        {
             return redirect()->route('shoes.index');
-        }
         else
             abort(404);
         
     }
     public function store()
     {
-        $this->middleware('auth');
         $data = request()->validate([
             'name' => 'required|regex:/^[\w\-\s]+$/|min:2|max:255',
             'category' => 'required|exists:categories,category_id',
@@ -99,7 +94,6 @@ class ShoesController extends Controller
     }
     public function update($brand_slug, $shoe_slug)
     {
-        $this->middleware('auth');
         $data = request()->validate([
             'name' => 'required|regex:/^[\w\-\s]+$/|min:2|max:255',
             'category' => 'required|exists:categories,category_id',
