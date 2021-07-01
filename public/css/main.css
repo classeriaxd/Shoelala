@@ -31,12 +31,6 @@ html, body
     height: 100vh;
 }
 
-#cardimg
-{
-    height: 200px;
-    object-fit: fill;
-}
-
 .loader-wrapper
 {
     position: fixed;
@@ -91,47 +85,6 @@ html, body
     transition: ease-in-out 0.5s;
 }
 
-#nbar-buttons-account, #nbar-buttons-login, #nbar-buttons-register
-{
-    text-decoration: none;
-    margin-top: 4px;
-    font-size: 20px;
-    position: relative;
-    display: inline-block;
-    color: #272121;
-    overflow: hidden;
-    justify-content: flex-end;
-
-    background: linear-gradient(to right, #217FE1, #217FE1 50%, #272121 50%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
-    background-position: 100%;
-    transition: background-position 275ms ease;
-    animation: gradient 7s ease-in ;
-}
-
-#nbar-buttons-account:hover, #nbar-buttons-login:hover, #nbar-buttons-register:hover
-{
-    background-position: 0 100%;
-}
-
-#nbar-buttons-account::after, #nbar-buttons-login::after, #nbar-buttons-register::after
-{
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: #000;
-    transition: width .3s;
-}
-
-#nbar-buttons-account:hover::after, #nbar-buttons-login:hover::after, #nbar-buttons-register:hover::after
-{
-    width: 100%;
-}
-
 .navbar-brand img:hover
 {
     transform: scale(1.15);
@@ -143,6 +96,7 @@ html, body
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
+    background-color: rgba(255,255,255,.9);
 }
 
 .nav-menu
@@ -155,7 +109,7 @@ html, body
 
 .nav-item
 {
-    margin-left: 5rem;
+    margin-left: 7rem;
 }
 
 .nav-link
@@ -206,11 +160,6 @@ html, body
     border-color: #010302;
     font-weight: 800;
     transition: .5s;
-}
-
-.hamburger
-{
-    display: none;
 }
 
 .bar
@@ -292,12 +241,18 @@ html, body
     }
 }	
 
+.title-wrapper
+{
+    padding-top: 100px;
+    margin-bottom: -120px;
+}
+
 .cardnew
 {
     left: 43%;
     border-bottom: 2px solid;
-    font-size: 60px;
     transform: translate(-50%,-50%);
+    font-size: 60px;
     position: relative;
     overflow: hidden;
 
@@ -346,20 +301,33 @@ html, body
     transform: scale(1.15);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 8px 12px rgba(0,0,0,.06);
     z-index: 200;
-    background: #449DED;
+    background: #FFFFFF;
     border-radius: 4px;
 }
 
 #multi-item-example
 {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    top: 10%;
+}
+
+.card
+{
+    padding-top: 10px;
+    margin-top: 20px;
+    justify-self: center;
+}
+
+#cardimg
+{
+    height: 200px;
+    width: 200px;
 }
 
 .carousel-item
 {
-    margin-top: 30px;
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .btn
@@ -370,15 +338,11 @@ html, body
     padding: 13px 30px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
 }
 
 .btn:hover
 {
-    background-color: #ff0000;
-    border: solid 2px;
-    border-color: #ff0000;
-    color: #ffffff;
+    background-color: #EEEAEA;
+    color: #144B85;
 }
-

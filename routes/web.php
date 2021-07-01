@@ -20,14 +20,18 @@ use App\Http\Controllers\TransactionsController;
 
 Route::get('/', function () {
     $brands = Brand::with(['shoes' => function ($query) {
-
-        $query->orderBy('created_at', 'DESC');}, 
+        $query->orderBy('created_at', 'DESC')->limit(3);}, 
         'shoes.shoeImages' => function ($query) {
         $query->where('image_angle_id', '3')->pluck('image');},])
     ->orderBy('name', 'ASC')
     ->get();
-    return view('welcome', compact('brands'));
-
+    $brands2 = Brand::with(['shoes' => function ($query) {
+        $query->orderBy('created_at', 'DESC')->skip(3)->take(3);}, 
+        'shoes.shoeImages' => function ($query) {
+        $query->where('image_angle_id', '3')->pluck('image');},])
+    ->orderBy('name', 'ASC')
+    ->get();
+    return view('welcome', compact('brands','brands2'));
 });
 
 Auth::routes();
@@ -82,7 +86,7 @@ Route::get('/stocks/create', [App\Http\Controllers\StocksController::class, 'cre
 Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])->name('stocks.store')->middleware('auth');
 
 // Shop Route
-Route::get('/shop', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
+Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
 
 
 //Order Routes
