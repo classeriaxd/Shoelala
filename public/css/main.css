@@ -85,47 +85,6 @@ html, body
     transition: ease-in-out 0.5s;
 }
 
-#nbar-buttons-account, #nbar-buttons-login, #nbar-buttons-register
-{
-    text-decoration: none;
-    margin-top: 4px;
-    font-size: 20px;
-    position: relative;
-    display: inline-block;
-    color: #272121;
-    overflow: hidden;
-    justify-content: flex-end;
-
-    background: linear-gradient(to right, #217FE1, #217FE1 50%, #272121 50%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
-    background-position: 100%;
-    transition: background-position 275ms ease;
-    animation: gradient 7s ease-in ;
-}
-
-#nbar-buttons-account:hover, #nbar-buttons-login:hover, #nbar-buttons-register:hover
-{
-    background-position: 0 100%;
-}
-
-#nbar-buttons-account::after, #nbar-buttons-login::after, #nbar-buttons-register::after
-{
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: #000;
-    transition: width .3s;
-}
-
-#nbar-buttons-account:hover::after, #nbar-buttons-login:hover::after, #nbar-buttons-register:hover::after
-{
-    width: 100%;
-}
-
 .navbar-brand img:hover
 {
     transform: scale(1.15);
@@ -150,7 +109,7 @@ html, body
 
 .nav-item
 {
-    margin-left: 5rem;
+    margin-left: 7rem;
 }
 
 .nav-link
@@ -201,11 +160,6 @@ html, body
     border-color: #010302;
     font-weight: 800;
     transition: .5s;
-}
-
-.hamburger
-{
-    display: none;
 }
 
 .bar

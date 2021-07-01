@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
    <div class="row">
-        <div class="container">
-        <h4>Cart Items</h4>
+        <div id="main-container" class="container">
+        <h1>Cart Items</h1>
         @foreach ($cartlist as $item)
         <table class="table table-hover">
             <thead>
@@ -32,8 +32,8 @@
         </table>
         @endforeach
         </div>
-        <div >
-        <a href="/order" class="btn btn-success">Buy Now</a> 
+        <div class="row justify-content-center pt-1">
+            <a href="/order" class="btn btn-success">Buy Now</a> 
         </div> 
    </div>
 </div>

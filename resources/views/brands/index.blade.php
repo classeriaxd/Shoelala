@@ -1,9 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        
+        <div id="main-container" class="col-md-8">
+            <div class="row justify-content-center pt-1">
+            <a href="/home">
+                <button class="btn btn-secondary">Go back</button>
+            </a>
+            </div>
             <h2 class="display-2 text-center">All Brands</h2>
             <div class="row">
                 <div class="card mb-2" style="width: 100%">
@@ -39,11 +45,6 @@
         @endif
             
         <hr>
-        <div class="row justify-content-center pt-1">
-            <a href="/">
-                <button class="btn btn-secondary">Go back</button>
-            </a>
-        </div>
         </div>
     </div>
 </div>

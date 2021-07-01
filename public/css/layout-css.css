@@ -40,8 +40,9 @@ body
 .navbar
 {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
     background-color: rgba(255,255,255,.9);
 }
 
@@ -55,13 +56,14 @@ body
 
 .nav-item
 {
-    margin-left: 5rem;
+    margin-left: 6rem;
 }
 
 .nav-link
 {
     text-decoration: none;
-    margin-top: 25px;
+    font-size: 20px;
+    margin-top: 20px;
     position: relative;
     display: inline-block;
     color: #272121;
@@ -95,4 +97,9 @@ body
 .nav-link:hover::after 
 {
     width: 100%;
+}
+
+#main-container
+{
+    margin-top: 100px;
 }

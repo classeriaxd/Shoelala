@@ -33,8 +33,8 @@ $total=TransactionsController::cartItem();
 
 </head>
 <body>
-    <div id="app">
-        <nav id="navbar" class="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
+    <header id="app">
+        <nav id="navbar" class="navbar fixed-top navbar-expand-lg shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img id="navbar-logo" src="/imgs/re-logo2.png" alt="logo">
@@ -45,9 +45,9 @@ $total=TransactionsController::cartItem();
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="nav-menu">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">HOME</a>
+                            <a class="nav-link " href="/">HOME</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="/shop">SHOP</a>
@@ -57,10 +57,10 @@ $total=TransactionsController::cartItem();
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">ABOUT US</a>
+                            <a class="nav-link" href="#">ABOUT</a>
                         </li>
                         <li class="nav-item">    
-                            <a class="nav-link" href="#">CONTACT  US</a>
+                            <a class="nav-link" href="#">CONTACT</a>
                         </li>
 
                     <!-- Right Side Of Navbar -->
@@ -80,10 +80,14 @@ $total=TransactionsController::cartItem();
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name.' '.Auth::user()->last_name }}
+                                    {{ Auth::user()->first_name}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/c/cartlist">cart({{$total}})</a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('dashboard') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -93,12 +97,9 @@ $total=TransactionsController::cartItem();
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
-                                
+                                </div>  
                             </li>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/c/cartlist">cart({{$total}})</a></li>
-                            </ul>
+  
                         @endguest
                     </ul>
                 </div>
@@ -108,7 +109,7 @@ $total=TransactionsController::cartItem();
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+    </header>
     @if($instascanJS ?? false)
         <script type="text/javascript">
             let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});

@@ -30,14 +30,14 @@
         </div>-->
 
         <header class="header">
-            <nav id="navbar" class="navbar fixed-top">
+            <nav id="navbar" class="navbar navbar-expand-xl fixed-top">
                 <div class="container">           
                     <a class="navbar-brand" href="#">
                         <img id="navbar-logo" src="/imgs/re-logo2.png" alt="logo">
                     </a>
                                     
                         <ul class="nav-menu">
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="/">HOME</a>
                             </li>
                             <li class="nav-item dropdown">
@@ -48,32 +48,31 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">ABOUT US</a>
+                                <a class="nav-link" href="#">ABOUT</a>
                             </li>
                             <li class="nav-item">    
-                                <a class="nav-link" href="#">CONTACT  US</a>
+                                <a class="nav-link" href="#">CONTACT</a>
                             </li>
+                    
+                            @if (Route::has('login'))
+                                @auth
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/home') }}">Account</a>
+                                </li>
+                                @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}" >Login</a>
+                                </li>
+                                
+                                @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                </li>
+                                @endif
+                                @endauth
+                            @endif
                         </ul>
                 </div>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-
-                @if (Route::has('login'))
-                    <div id="nbar-buttons" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        @auth
-                        <a id="nbar-buttons-account" href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Account</a>
-                        @else
-                        <a id="nbar-buttons-login" href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-                        
-                        @if (Route::has('register'))
-                        <a id="nbar-buttons-register" href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                        @endauth
-                    </div>
-                @endif
             </nav>
         </header>
         <main style="margin-top: 130px;">
