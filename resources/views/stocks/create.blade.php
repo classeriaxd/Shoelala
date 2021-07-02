@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -33,7 +33,7 @@
                                 <select class="form-control @error('size') is-invalid @enderror" id="size" name="size" required> 
                                     <option value="-1">Select Size</option>
                                 @foreach($size as $size)
-                                    <option {{ old('size')==$size->size_id ? 'selected="selected"' : '' }} value="{{$size->size_id}}">{{$size->us}}</option>
+                                    <option {{ old('size')==$size->size_id ? 'selected="selected"' : '' }} value="{{$size->size_id}}">{{$size->type}}-{{$size->us}}</option>
                                 @endforeach
                                 </select>
 

@@ -25,7 +25,6 @@ class ShopController extends Controller
         $type = Type::all();
         $category = Category::all();
 
-
         $shoe =  DB::table('shoes')
             ->join('brands', 'brands.brand_id', '=', 'shoes.brand_id')
             ->join('shoe_images', 'shoe_images.shoe_id', '=', 'shoes.shoe_id')

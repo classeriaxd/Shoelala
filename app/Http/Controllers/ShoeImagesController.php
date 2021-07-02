@@ -13,10 +13,6 @@ use Intervention\Image\Facades\Image;
 
 class ShoeImagesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function create($brand_slug, $shoe_slug)
     {
         $image_angles = ImageAngle::all();
@@ -26,14 +22,14 @@ class ShoeImagesController extends Controller
     {
         $data = request()->validate([
             'angle' => 'required|exists:image_angles,image_angle_id',
-            'shoe_image' => 'required|image|file|max:2048',
+            'shoe_image' => 'required|image|file|mimes:png,svg|max:2048',
         ]);
         if(request('shoe_image'))
         {
             $shoeImagePath = request('shoe_image')->store('uploads/shoeImages','public');
             $image = Image::make(public_path("storage/{$shoeImagePath}"));
-            // insert proper sizing, sizes, reso
-            $image->save();
+            // Resize Image to 720x720 size 
+            $image->resize(720)->save();
             $shoe = Shoe::where('slug', $shoe_slug)->first();
             if (ShoeImage::create([
                 'shoe_id' => $shoe->shoe_id,

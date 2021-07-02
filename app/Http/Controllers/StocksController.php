@@ -41,8 +41,9 @@ class StocksController extends Controller
         $stocks = DB::table('stocks')
         ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
         ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+        ->join('types', 'types.type_id', '=', 'sizes.type_id')
         ->join('brands', 'brands.brand_id', '=', 'shoes.brand_id')
-        ->select('brands.name as brand', 'shoes.name as shoe', 'sizes.us as size', 'stocks.stocks as stock', 'shoes.slug as shoe_slug', 'brands.slug as brand_slug', 'stocks.size_id as size_id')
+        ->select('brands.name as brand', 'shoes.name as shoe', 'types.type as type', 'sizes.us as size', 'stocks.stocks as stock', 'shoes.slug as shoe_slug', 'brands.slug as brand_slug', 'stocks.size_id as size_id')
         //->sum('stocks.stocks')
         ->where('stocks.shoe_id', $shoe->shoe_id)
         ->whereNull('stocks.deleted_at')
@@ -108,7 +109,10 @@ class StocksController extends Controller
     {
         $this->middleware('auth');
         $shoe = Shoe::all();
-        $size = Size::all();
+        $size= DB::table('sizes')
+        ->join('types', 'types.type_id', '=', 'sizes.type_id')
+        ->select('sizes.us as size', 'sizes.size_id as size_id','sizes.us as us', 'types.type as type')
+        ->get();
         return view('stocks.create', compact('shoe', 'size'));
     }
     

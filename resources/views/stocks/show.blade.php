@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -11,6 +11,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Size</th>
                         <th scope="col">Stocks</th>
                         <th scope="col" class="col-md-2">Action</th>
@@ -20,6 +21,7 @@
             @foreach($stocks as $stock)
                     <tr>
                         <td>{{$i}}</td>
+                        <td>{{$stock->type}}</td>
                         <td>{{$stock->size}}</td>
                         <td>{{$stock->stock}}</td>
                         <td>

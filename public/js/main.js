@@ -2,7 +2,6 @@ let loaderWrapper = document.querySelector('.loader-wrapper');
 let logo = document.querySelector('.loader');
 let logoSpan = document.querySelectorAll('.loader-logo');
 
-
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLink = document.querySelectorAll(".nav-link");
@@ -32,6 +31,14 @@ window.addEventListener('DOMContentLoaded', ()=>{
             loaderWrapper.style.top = '-100vh';
         },3500)
     })
+    if ( ! sessionStorage.getItem('doNotShow') ) 
+    {
+        sessionStorage.setItem( 'doNotShow', true );
+    } 
+    else 
+    {
+        $ ('.loader, .loader-wrapper').hide();
+    }
 })
 
 hamburger.addEventListener("click", mobileMenu);

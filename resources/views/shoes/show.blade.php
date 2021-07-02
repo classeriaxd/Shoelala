@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -16,8 +16,7 @@
                                 <p>Type and Category: {{$type."'s"." ".$category}}</p>
                                 <p>Description: {{($shoe->description == NULL)?"None":$shoe->description}}</p>
                         </div>
-                     {{-- TODO: PERMISSIONS AND ROLES --}}
-                    @role('Super Admin')
+@role('Super Admin')
                         <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
                             <a href='/s/{{$brand->slug}}/{{$shoe->slug}}/edit' class="mb-2">
                                 <button class="btn btn-primary" style="width: 100%">Edit</button>
@@ -28,7 +27,7 @@
                                 <button class="btn btn-danger" style="width: 100%">Delete</button>
                             </form>
                         </div>
-                    @elserole('User')
+@elserole('User')
                         <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
                             <form action="/c/add_to_cart" method="POST">
                                 @csrf
@@ -37,23 +36,20 @@
                             </form>
                             <br><br>
                         </div>                        
-                    @endrole
+@endrole
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header d-flex flex-row justify-content-between">
                     <div class="my-auto h5">Images</div>
-                     {{-- TODO: PERMISSIONS AND ROLES --}}
-                @if (Route::has('login'))
-                    @auth
+@role('Super Admin')
                     <div>
                         <a href="/s/{{$brand->slug}}/{{$shoe->slug}}/images/create">
                             <button class="btn btn-primary">Add Image</button>
                         </a>
                     </div>
-                    @endauth
-                @endif
+@endrole
                 </div>
                 <div class="card-body text-center">
                     <div class="row justify-content-center">

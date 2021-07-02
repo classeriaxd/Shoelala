@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
+    @role('Super Admin')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Add Brand</h2>
@@ -32,8 +33,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        
+                        </div>                        
                         <div class="form-group row mb-0 justify-content-center">
                             <div class="col-md-6 offset-md-4">
                                 <button class="btn btn-primary" type="submit" id="submit">Add Brand</button>
@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+    @endrole
 </div>
 
 
