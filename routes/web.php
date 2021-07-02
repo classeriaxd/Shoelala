@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Brand;
 
 use App\Http\Controllers\ShoesController;
-use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,13 +65,13 @@ Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name
 Route::get("/d/{shoe_slug}",[App\Http\Controllers\ShoesController::class,'detail']);
 
 // Add to Cart Routes
-Route::post('/c/add_to_cart', [App\Http\Controllers\TransactionsController::class, 'addToCart']);
-Route::get('/c/cartlist', [App\Http\Controllers\TransactionsController::class, 'cartlist'])->name('cart.cartlist');
-Route::get('/c/cartlist/{id}', [App\Http\Controllers\TransactionsController::class, 'removeFromCart']);
+Route::post('/c/add_to_cart', [App\Http\Controllers\CartController::class, 'addToCart']);
+Route::get('/c/cartlist', [App\Http\Controllers\CartController::class, 'cartlist'])->name('cart.cartlist');
+Route::get('/c/cartlist/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart']);
 
 //order routes
-Route::get('/order', [App\Http\Controllers\TransactionsController::class, 'order']);
-Route::get('/orderSucess', [App\Http\Controllers\TransactionsController::class, 'orderSuccess']);
+Route::get('/order', [App\Http\Controllers\OrderController::class, 'order']);
+Route::post('/order/orderSuccess', [App\Http\Controllers\OrderController::class, 'orderSuccess']);
 
 // Stock Routes
 Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');

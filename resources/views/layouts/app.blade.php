@@ -1,6 +1,6 @@
 <?php
-use App\Http\Controllers\TransactionsController;
-$total=TransactionsController::cartItem();
+use App\Http\Controllers\CartController;
+$total=CartController::cartItem();
 ?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
