@@ -19,7 +19,7 @@ use \App\Models\User;
 use \App\Rules\ShoeSKU;
 use Session;
 
-class TransactionsController extends Controller
+class CartController extends Controller
 {
     public function addToCart(Request $req)
     {
@@ -39,8 +39,8 @@ class TransactionsController extends Controller
         Cart::create([
             'user_id' => Auth::user()->user_id,
             'shoe_id' => request('shoe_id'),
-            'size_id' => '1',
-            'quantity'=> '2',
+            'size_id' => request('size_id'),
+            'quantity'=> request('cart_quantity'),
         ]);
         return back();
     }
@@ -62,8 +62,12 @@ class TransactionsController extends Controller
         $cartlist=DB::table('cart')
         ->join('shoes','cart.shoe_id','=','shoes.shoe_id')
         ->where('cart.user_id',$user_id)
-        ->select('shoes.*','cart.id as cart_id','cart.quantity as cart_quantity')
+        ->join('sizes','cart.size_id','=','sizes.size_id')
+        //->where('cart.size_id','=','sizes.user_id')
+        ->select('shoes.*','cart.id as cart_id','cart.quantity as cart_quantity',
+        'sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4')
         ->get();
+        
 
         return view('cartlist',['cartlist'=>$cartlist]);
         //return redirect()->route('cartlist.show',['cartlist'=>$cartlist]);
@@ -108,11 +112,18 @@ class TransactionsController extends Controller
         ->where('cart.user_id',$user_id)
         ->select('shoes.*','cart.id as cart_id','cart.quantity as cart_quantity')
         ->sum(DB::raw('shoes.price * cart.quantity'));
+        $size= $orders=DB::table('cart')
+        ->join('shoes','cart.shoe_id','=','shoes.shoe_id')
+        ->where('cart.user_id',$user_id)
+        ->join('sizes','shoes.type_id','=','sizes.type_id')
+        ->where('sizes.type_id',$type_id)
+        ->select('sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4')
+        ->get();
 
-        return view('order',['orderTable'=>$orderTable,'numOfOrders'=>$numOfOrders,'checkoutPrice'=>$checkoutPrice]);
+        return view('order',['orderTable'=>$orderTable,'numOfOrders'=>$numOfOrders,'checkoutPrice'=>$checkoutPrice,'size'=>$size]);
     }
 
-    public function orderSuccess()
+    /*public function orderSuccess()
     {
         $user_id=Auth::user()->user_id;
         Orders::create([
@@ -123,5 +134,5 @@ class TransactionsController extends Controller
         ]);
         Cart::destroy($user_id);
         return ("order completed");
-    }
+    }*/
 }

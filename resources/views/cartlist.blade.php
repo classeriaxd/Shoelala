@@ -12,6 +12,7 @@
                 <th scope="col">Order Number</th>
                 <th scope="col">Shoe Name</th>
                 <th scope="col" colspan="5">Shoe Description</th>
+                <th scope="col">Size(US/EUR/UK/CM)</th>
                 <th scope="col">Unit Price (Quantity)</th>
                 <th scope="col">Total</th>
                 <th scope="col">Action</th>
@@ -22,6 +23,7 @@
                 <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$item->name}}</td>
                 <td colspan="5">{{$item->description}}</td>
+                <td>{{$item->size_id}}/{{$item->size_id2}}/{{$item->size_id3}}/{{$item->size_id4}}</td>
                 <td>{{$item->price}}x{{$item->cart_quantity}}</td>
                 <td>={{number_format($item->price*$item->cart_quantity,2)}}</td>
                 <td>

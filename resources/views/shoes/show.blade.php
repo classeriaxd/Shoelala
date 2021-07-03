@@ -15,6 +15,7 @@
                                 <p>SKU: {{$shoe->sku}}</p>
                                 <p>Type and Category: {{$type."'s"." ".$category}}</p>
                                 <p>Description: {{($shoe->description == NULL)?"None":$shoe->description}}</p>
+                                
                         </div>
 @role('Super Admin')
                         <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
@@ -29,9 +30,20 @@
                         </div>
 @elserole('User')
                         <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
-                            <form action="/c/add_to_cart" method="POST">
+                            <form action="/c/add_to_cart/" method="POST">
                                 @csrf
                                 <input type="hidden" name="shoe_id" value="{{$shoe->shoe_id}}">
+                                <input type="hidden" name="type_id" value="{{$shoe->type_id}}">
+                                <label for="size">{{ __('Size') }}</label>
+                                        <select class="form-control @error('size') is-invalid @enderror" id="size" name="size_id" required> 
+                                            <option value="-1">Select Size</option>
+                                        @foreach($size as $size)
+                                            <option {{ old('size')==$size->size_id ? 'selected="selected"' : '' }} value="{{$size->size_id}}">{{$size->size_us}}</option>
+                                        @endforeach
+                                        </select>
+                            <label for="quantity">Quantity: </label>
+                            <input type="number" name="cart_quantity" min="1" max="5" value="{{$shoe->cart_quantity}}">
+                            <br><br>
                             <button class="btn btn-primary">Add to cart</button>
                             </form>
                             <br><br>

@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+
 <div class="container">
    <div class="col-sm-10">
    <table class="table">
@@ -9,7 +10,7 @@
    </thead>
   <tbody>
       <tr>
-      <td scope="col">Shoe Name</td>
+      <td scope="col">Shoe Name </td>
       <td scope="col">Unit Price</td>
       <td scope="col">Quanitities Ordered</td>
       <td scope="col">Total Price</td>
@@ -18,7 +19,7 @@
       <tr></tr>
       @foreach ($orderTable as $item)
       <tr>
-      <td>{{$item->name}}</td>
+      <td>{{$item->name}} </td>
       <td>{{$item->price}}</td>
       <td>{{$item->cart_quantity}}</td>
       <td>{{number_format($item->price*$item->cart_quantity,2)}}</td>
@@ -30,11 +31,17 @@
      <td></td>
      <td></td>
      <td scope="col">Checkout: ({{$numOfOrders}}) items</td>
-     <td>{{$checkoutPrice}}</td>
+     <td>{{number_format($checkoutPrice,2)}}</td>
      </tr>
   </tbody>
 </table>
-<a  href="/orderSuccess" class="btn btn-success">Proceed  </a>
+<form action="/order/orderSuccess" method="POST">
+                                @csrf
+                                <input type="hidden" name="cart_quatity" value="{{$item->cart_quantity}}" >
+                                <input type="hidden" name="shoe_id" value="{{$userID->cart_user_id}}" >
+                            <button class="btn btn-success">Proceed</button>
+                            </form>
    </div>
 </div>
+@endforeach
 @endsection

@@ -11,7 +11,9 @@ class Order extends Model
 
     protected $guarded = [];
     protected $table = 'orders';
+    public $timestamps = false;
     protected $primaryKey = 'order_id';
+    
 
     public function user()
     {

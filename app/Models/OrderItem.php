@@ -10,6 +10,7 @@ class OrderItem extends Model
     use HasFactory;
 
     protected $guarded = [];
+    public $timestamps = false;
     protected $table = 'order_items';
 
     public function order()
