@@ -1,11 +1,16 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
-   <div class="col-sm-10">
+
+<div class="container" style="margin-top: 120px;" id="main-container">
+   <div class="col-md-12">
+      <h2 class="display-2 text-center mb-1">Order</h2>
+      <a href="/c/cartlist">
+         <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+     </a>
    <table class="table">
    <thead>
-   <th scope="row" colspan="12">Order Details</th>
+   <th scope="row" colspan="12" class="text-center">Order Details</th>
    </thead>
   <tbody>
       <tr>
@@ -34,7 +39,7 @@
      </tr>
   </tbody>
 </table>
-<a  href="/orderSuccess" class="btn btn-success">Proceed  </a>
+      <a href="/orderSuccess" class="btn btn-success col-md-12 btn-lg">Proceed</a>
    </div>
 </div>
 @endsection

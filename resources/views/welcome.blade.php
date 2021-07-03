@@ -26,25 +26,25 @@
       <!--First slide-->
       <div class="carousel-item active" data-interval="2500">
             @foreach($brands as $brand)
-            @foreach($brand->shoes as $shoe)
-                <div class="col-lg-4 d-flex float-left">
-                    <div class="card flex-fill">
-                        @foreach($shoe->shoeImages as $image)
-                        @if($image->image_angle_id == 3)
-                        <img id="cardimg" class="card-img-top mx-auto mt-2"
-                        src="{{'/storage/'.$image->image}}" alt="Card image cap">
-                        @endif
-                        @endforeach
-                        <div class="card-body">
-                        <h4 class="card-title">{{$shoe->name}}</h4>
-                        <p class="card-text">
-                            Price: ₱ {{$shoe->price}} 
-                        </p>
-                        <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+              @foreach($brand->shoes as $shoe)
+                  <div class="col-lg-4 d-flex float-left">
+                      <div class="card flex-fill">
+                          @foreach($shoe->shoeImages as $image)
+                          @if($image->image_angle_id == 3)
+                          <img id="cardimg" class="card-img-top mx-auto mt-2"
+                          src="{{'/storage/'.$image->image}}" alt="Card image cap">
+                          @endif
+                          @endforeach
+                          <div class="card-body">
+                          <h4 class="card-title">{{$shoe->name}}</h4>
+                          <p class="card-text">
+                              Price: ₱ {{$shoe->price}} 
+                          </p>
+                          <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                          </div>
+                      </div>
+                  </div>
+              @endforeach
             @endforeach
         </div>
       <!--/.First slide-->
@@ -52,25 +52,25 @@
       <!--Second slide-->
       <div class="carousel-item" data-interval="2500">
             @foreach($brands2 as $brand)
-            @foreach($brand->shoes as $shoe)
-                <div class="col-lg-4 d-flex float-left">
-                    <div class="card flex-fill">
-                        @foreach($shoe->shoeImages as $image)
-                        @if($image->image_angle_id == 3)
-                        <img id="cardimg" class="card-img-top mx-auto mt-2"
-                        src="{{'/storage/'.$image->image}}" alt="Card image cap">
-                        @endif
-                        @endforeach
-                        <div class="card-body">
-                        <h4 class="card-title">{{$shoe->name}}</h4>
-                        <p class="card-text">
-                            Price: ₱ {{$shoe->price}} 
-                        </p>
-                        <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+              @foreach($brand->shoes as $shoe)
+                  <div class="col-lg-4 d-flex float-left">
+                      <div class="card flex-fill">
+                          @foreach($shoe->shoeImages as $image)
+                          @if($image->image_angle_id == 3)
+                          <img id="cardimg" class="card-img-top mx-auto mt-2"
+                          src="{{'/storage/'.$image->image}}" alt="Card image cap">
+                          @endif
+                          @endforeach
+                          <div class="card-body">
+                          <h4 class="card-title">{{$shoe->name}}</h4>
+                          <p class="card-text">
+                              Price: ₱ {{$shoe->price}} 
+                          </p>
+                          <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                          </div>
+                      </div>
+                  </div>
+              @endforeach
             @endforeach
         </div>
       <!--/.Second slide-->

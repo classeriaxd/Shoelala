@@ -1,10 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Scan QR</h2>
+                <a href="/orders">
+                    <button class="btn btn-secondary col-md-12 mb-1">Go back</button>
+                </a>
                 <div class="card">
                     <div class="card-header">{{ __('Scan Here') }}</div>
                     <div class="card-body text-center">
@@ -29,11 +32,6 @@
                     </div>
                 </div>
             <hr>
-            <div class="row justify-content-center pt-1">
-                <a href="/">
-                    <button class="btn btn-secondary">Go back</button>
-                </a>
-            </div>
         </div>
     </div>
 </div>

@@ -1,13 +1,17 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Stock Index</h2>
-            <a href='/stocks/create'>
-                <button class="btn btn-primary btn-xs float-right">Add</button>
+            <a href="/home">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
+            <a href='/stocks/create'>
+                <button class="btn btn-primary col-md-12 btn-lg">Add</button>
+            </a>
+            <br>
             <br>
             @php $i = 1; @endphp
             <table class="table table-striped table-bordered table-hover">

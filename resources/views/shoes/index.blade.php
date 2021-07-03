@@ -1,36 +1,38 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: -10px;" id="main-container">
     <div class="row justify-content-center">
         
         <div id="main-container" class="col-md-8">
             <div class="row justify-content-center pt-1">
-                <a href="/home">
-                    <button class="btn btn-secondary">Go back</button>
-                </a>
-                <hr>
-                    {{-- TODO: PERMISSIONS AND ROLES --}}
-                    @if (Route::has('login'))
-                        @auth
+                                    {{-- TODO: PERMISSIONS AND ROLES 
+                    
                         <div class="row">
                             <div class="card">
                                 <div class="card-header">Options (only available when logged in)</div>
                                 <div class="card-body text-center">
-                                    <a href="/s/create" class="mr-2">
-                                        <button class="btn btn-primary">Add a Shoe</button>
-                                    </a>
+                                    
                                 </div>
                             </div>
-                        </div>
-                        @endauth
-                    @endif
+                        </div> --}}
+                        
                 </div>
-            <h2 class="display-2 text-center">Shoes View</h2>
+            <h2 class="display-2 text-center mb-1">Shoes View</h2>
+            <a href="/home">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
+            @if (Route::has('login'))
+                    @auth
+                        <a href="/s/create" class="mr-2">
+                            <button class="btn btn-primary col-md-12 btn-lg mb-2">Add a Shoe</button>
+                        </a>
+                    @endauth
+            @endif
             @foreach($brands as $brand)
             <div class="row">
                 <div class="card mb-2" style="width: 100%">
-                    <div class="card-header text-center">{{$brand->name}}</div>
+                    <div id="brandname" class="card-header text-center">{{$brand->name}}</div>
                     <div class="card-body d-flex flex-row justify-content-center">
                         @foreach($brand->shoes as $shoe)
                         <a href='/s/{{$brand->slug}}/{{$shoe->slug}}' class="mr-2 mb-1">

@@ -1,10 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div id="main-container" class="container">
    <div class="row">
-        <div id="main-container" class="container">
-        <h1>Cart Items</h1>
+        <div class="container">
+            <h2 class="display-2 text-center mb-1">Cart List</h2>
+            <a href="/home">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
         @foreach ($cartlist as $item)
         <table class="table table-hover">
             <thead>
@@ -32,9 +35,9 @@
         </table>
         @endforeach
         </div>
-        <div class="row justify-content-center pt-1">
-            <a href="/order" class="btn btn-success">Buy Now</a> 
-        </div> 
    </div>
+   <a href="/order">
+    <button class="btn btn-success col-md-12 btn-lg mb-2">Buy Now</button>
+   </a> 
 </div>
 @endsection

@@ -1,11 +1,14 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 100px;" id="main-container">
     @role('Super Admin')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Add Shoes</h2>
+            <a href="/s">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
             <div class="card">
                 <div class="card-header">Add New Shoes</div>
                 <div class="card-body">
@@ -125,11 +128,6 @@
                 </div>
             </div>
             <hr>
-            <div class="row justify-content-center pt-1">
-                <a href="/s">
-                    <button class="btn btn-secondary">Go back</button>
-                </a>
-            </div>
         </div>
     </div>
     @endrole

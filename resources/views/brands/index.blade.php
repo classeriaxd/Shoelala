@@ -5,12 +5,16 @@
     <div class="row justify-content-center">
         
         <div id="main-container" class="col-md-8">
-            <div class="row justify-content-center pt-1">
-            <a href="/home">
-                <button class="btn btn-secondary">Go back</button>
-            </a>
-            </div>
+                        
             <h2 class="display-2 text-center">All Brands</h2>
+            <a href="/home">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
+            @role('Super Admin')
+                <a href="/b/create">
+                    <button class="btn btn-primary col-md-12 btn-lg mb-2">Add a Brand</button>
+                </a>
+            @endrole
             <div class="row">
                 <div class="card mb-2" style="width: 100%">
                     <div class="card-header text-center">Brands</div>
@@ -28,18 +32,6 @@
                     </div>
                 </div>
             </div>
-@role('Super Admin')
-            <div class="row">
-                <div class="card">
-                    <div class="card-header">Options</div>
-                    <div class="card-body text-center">
-                        <a href="/b/create" class="mr-2">
-                            <button class="btn btn-primary">Add a Brand</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-@endrole
         <hr>
         </div>
     </div>

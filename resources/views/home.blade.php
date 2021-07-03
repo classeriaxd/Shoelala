@@ -28,10 +28,16 @@
                     <a href="/orders">
                         <button class="btn btn-primary">Orders</button>
                     </a>
+                    <a href="/stocks">
+                        <button class="btn btn-primary">Stocks</button>
+                    </a>
                 @elserole('Super Admin')   
                     <a href="/orders">
                         <button class="btn btn-primary">Orders</button>
-                    </a>            
+                    </a>
+                    <a href="/stocks">
+                        <button class="btn btn-primary">Stocks</button>
+                    </a>        
                     
                 @endrole
                 </div>
