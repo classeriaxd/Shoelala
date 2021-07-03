@@ -37,10 +37,11 @@
 </table>
 <form action="/order/orderSuccess" method="POST">
                                 @csrf
-                                
+                                <input type="hidden" name="cart_quatity" value="{{$item->cart_quantity}}" >
                                 <input type="hidden" name="shoe_id" value="{{$userID->cart_user_id}}" >
                             <button class="btn btn-success">Proceed</button>
                             </form>
    </div>
 </div>
+@endforeach
 @endsection

@@ -74,6 +74,13 @@ class OrderController extends Controller
         ]);
 
         /*OrderItem::create([
+            'user_id' => Auth::user()->user_id,
+            'order_date' => $current_date,
+            'pickup_date' => $pickup_date,
+            'status'=> '1',
+        ]);*/
+
+        /*OrderItem::create([
             'order_id' => Auth::user()->user_id,
             'stock_id' => $current_date,
             'quantity' => $pickup_date,
