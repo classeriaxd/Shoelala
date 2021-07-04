@@ -6,6 +6,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Edit Shoes</h2>
+            <a href="/s/{{$shoebrandslug}}/{{$shoe->slug}}">
+                <button class="btn btn-secondary col-md-12 bt-lg mb-2">Go back</button>
+            </a>
             <div class="card">
                 <div class="card-header">Edit {{$shoe->name}}</div>
                 <div class="card-body">
@@ -124,11 +127,6 @@
                 </div>
             </div>
             <hr>
-            <div class="row justify-content-center pt-1">
-                <a href="/s/{{$shoebrandslug}}/{{$shoe->slug}}">
-                    <button class="btn btn-secondary">Go back</button>
-                </a>
-            </div>
         </div>
     </div>
     @endrole

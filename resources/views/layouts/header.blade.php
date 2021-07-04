@@ -22,6 +22,7 @@ $total=TransactionsController::cartItem();
         </style> -->
 
         <link rel="stylesheet" href="/css/main.css">
+        <link rel="shortcut icon" href="{{ asset('imgs/favicon.svg') }}">
         
     </head>
     <body id="body" class="antialiased">
@@ -29,7 +30,7 @@ $total=TransactionsController::cartItem();
         <header class="header">
             <nav id="navbar" class="navbar navbar-expand-xl fixed-top">
                 <div class="container">           
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         <img id="navbar-logo" src="/imgs/re-logo2.png" alt="logo">
                     </a>
                                     

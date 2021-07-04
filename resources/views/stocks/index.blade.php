@@ -17,12 +17,12 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Shoe</th>
-                        <th scope="col">SKU</th>
-                        <th scope="col">Stocks</th>
-                        <th scope="col" class="col-md-2">Action</th>
+                        <th scope="col" class="col-md-2 text-center">#</th>
+                        <th scope="col" class="col-md-2 text-center">Brand</th>
+                        <th scope="col" class="col-md-2 text-center">Shoe</th>
+                        <th scope="col" class="col-md-2 text-center">SKU</th>
+                        <th scope="col" class="col-md-2 text-center">Stocks</th>
+                        <th scope="col" class="col-md-2 text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                         <td>{{$stock->stock}}</td>
                         <td>
                         <a href='/stocks/{{$stock->brand_slug}}/{{$stock->shoe_slug}}'>
-                                <button class="btn btn-success btn-xs">Show</button>
+                                <button class="col-md-12 btn btn-success btn-md">Show</button>
                         </a>
                         </td>
                     </tr>
