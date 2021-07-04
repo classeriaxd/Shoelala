@@ -38,8 +38,7 @@ class CartController extends Controller
         */
         Cart::create([
             'user_id' => Auth::user()->user_id,
-            'shoe_id' => request('shoe_id'),
-            'size_id' => request('size_id'),
+            'stock_id' => request('stock_id'),
             'quantity'=> request('cart_quantity'),
         ]);
         return back();
@@ -60,11 +59,13 @@ class CartController extends Controller
     {
         $user_id=Auth::user()->user_id;
         $cartlist=DB::table('cart')
-        ->join('shoes','cart.shoe_id','=','shoes.shoe_id')
+        ->join('stocks','stocks.stock_id','=','cart.stock_id')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
         ->where('cart.user_id',$user_id)
-        ->join('sizes','cart.size_id','=','sizes.size_id')
+        
         //->where('cart.size_id','=','sizes.user_id')
-        ->select('shoes.*','cart.id as cart_id','cart.quantity as cart_quantity',
+        ->select('shoes.shoe_id','shoes.name','shoes.sku','shoes.price as shoe_price','cart.id as cart_id','cart.quantity as cart_quantity',
         'sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4')
         ->get();
         
@@ -93,7 +94,7 @@ class CartController extends Controller
         return redirect('/c/cartlist');
     }
 
-    public function order()
+    /*public function order()
     {
         $user_id=Auth::user()->user_id;
         $orderTable= $orders=DB::table('cart')
@@ -121,7 +122,7 @@ class CartController extends Controller
         ->get();
 
         return view('order',['orderTable'=>$orderTable,'numOfOrders'=>$numOfOrders,'checkoutPrice'=>$checkoutPrice,'size'=>$size]);
-    }
+    }*/
 
     /*public function orderSuccess()
     {

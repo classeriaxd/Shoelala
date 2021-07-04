@@ -11,6 +11,7 @@
   <tbody>
       <tr>
       <td scope="col">Shoe Name </td>
+      <td scope="col">SKU</td>
       <td scope="col">Unit Price</td>
       <td scope="col">Quanitities Ordered</td>
       <td scope="col">Total Price</td>
@@ -20,9 +21,10 @@
       @foreach ($orderTable as $item)
       <tr>
       <td>{{$item->name}} </td>
-      <td>{{$item->price}}</td>
+      <td>{{$item->sku}} </td>
+      <td>{{$item->shoe_price}}</td>
       <td>{{$item->cart_quantity}}</td>
-      <td>{{number_format($item->price*$item->cart_quantity,2)}}</td>
+      <td>{{number_format($item->shoe_price*$item->cart_quantity,2)}}</td>
       </tr>
       @endforeach
   </tbody>
@@ -37,11 +39,13 @@
 </table>
 <form action="/order/orderSuccess" method="POST">
                                 @csrf
-                                <input type="hidden" name="cart_quatity" value="{{$item->cart_quantity}}" >
                                 <input type="hidden" name="shoe_id" value="{{$userID->cart_user_id}}" >
+                               
                             <button class="btn btn-success">Proceed</button>
                             </form>
+                           
    </div>
+   
 </div>
-@endforeach
+
 @endsection
