@@ -28,7 +28,10 @@ class OrderController extends Controller
 
     public function order()
     {
-        $user_id=Auth::user()->user_id;
+        
+        ////////////////////
+        if (Cart::where('user_id', Auth::user()->user_id)->exists()) {
+            $user_id=Auth::user()->user_id;
         $orderTable= $orders=DB::table('cart')
         ->join('stocks','stocks.stock_id','=','cart.stock_id')
         ->join('sizes','sizes.size_id','=','stocks.size_id')
@@ -65,6 +68,10 @@ class OrderController extends Controller
         ->select('cart.size_id as cart_size_id','cart.shoe_id as cart_shoe_id','cart.quantity as cart_quantity')
        ->get();*/
         return view('order',['orderTable'=>$orderTable,'numOfOrders'=>$numOfOrders,'checkoutPrice'=>$checkoutPrice,'userID'=>$userID]);
+         }
+         else{
+             abort(404);
+         }
     }
 
     public function orderSuccess(Request $req)

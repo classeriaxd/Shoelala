@@ -69,8 +69,19 @@ class CartController extends Controller
                         'stock_id' => request('stock_id'),
                         'quantity'=> request('cart_quantity'),
                     ]);
+                    return back();
             }
-        }
+            Cart::create([
+                'user_id' => Auth::user()->user_id,
+                'stock_id' => request('stock_id'),
+                'quantity'=> request('cart_quantity'),
+            ]);
+            return back();
+        }Cart::create([
+            'user_id' => Auth::user()->user_id,
+            'stock_id' => request('stock_id'),
+            'quantity'=> request('cart_quantity'),
+        ]);
         return back();
     }
 
