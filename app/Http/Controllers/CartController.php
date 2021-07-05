@@ -36,11 +36,41 @@ class CartController extends Controller
                 'quantity'=> $data['2'],
         ]);
         */
-        Cart::create([
+        /*Cart::create([
             'user_id' => Auth::user()->user_id,
             'stock_id' => request('stock_id'),
             'quantity'=> request('cart_quantity'),
-        ]);
+        ]);*/
+        /*$add = Cart::firstOrCreate(
+            [
+                'user_id'           => $add->Auth::user()->user_id,
+                'stock_id'          => $add->request('stock_id'),
+            ],
+            [
+                'user_id'            => $add->Auth::user()->user_id,
+                'stock_id'             => $add->request('stock_id'),
+                'quantity'             =>$add-> request('cart_quantity'),
+            ]
+        );*/
+        if (Cart::where('user_id', Auth::user()->user_id)->exists()) {
+            if (Cart::where('stock_id', request('stock_id'))->exists()) { 
+                 //abort(404);
+                 $cartlist=DB::table('cart')
+                ->join('stocks','stocks.stock_id','=','cart.stock_id')
+                ->join('sizes','sizes.size_id','=','stocks.size_id')
+                ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+                ->where('cart.stock_id',request('stock_id'))
+                ->where('cart.user_id',Auth::user()->user_id)
+                ->update(['cart.quantity'=> request('cart_quantity')]);
+                }
+                else{
+                    Cart::create([
+                        'user_id' => Auth::user()->user_id,
+                        'stock_id' => request('stock_id'),
+                        'quantity'=> request('cart_quantity'),
+                    ]);
+            }
+        }
         return back();
     }
 

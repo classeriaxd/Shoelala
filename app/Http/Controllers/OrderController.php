@@ -141,8 +141,9 @@ class OrderController extends Controller
         ->join('sizes','sizes.size_id','=','stocks.size_id')
         ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
         ->where('cart.user_id',$user_id)
-        ->select('cart.stock_id as cart_stock_id','cart.quantity as cart_quantity','stocks.stocks as stocks_quantity','shoes.shoe_id as shoes_shoe_id')
+        ->select('cart.id as cart_id','cart.stock_id as cart_stock_id','cart.quantity as cart_quantity','stocks.stocks as stocks_quantity','shoes.shoe_id as shoes_shoe_id')
         ->get();
+        
         
         //$cartItems->decrement('stocks',$cartItems['cart_quantity']);
         foreach($cartItems as $cartItem)
@@ -153,11 +154,9 @@ class OrderController extends Controller
             ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
             ->where('cart.user_id',$user_id)
             ->where('stocks.shoe_id',$cartItem->shoes_shoe_id)
+            ->where('cart.id',$cartItem->cart_id)
             ->update(['stocks.stocks'=> $cartItem->stocks_quantity - $cartItem->cart_quantity]);
         }
-        
-
-
         return $this->deleteCartRecords();
         
     }
