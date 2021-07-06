@@ -32,13 +32,18 @@
                         <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
                             <form action="/c/add_to_cart/" method="POST">
                                 @csrf
+                                
                                 <input type="hidden" name="shoe_id" value="{{$shoe->shoe_id}}">
                                 <input type="hidden" name="type_id" value="{{$shoe->type_id}}">
                                 <label for="size">{{ __('Size') }}</label>
-                                        <select class="form-control @error('size') is-invalid @enderror" id="size" name="size_id" required> 
+                                        <select class="form-control @error('size') is-invalid @enderror" id="stock_id" name="stock_id" required> 
                                             <option value="-1">Select Size</option>
+                                        @foreach ($stocks as $stock)
                                         @foreach($size as $size)
-                                            <option {{ old('size')==$size->size_id ? 'selected="selected"' : '' }} value="{{$size->size_id}}">{{$size->size_us}}</option>
+                                            @if($stock->size_id==$size->size_id)
+                                            <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$size->size_us}}</option>
+                                            @endif
+                                        @endforeach
                                         @endforeach
                                         </select>
                             <label for="quantity">Quantity: </label>

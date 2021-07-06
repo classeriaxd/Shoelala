@@ -23,7 +23,7 @@ class StocksController extends Controller
             ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
             ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
             ->join('brands', 'brands.brand_id', '=', 'shoes.brand_id')
-            ->select('brands.name as brand', 'shoes.name as shoe', 'types.type as type', 'shoes.sku as sku', DB::raw('sum(stocks.stocks) as stock'), 'shoes.slug as shoe_slug', 'brands.slug as brand_slug')
+            ->select('brands.name as brand', 'shoes.name as shoe', 'shoes.sku as sku', DB::raw('sum(stocks.stocks) as stock'), 'shoes.slug as shoe_slug', 'brands.slug as brand_slug')
             ->whereNull('stocks.deleted_at')
             ->groupBy('stocks.shoe_id')
             ->orderBy('stocks.created_at', 'ASC')
