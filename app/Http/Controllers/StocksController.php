@@ -123,31 +123,23 @@ class StocksController extends Controller
             'stocks' => 'required|numeric',
         ]);
         
-        $stocks = Stock::where(['shoe_id' => $data['name'], 'size_id' => $data['size']])->first();
+        $stock = [
+            'shoe_id' => Shoe::where('shoe_id', $data['name'])->value('shoe_id'),
+            'size_id' => Size::where('size_id', $data['size'])->value('size_id'),
+            'stocks' => $data['stocks'],
+        ];
 
-        if ($stocks !== null) {
+        $stocks = Stock::where(['shoe_id' => $stock['shoe_id'], 'size_id' => $stock['size_id']])->first();
 
-            $stocks->increment('stocks', $data['stocks']);
-        
-        } else {
-        
-            $stocks = Stock::create([
-                'shoe_id' => $data['name'],
-                'size_id' => $data['size'],
-                'stocks' => $data['stocks']
-            ])->stock_id;
-        
+        if ($stocks) 
+            $stocks->increment('stocks', $stock['stocks']);
+        else 
+        {
+            if(Stock::create($stock))
+                return redirect()->route('stocks.index');
+            else
+                abort(404);
+       
         }
-        
-        /*$stock_id = Stock::updateOrCreate(
-            [
-                'shoe_id' => $data['name'],
-                'size_id' => $data['size']
-            ],
-            ['stocks' => $data['stocks']],
-        )->stock_id; */
-        // todo: db error handling
-
-        return redirect()->route('stocks.index');
     }
 }

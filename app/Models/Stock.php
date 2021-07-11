@@ -13,7 +13,6 @@ class Stock extends Model
     protected $guarded = [];
     protected $table = 'stocks';
     protected $primaryKey = 'stock_id';
-    protected $fillable = ['stocks'];
 
     public function shoe()
     {

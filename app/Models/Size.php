@@ -19,4 +19,8 @@ class Size extends Model
     {
         return $this->belongsTo(Shoe::class, 'shoe_id');
     }
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'size_id');
+    }
 }
