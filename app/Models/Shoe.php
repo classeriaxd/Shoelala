@@ -39,4 +39,9 @@ class Shoe extends Model
     {
         return $this->hasMany(Sizes::class, 'size_id');
     }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'shoe_id');
+    }
 }

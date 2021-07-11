@@ -15,14 +15,11 @@ class CreateCartTable extends Migration
     {
         Schema::create('cart', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shoe_id');
             $table->foreignId('user_id');
-            $table->foreignId('size_id');
+            $table->foreignId('stock_id');
             $table->unsignedInteger('quantity');
-            $table->timestamps();
-            $table->foreign('shoe_id')->references('shoe_id')->on('shoes');
             $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('size_id')->references('size_id')->on('sizes');
+            $table->foreign('stock_id')->references('stock_id')->on('stocks');
         });
     }
 
@@ -35,8 +32,7 @@ class CreateCartTable extends Migration
     {
         Schema::dropIfExists('cart');
         $table->dropForeign('user_id');
-        $table->dropForeign('shoe_id');
-        $table->dropForeign('size_id');
+        $table->dropForeign('stock_id');
         
     }
 }

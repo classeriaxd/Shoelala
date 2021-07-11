@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="container" style="margin-top: 120px;" id="main-container">
    <div class="col-md-12">
       <h2 class="display-2 text-center mb-1">Order</h2>
@@ -14,7 +15,8 @@
    </thead>
   <tbody>
       <tr>
-      <td scope="col">Shoe Name</td>
+      <td scope="col">Shoe Name </td>
+      <td scope="col">SKU</td>
       <td scope="col">Unit Price</td>
       <td scope="col">Quanitities Ordered</td>
       <td scope="col">Total Price</td>
@@ -23,10 +25,11 @@
       <tr></tr>
       @foreach ($orderTable as $item)
       <tr>
-      <td>{{$item->name}}</td>
-      <td>{{$item->price}}</td>
+      <td>{{$item->name}} </td>
+      <td>{{$item->sku}} </td>
+      <td>{{$item->shoe_price}}</td>
       <td>{{$item->cart_quantity}}</td>
-      <td>{{number_format($item->price*$item->cart_quantity,2)}}</td>
+      <td>{{number_format($item->shoe_price*$item->cart_quantity,2)}}</td>
       </tr>
       @endforeach
   </tbody>
@@ -35,11 +38,20 @@
      <td></td>
      <td></td>
      <td scope="col">Checkout: ({{$numOfOrders}}) items</td>
-     <td>{{$checkoutPrice}}</td>
+     <td>{{number_format($checkoutPrice,2)}}</td>
      </tr>
   </tbody>
 </table>
-      <a href="/orderSuccess" class="btn btn-success col-md-12 btn-lg">Proceed</a>
+
+<form action="/order/orderSuccess" method="POST">
+                                @csrf
+                                <input type="hidden" name="shoe_id" value="{{$userID->cart_user_id}}" >
+                               
+                            <button class="btn btn-success col-md-12 btn-lg">Proceed</button>
+                            </form>
+                       
    </div>
+   
 </div>
+
 @endsection

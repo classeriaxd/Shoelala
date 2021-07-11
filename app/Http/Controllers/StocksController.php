@@ -24,7 +24,6 @@ class StocksController extends Controller
             ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
             ->join('brands', 'brands.brand_id', '=', 'shoes.brand_id')
             ->select('brands.name as brand', 'shoes.name as shoe', 'shoes.sku as sku', DB::raw('sum(stocks.stocks) as stock'), 'shoes.slug as shoe_slug', 'brands.slug as brand_slug')
-            //->sum('stocks.stocks')
             ->whereNull('stocks.deleted_at')
             ->groupBy('stocks.shoe_id')
             ->orderBy('stocks.created_at', 'ASC')
@@ -44,7 +43,6 @@ class StocksController extends Controller
         ->join('types', 'types.type_id', '=', 'sizes.type_id')
         ->join('brands', 'brands.brand_id', '=', 'shoes.brand_id')
         ->select('brands.name as brand', 'shoes.name as shoe', 'types.type as type', 'sizes.us as size', 'stocks.stocks as stock', 'shoes.slug as shoe_slug', 'brands.slug as brand_slug', 'stocks.size_id as size_id')
-        //->sum('stocks.stocks')
         ->where('stocks.shoe_id', $shoe->shoe_id)
         ->whereNull('stocks.deleted_at')
         ->get();
@@ -125,31 +123,23 @@ class StocksController extends Controller
             'stocks' => 'required|numeric',
         ]);
         
-        $stocks = Stock::where(['shoe_id' => $data['name'], 'size_id' => $data['size']])->first();
+        $stock = [
+            'shoe_id' => Shoe::where('shoe_id', $data['name'])->value('shoe_id'),
+            'size_id' => Size::where('size_id', $data['size'])->value('size_id'),
+            'stocks' => $data['stocks'],
+        ];
 
-        if ($stocks !== null) {
+        $stocks = Stock::where(['shoe_id' => $stock['shoe_id'], 'size_id' => $stock['size_id']])->first();
 
-            $stocks->increment('stocks', $data['stocks']);
-        
-        } else {
-        
-            $stocks = Stock::create([
-                'shoe_id' => $data['name'],
-                'size_id' => $data['size'],
-                'stocks' => $data['stocks']
-            ])->stock_id;
-        
+        if ($stocks) 
+            $stocks->increment('stocks', $stock['stocks']);
+        else 
+        {
+            if(Stock::create($stock))
+                return redirect()->route('stocks.index');
+            else
+                abort(404);
+       
         }
-        
-        /*$stock_id = Stock::updateOrCreate(
-            [
-                'shoe_id' => $data['name'],
-                'size_id' => $data['size']
-            ],
-            ['stocks' => $data['stocks']],
-        )->stock_id; */
-        // todo: db error handling
-
-        return redirect()->route('stocks.index');
     }
 }

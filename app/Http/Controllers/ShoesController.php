@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 use \App\Models\Brand;
 use \App\Models\Shoe;
 use \App\Models\ShoeImage;
 use \App\Models\Category;
 use \App\Models\Type;
+use \App\Models\Cart;
+use \App\Models\Size;
+
 
 use \App\Rules\ShoeSKU;
 
@@ -52,8 +56,18 @@ class ShoesController extends Controller
             ->get();
         $type = Type::where('type_id', $shoe->type_id)->value('type');
         $category = Category::where('category_id', $shoe->category_id)->value('category');
-
-        return view('shoes.show', compact('shoe', 'brand', 'shoeImages', 'type', 'category'));
+        $size = DB:: table('sizes')
+        ->join('shoes','sizes.type_id','=','shoes.type_id')
+        ->where('shoes.shoe_id',$shoe->shoe_id)
+        ->select('sizes.us as size_us','sizes.size_id as size_id')
+        ->get();
+        $stocks=DB::table('stocks')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+        ->where('shoes.slug',$shoe_slug)
+        ->select('stocks.stock_id','stocks.size_id')
+        ->get();
+        return view('shoes.show', compact('shoe', 'brand', 'shoeImages', 'type', 'category','size','stocks'));
     }
     public function destroy($brand_slug, $shoe_slug)
     {

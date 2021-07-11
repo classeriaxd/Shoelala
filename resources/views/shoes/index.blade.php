@@ -6,17 +6,14 @@
         
         <div id="main-container" class="col-md-8">
             <div class="row justify-content-center pt-1">
-                                    {{-- TODO: PERMISSIONS AND ROLES 
-                    
-                        <div class="row">
-                            <div class="card">
-                                <div class="card-header">Options (only available when logged in)</div>
-                                <div class="card-body text-center">
-                                    
-                                </div>
-                            </div>
-                        </div> --}}
-                        
+                <a href="/home">
+                    <button class="btn btn-outline-secondary">Go back</button>
+                </a>
+            @role('Super Admin')
+                <a href="/s/create" class="mr-2">
+                    <button class="btn btn-primary">Add Shoes</button>
+                </a>
+            @endrole
                 </div>
             <h2 class="display-2 text-center mb-1">Shoes View</h2>
             <a href="/home">
@@ -55,7 +52,6 @@
                 </div>
             </div>
             @endforeach
-        
         <hr>
         </div>
     </div>

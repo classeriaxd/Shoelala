@@ -15,9 +15,13 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('stock_id');
+            $table->foreignId('order_id');
+            $table->foreignId('stock_id');
             $table->unsignedInteger('quantity');
+
+            $table->foreign('order_id')->references('order_id')->on('orders');
+            $table->foreign('stock_id')->references('stock_id')->on('stocks');
+
         });
     }
 
@@ -29,5 +33,8 @@ class CreateOrderItemsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('order_items');
+        $table->dropForeign('order_id');
+        $table->dropForeign('stock_id');
+
     }
 }
