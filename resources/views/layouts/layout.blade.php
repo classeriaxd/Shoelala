@@ -22,14 +22,8 @@ $total=CartController::cartItem();
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('imgs/favicon-logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/layout-css.css') }}">
-    
-    @if($instascanJS ?? false)
-    {{-- Instascan JS--}}
-    <script src="{{ asset('js/instascan/adapter.min.js') }}"></script>
-    <script src="{{ asset('js/instascan/vue.min.js') }}"></script>
-    <script src="{{ asset('js/instascan/instascan.min.js') }}"></script>
-    @endif
 
 </head>
 <body>
@@ -110,75 +104,5 @@ $total=CartController::cartItem();
             @yield('content')
         </main>
     </header>
-    @if($instascanJS ?? false)
-        <script type="text/javascript">
-            let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
-            let videoConstraints = {};
-            function closeCamera()
-            {
-                document.getElementById('cameraToggle').onclick = openCamera;
-                scanner.stop()
-            }
-            function getCameras()
-            {
-                let select = document.getElementById('videoSource');
-                Instascan.Camera.getCameras().then(function(cameras) 
-                {
-                    if(cameras.length > 0) 
-                    {
-                        for (let i = select.length - 1; i >= 0; i--) 
-                        {
-                            select.remove(i);
-                        }
-
-                        for (let i = 0; i < cameras.length; i++) 
-                        {
-                            let opt = document.createElement('option');
-                            opt.value = cameras[i].id;
-                            opt.innerText = cameras[i].name;
-                            select.add(opt);
-                        }
-                        scanner.start(cameras[1]);
-                    }
-                    else 
-                        alert('No cameras found');
-                }).catch(function(e){
-                    console.error(e);
-                });
-                
-            }
-
-            function openCamera()
-            {
-                let select = document.getElementById('videoSource');
-                const video = document.getElementById('preview');
-                document.getElementById('cameraToggle').onclick = closeCamera;
-
-                scanner.addListener('scan', function(result)
-                {
-                    if(result != null)
-                    {
-                        document.getElementById('code').innerText = result;
-                        console.log(result);
-
-                    }
-                    else
-                        document.getElementById('code').innerText = 'Code Appears Here...';
-                });
-                videoConstraints.deviceId = {exact: select.value};
-                console.log(videoConstraints.deviceId);
-                videoConstraints.width = { min: 640, ideal: 1280, max: 1920 };
-                videoConstraints.height = { min: 480, ideal: 720, max: 1080 };
-
-                navigator.mediaDevices
-                    .getUserMedia({ video: videoConstraints, audio: false })
-                    .then(stream => {
-                        video.srcObject = stream;
-                    }).catch(error => { console.error(error); });
-
-            }  
-
-        </script>
-    @endif
 </body>
 </html>

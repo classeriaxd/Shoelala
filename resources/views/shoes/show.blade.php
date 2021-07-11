@@ -1,11 +1,14 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Shoe View</h2>
-            <div class="card">
+            <a href="/s">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
+            <div class="card mb-2">
                 <div class="card-header text-center">{{$shoe->name}}</div>
                 <div class="card-body">
                     <div class="row">
@@ -18,7 +21,7 @@
                                 
                         </div>
 @role('Super Admin')
-                        <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
+                        <div class="col-md-12 d-flex flex-column justify-content-center m-auto">
                             <a href='/s/{{$brand->slug}}/{{$shoe->slug}}/edit' class="mb-2">
                                 <button class="btn btn-primary" style="width: 100%">Edit</button>
                             </a>
@@ -84,11 +87,6 @@
                 </div>    
             </div>
             <hr>
-            <div class="row justify-content-center pt-1">
-                <a href="/s">
-                    <button class="btn btn-secondary">Go back</button>
-                </a>
-            </div>
         </div>
     </div>
 </div>
