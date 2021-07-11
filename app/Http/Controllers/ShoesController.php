@@ -67,7 +67,6 @@ class ShoesController extends Controller
         ->where('shoes.slug',$shoe_slug)
         ->select('stocks.stock_id','stocks.size_id')
         ->get();
-        //$item = Cart:: where ('shoe_id',$shoe->$shoe_id);
         return view('shoes.show', compact('shoe', 'brand', 'shoeImages', 'type', 'category','size','stocks'));
     }
     public function destroy($brand_slug, $shoe_slug)

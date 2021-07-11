@@ -9,18 +9,11 @@
                 <a href="/home">
                     <button class="btn btn-outline-secondary">Go back</button>
                 </a>
-                    @role('Super Admin')
-                        <div class="row">
-                            <div class="card">
-                                <div class="card-header">Options (only available when logged in)</div>
-                                <div class="card-body text-center">
-                                    <a href="/s/create" class="mr-2">
-                                        <button class="btn btn-primary">Add a Shoe</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endrole
+            @role('Super Admin')
+                <a href="/s/create" class="mr-2">
+                    <button class="btn btn-primary">Add Shoes</button>
+                </a>
+            @endrole
                 </div>
             <h2 class="display-2 text-center">Shoes View</h2>
             @foreach($brands as $brand)
@@ -49,7 +42,6 @@
                 </div>
             </div>
             @endforeach
-        
         <hr>
         </div>
     </div>

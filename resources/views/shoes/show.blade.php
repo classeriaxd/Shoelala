@@ -29,21 +29,24 @@
                             </form>
                         </div>
 @elserole('User')
-                        <div class="col-md-2 d-flex flex-column justify-content-center m-auto">
+@php
+@endphp
+@if($stocks->count() > 0)
+                        <div class="col-md-4 d-flex flex-column justify-content-center m-auto">
                             <form action="/c/add_to_cart/" method="POST">
                                 @csrf
-                                
+                            
                                 <input type="hidden" name="shoe_id" value="{{$shoe->shoe_id}}">
                                 <input type="hidden" name="type_id" value="{{$shoe->type_id}}">
                                 <label for="size">{{ __('Size') }}</label>
                                         <select class="form-control @error('size') is-invalid @enderror" id="stock_id" name="stock_id" required> 
                                             <option value="-1">Select Size</option>
                                         @foreach ($stocks as $stock)
-                                        @foreach($size as $size)
-                                            @if($stock->size_id==$size->size_id)
-                                            <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$size->size_us}}</option>
-                                            @endif
-                                        @endforeach
+                                            @foreach($size as $size)
+                                                @if($stock->size_id==$size->size_id)
+                                                <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$size->size_us}}</option>
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                         </select>
                             <label for="quantity">Quantity: </label>
@@ -52,7 +55,12 @@
                             <button class="btn btn-primary">Add to cart</button>
                             </form>
                             <br><br>
-                        </div>                        
+                        </div>
+@else
+                        <div class="col-md-4 d-flex flex-column">
+                            <p class="m-auto text-center">Currently out of stock.</p>
+                        </div>
+@endif                        
 @endrole
                     </div>
                 </div>
