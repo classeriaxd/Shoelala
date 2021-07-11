@@ -4,7 +4,7 @@
 <div id="main-container" class="container" style="margin-top: 100px;">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            @role('Super Admin')
+    @role('Super Admin')
             <h3 class="display-4 text-center">Welcome Super Admin</h3>
             <hr>
             <h6 class="display-6 text-center">What do you want to do for today?</h6>
@@ -64,7 +64,7 @@
                 </div>
             </div>
       
-            @elserole('Admin') 
+    @elserole('Admin') 
                 <div class="card">
                     <div class="card-header">Choices</div>
                     <div class="card-body text-center">
@@ -73,7 +73,7 @@
                         </a>     
                     </div>
                 </div>
-            @elserole('User')
+    @elserole('User')
                 <div class="card">
                     <div class="card-header">Choices</div>
                     <div class="card-body text-center">

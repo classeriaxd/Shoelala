@@ -83,6 +83,7 @@
             @foreach($shoe as $shoe)
               
               <div class="col-lg-4 d-flex float-left">
+
                 <div class="card flex-fill">
                     
                     @if($shoe->image_angle_id == 3)
@@ -99,6 +100,7 @@
                       <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
                     </div>
                 </div>
+
               </div>
              
             @endforeach
@@ -108,16 +110,3 @@
 
 
 @endsection
-        <!--
-        <div class="container-card">
-            <div class="card">
-                <div class="sneaker">
-
-                </div>
-            </div>
-        </div>
-        -->
-        
-        <!--
-                    
-        <!--
