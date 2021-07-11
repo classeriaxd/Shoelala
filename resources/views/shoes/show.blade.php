@@ -29,8 +29,7 @@
                             </form>
                         </div>
 @elserole('User')
-@php
-@endphp
+
 @if($stocks->count() > 0)
                         <div class="col-md-4 d-flex flex-column justify-content-center m-auto">
                             <form action="/c/add_to_cart/" method="POST">
