@@ -52,6 +52,116 @@ class CartController extends Controller
                 'quantity'             =>$add-> request('cart_quantity'),
             ]
         );*/
+        if (Cart::where('user_id', Auth::user()->user_id)->exists()) {//kung may userid
+            if (Cart::where('stock_id', request('stock_id'))->exists()) { //kung andun na ung same stockid or size
+                 //abort(404);
+                 $checkStocks=DB::table('stocks')
+                    ->where('stocks.stock_id',request('stock_id'))
+                    ->select('stocks.stocks as stocksLeft')
+                    ->first();
+                 if($checkStocks->stocksLeft>=request('cart_quantity'))//check kung mas malaki ung stocks sa updated quantity,update
+                    {
+                        $cartlist=DB::table('cart')
+                        ->join('stocks','stocks.stock_id','=','cart.stock_id')
+                        ->join('sizes','sizes.size_id','=','stocks.size_id')
+                        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+                        ->where('cart.stock_id',request('stock_id'))
+                        ->where('cart.user_id',Auth::user()->user_id)
+                        ->update(['cart.quantity'=> request('cart_quantity')]);
+                    }
+                    else{//kung indi mas malaki ung quantity, error
+                        abort(404);
+                    }
+                }
+                else{ //kung wala man ung stocks pero andun na si user bali same user nag order lang different shoe, proceed to check quantity
+                    $checkStocks=DB::table('stocks')
+                    ->where('stocks.stock_id',request('stock_id'))
+                    ->select('stocks.stocks as stocksLeft')
+                    ->first();
+                    if($checkStocks->stocksLeft>=request('cart_quantity'))//kung kasya ung quantity na ininput sa stocks left, create
+                    {
+                        Cart::create([
+                            'user_id' => Auth::user()->user_id,
+                            'stock_id' => request('stock_id'),
+                            'quantity'=> request('cart_quantity'),
+                        ]);
+                        return back();     
+                    }
+                    else{//kung hindi kasya, error
+                        abort(404);
+                }
+                    
+            }
+               
+        }
+        else{//kung wala dun ung user id (parang new acc ung logic neto),proceed
+                $checkStocks=DB::table('stocks')
+                    ->where('stocks.stock_id',request('stock_id'))
+                    ->select('stocks.stocks as stocksLeft')
+                    ->first();
+                 if($checkStocks->stocksLeft>=request('cart_quantity'))//check kung mas malaki ung stocks sa updated quantity,update
+                    {
+                        /*$cartlist=DB::table('cart')
+                        ->join('stocks','stocks.stock_id','=','cart.stock_id')
+                        ->join('sizes','sizes.size_id','=','stocks.size_id')
+                        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+                        ->where('cart.stock_id',request('stock_id'))
+                        ->where('cart.user_id',Auth::user()->user_id)
+                        ->update(['cart.quantity'=> request('cart_quantity')]);*/
+                        Cart::create([
+                            'user_id' => Auth::user()->user_id,
+                            'stock_id' => request('stock_id'),
+                            'quantity'=> request('cart_quantity'),
+                        ]);
+                        return back(); 
+                    }
+                    else{//kung indi mas malaki ung quantity, error
+                        abort(404);
+                    }
+
+        }
+        /*Cart::create([
+            'user_id' => Auth::user()->user_id,
+            'stock_id' => request('stock_id'),
+            'quantity'=> request('cart_quantity'),
+        ]);
+        return back();*/
+
+        
+
+    }
+
+    public function addToCart2(Request $req)
+    {
+        /*$data = request()->validate([
+            'user_id' => 'required|numeric|exists:cart,user_id',
+            'shoe_id' => 'required|numeric|exists:cart,shoe_id',
+            'size_id' => 'required|numeric|exists:cart,size_id',
+            'quantity' => 'required|numeric|exists:cart,quantity'
+        ]);
+        Cart::create([
+                'user_id' => $data[Auth::user()->user_id],
+                'shoe_id' => $data[request('shoe_id')],
+                'size_id' => $data['1'],
+                'quantity'=> $data['2'],
+        ]);
+        */
+        /*Cart::create([
+            'user_id' => Auth::user()->user_id,
+            'stock_id' => request('stock_id'),
+            'quantity'=> request('cart_quantity'),
+        ]);*/
+        /*$add = Cart::firstOrCreate(
+            [
+                'user_id'           => $add->Auth::user()->user_id,
+                'stock_id'          => $add->request('stock_id'),
+            ],
+            [
+                'user_id'            => $add->Auth::user()->user_id,
+                'stock_id'             => $add->request('stock_id'),
+                'quantity'             =>$add-> request('cart_quantity'),
+            ]
+        );*/
         if (Cart::where('user_id', Auth::user()->user_id)->exists()) {
             if (Cart::where('stock_id', request('stock_id'))->exists()) { 
                  //abort(404);
