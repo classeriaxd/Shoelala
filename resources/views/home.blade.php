@@ -6,12 +6,12 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
         @role('Super Admin')
-                <h3 class="display-4 text-center">Currently logged as {{Auth::user()->first_name}}</h3>
+                <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
                 <h6 class="text-muted text-center">Super Admin</h6>
                 <hr>
-
                 <h6 class="display-6 text-center">What do you want to do for today?</h6>
-                <div class="row justify-content-center mb-1"> {{-- Collapse Buttons --}}
+            {{-- Collapse Buttons --}}
+                <div class="row justify-content-center mb-1"> 
                     <a class="btn btn-outline-dark mr-5" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
                     Orders
                     </a>
@@ -25,15 +25,16 @@
                     Maintenance
                     </a>
                 </div>
-
-                <div class="row justify-content-center mb-2"> {{-- Orders --}}
+            {{-- Orders --}}
+                <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseOrders">
                         <a class="btn btn-link" href="/orders/scan">Scan QR</a>
                         <a class="btn btn-link" href="/orders">View Orders</a>
                         <a class="btn btn-link" href="#">Tag Overdue Orders</a>
                     </div>
                 </div>
-                <div class="row justify-content-center mb-2"> {{-- Stocks --}}
+            {{-- Stocks --}}
+                <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseStocks">
                         <div class="d-flex flex-column text-center">
                             <p class="mb-1">Stocks</p>
@@ -49,14 +50,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center mb-2"> {{-- Reports --}}
+            {{-- Reports --}}
+                <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseReports">
                         <a class="btn btn-link" href="#">Order Report</a>
                         <a class="btn btn-link" href="#">Stock Report</a>
                         <a class="btn btn-link" href="#">User Report</a>
                     </div>
                 </div>
-                <div class="row justify-content-center mb-2"> {{-- Maintenance --}}
+            {{-- Maintenance --}}
+                <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseMaintenance">
                         <div class="d-flex flex-column text-center">
                             <p class="mb-1">Users</p>
@@ -74,32 +77,35 @@
                 </div>
 
         @elserole('Admin')
-                    <h3 class="display-4 text-center">Currently logged as {{Auth::user()->first_name}}</h3>
+                    <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
                     <h6 class="text-muted text-center">Cashier</h6>
                     <hr>
                     <h6 class="display-6 text-center">What do you want to do for today?</h6>
-                    <div class="row justify-content-center"> {{-- Collapse Buttons --}}
+            {{-- Collapse Buttons --}}
+                    <div class="row justify-content-center">
                         <a class="btn btn-outline-dark mr-5" data-toggle="collapse" href="#collapseOrders-cashier" role="button" aria-expanded="false" aria-controls="collapseOrders-cashier">
                         Orders
                         </a>
                         <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseStocks-cashier" role="button" aria-expanded="false" aria-controls="collapseStocks-cashier">
                         Stocks
                         </a>
-                    </div>    
-                    <div class="row justify-content-center mb-2"> {{-- Orders --}}
+                    </div>  
+            {{-- Orders --}}  
+                    <div class="row justify-content-center mb-2">
                         <div class="collapse" id="collapseOrders-cashier">
                             <a class="btn btn-link" href="#">Pending Orders of this week</a>
                             <a class="btn btn-link" href="/orders/scan">Scan QR</a>
                         </div>
                     </div>
-                    <div class="row justify-content-center mb-2"> {{-- Stocks --}}
+            {{-- Stocks --}}
+                    <div class="row justify-content-center mb-2">
                         <div class="collapse" id="collapseStocks-cashier">
                             <a class="btn btn-link" href="/stocks">View Stocks</a>
                         </div>
                     </div>
 
         @elserole('User')
-                    <h3 class="display-4 text-center">Currently logged as {{Auth::user()->first_name}}</h3>
+                    <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
                     <h6 class="text-muted text-center">User</h6>
                         <div class="card">
                             <div class="card-header">Choices</div>
