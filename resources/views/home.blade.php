@@ -49,18 +49,23 @@
             </div>
             <div class="row justify-content-center"> {{-- Reports --}}
                 <div class="collapse" id="collapseReports">
-                    <a class="btn btn-link" href="">Link</a>
-                    <a class="btn btn-link" href="">Link</a>
-                    <a class="btn btn-link" href="">Link</a>
-                    <a class="btn btn-link" href="">Link</a>
+                    <a class="btn btn-link" href="">Orders Placed</a>
+                    <a class="btn btn-link" href="">Stocks Remaining</a>
+                    <a class="btn btn-link" href="">Active Users</a>
                 </div>
             </div>
             <div class="row justify-content-center"> {{-- Maintenance --}}
                 <div class="collapse" id="collapseMaintenance">
-                    <a class="btn btn-link" href="">Link</a>
-                    <a class="btn btn-link" href="">Link</a>
-                    <a class="btn btn-link" href="">Link</a>
-                    <a class="btn btn-link" href="">Link</a>
+                    <div class="d-flex flex-column text-center">
+                        <p class="mb-1">Users</p>
+                        <a class="btn btn-link mb-1" href="">Manage Users</a>
+                        <hr>
+                        <p class="mb-1">Shoes Maintenance</p>
+                        <a class="btn btn-link mb-1" href="">Restore Shoes</a>
+                        <hr>
+                        <p class="mb-1">Orders</p>
+                        <a class="btn btn-link mb-1" href="/s">Tag Overdue Orders</a>
+                    </div>
                 </div>
             </div>
       
