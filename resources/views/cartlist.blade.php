@@ -9,7 +9,7 @@
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
           @if ($cartlist->count()>0)
-        @foreach ($cartlist as $item)
+        @foreach ($cartlist as $cartItem)
         <table class="table table-hover">
             <thead>
                 <tr>
