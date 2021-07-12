@@ -24,10 +24,11 @@ use Carbon\Carbon;
             <td scope="col">Order Date</td>
             <td scope="col">Pickup Date</td>
             <td scope="col">Action</td>
+            <td scope="col"> QR Code</td>
             </tr>
+            </thead>
             
-            <tr></tr>
-            
+            <tbody>
             <tr>
             <td>{{$pendingOrder->name}} </td>
             <td>{{$pendingOrder->sku}} </td>
@@ -46,6 +47,13 @@ use Carbon\Carbon;
             @else
             <td>Order Being Processed</td>
             @endif
+            <td>{!! QrCode::size(250)
+                ->format('svg')
+                //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
+                //->backgroundColor(255,55,0)
+                ->style('round')
+                ->eye('circle')
+                ->generate("http://127.0.0.1:8000/orders/o/$pendingOrder->order_uuid"); !!}</td>
             </tr>
           
         </tbody>
