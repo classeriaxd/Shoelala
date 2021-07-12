@@ -8,7 +8,7 @@
                 @role('Super Admin')
                 <h3 class="display-4 text-center">Currently logged as {{Auth::user()->first_name}} Super Admin</h3>
                 <hr>
-                
+
                     <h6 class="display-6 text-center">What do you want to do for today?</h6>
                     <div class="row justify-content-center"> {{-- Collapse Buttons --}}
                         <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
@@ -65,15 +65,15 @@
                             <a class="btn btn-link" href="">Link</a>
                         </div>
                     </div>
-            
-                    @elserole('Admin') 
+
+                    @elserole('Admin')
                     <h3 class="display-4 text-center">Currently logged as {{Auth::user()->first_name}} Cashier</h3>
                         <div class="card">
                             <div class="card-header">Choices</div>
                             <div class="card-body text-center">
                                 <a href="/orders">
                                     <button class="btn btn-primary">Orders</button>
-                                </a>     
+                                </a>
                             </div>
                         </div>
                     @elserole('User')

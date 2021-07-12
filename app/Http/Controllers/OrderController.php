@@ -124,7 +124,6 @@ class OrderController extends Controller
             ]);
         }
         
-
         
         return $this->subtractFromStocks();
     }
