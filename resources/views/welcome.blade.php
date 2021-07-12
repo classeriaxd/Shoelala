@@ -36,11 +36,11 @@
                           @endif
                           @endforeach
                           <div class="card-body">
-                          <h4 class="card-title">{{$shoe->name}}</h4>
+                          <h4 class="card-title" style="text-transform: uppercase">{{$shoe->name}}</h4>
                           <p class="card-text">
                               Price: ₱ {{$shoe->price}} 
                           </p>
-                          <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                          <a class="card-block stretched-link text-decoration-none" href="/s" class="btn" style="text-transform: uppercase">Buy</a>
                           </div>
                       </div>
                   </div>
@@ -62,11 +62,11 @@
                           @endif
                           @endforeach
                           <div class="card-body">
-                          <h4 class="card-title">{{$shoe->name}}</h4>
+                          <h4 class="card-title" style="text-transform: uppercase">{{$shoe->name}}</h4>
                           <p class="card-text">
                               Price: ₱ {{$shoe->price}} 
                           </p>
-                          <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                          <a class="card-block stretched-link text-decoration-none" href="/s" class="btn" style="text-transform: uppercase">Buy</a>
                           </div>
                       </div>
                   </div>
