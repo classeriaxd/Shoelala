@@ -73,6 +73,9 @@ Route::post('/c/add_to_cart', [App\Http\Controllers\CartController::class, 'addT
 Route::get('/c/cartlist', [App\Http\Controllers\CartController::class, 'cartlist'])->name('cart.cartlist');
 Route::get('/c/cartlist/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart']);
 
+//Show Orders Routes
+Route::get('/c/PendingOrders', [App\Http\Controllers\OrderController::class, 'pendingOrders']);
+
 //order routes
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'order']);
 Route::post('/order/orderSuccess', [App\Http\Controllers\OrderController::class, 'orderSuccess']);

@@ -1,6 +1,9 @@
 <?php
+
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 $total=CartController::cartItem();
+$pendingTotal=OrderController::pendingOrderItem();
 ?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -78,7 +81,8 @@ $total=CartController::cartItem();
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/c/cartlist">cart({{$total}})</a>
+                                    <a class="dropdown-item" href="/c/cartlist">Your Cart({{$total}})</a>
+                                    <a class="dropdown-item" href="/c/PendingOrders">Pending Items({{$pendingTotal}})</a>
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('dashboard') }}
                                     </a>

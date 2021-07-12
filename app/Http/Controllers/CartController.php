@@ -7,6 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
+
 use Auth;
 use \App\Models\Brand;
 use \App\Models\Shoe;
@@ -68,6 +69,7 @@ class CartController extends Controller
                         ->where('cart.stock_id',request('stock_id'))
                         ->where('cart.user_id',Auth::user()->user_id)
                         ->update(['cart.quantity'=> request('cart_quantity')]);
+                        return back();
                     }
                     else{//kung indi mas malaki ung quantity, error
                         abort(404);
@@ -172,6 +174,8 @@ class CartController extends Controller
                 ->where('cart.stock_id',request('stock_id'))
                 ->where('cart.user_id',Auth::user()->user_id)
                 ->update(['cart.quantity'=> request('cart_quantity')]);
+
+                return back();
                 }
                 else{
                     Cart::create([
@@ -220,8 +224,9 @@ class CartController extends Controller
         'sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4')
         ->get();
         
+        $cartcount=Cart::where('user_id',$user_id)->count();
 
-        return view('cartlist',['cartlist'=>$cartlist]);
+        return view('cartlist',['cartlist'=>$cartlist,'cartcount'=>$cartcount]);
         //return redirect()->route('cartlist.show',['cartlist'=>$cartlist]);
     }
     

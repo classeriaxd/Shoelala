@@ -82,6 +82,7 @@ class OrderController extends Controller
         $pickup_date = $current_date_string->addDays($daysToAdd);
         $user_id=Auth::user()->user_id;
         $orderId=Order::create([
+            'order_uuid'=>Str::uuid()->toString(),
             'user_id' => Auth::user()->user_id,
             'order_date' => $current_date,
             'pickup_date' => $pickup_date,
@@ -177,6 +178,43 @@ class OrderController extends Controller
         return redirect()->route('home');
         
     }
+    public function pendingOrders()
+    {
+        $user_id=Auth::user()->user_id;
+        $pendingOrders=DB::table('order_items')
+        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+        ->join('orders','orders.order_id','=','order_items.order_id')
+        ->where('user_id',$user_id)
+        ->where('orders.status',1)
+        
+        //->where('cart.size_id','=','sizes.user_id')
+        ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
+                'order_date','pickup_date')
+        ->get();
+        $conditions=[
+            ['status','=','1'],
+            ['user_id','=',$user_id],
+        ];
+        $pendingOrdersCount=Order::where($conditions)->count();
 
+        return view('pendingOrders',['pendingOrders'=>$pendingOrders,'pendingOrdersCount'=>$pendingOrdersCount]);
+        //return redirect()->route('cartlist.show',['cartlist'=>$cartlist]);
+    }
+    static public function pendingOrderItem()
+    {
+        if (Auth::check())
+        {
+            $user_id=Auth::user()->user_id;
+            $conditions=[
+                ['status','=','1'],
+                ['user_id','=',$user_id],
+            ];
+        return Order::where($conditions)->count();
+        }
+        
+        
+    }
     
 }

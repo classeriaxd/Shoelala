@@ -8,8 +8,8 @@
             <a href="/home">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
+          @if ($cartlist->count()>0)
         @foreach ($cartlist as $item)
-
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -38,9 +38,14 @@
         </table>
         @endforeach
         </div>
-   </div>
-   <a href="/order">
-    <button class="btn btn-success col-md-12 btn-lg mb-2">Buy Now</button>
-   </a> 
-</div>
+        <div class="row justify-content-center pt-1">
+            <a href="/order" class="btn btn-success">Buy Now</a> 
+        </div> 
+        @else
+        <h2>There are no items in your cart.</h2>
+        <div class="row justify-content-center pt-1">
+            <a href="/s" class="btn btn-success">Shop Now</a> 
+        </div> 
+        @endif
+   </div></div>
 @endsection
