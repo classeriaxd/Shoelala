@@ -5,11 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-2 text-center">Scan QR</h2>
-                <a href="/orders">
-                    <button class="btn btn-secondary col-md-12 mb-1">Go back</button>
-                </a>
+                <hr>
                 <div class="card">
-                    <div class="card-header">{{ __('Scan Here') }}</div>
+                    <div class="card-header text-center">{{ __('Scan Here') }}</div>
                     <div class="card-body text-center">
                         <video id="preview" width="320" height="240"></video>
                         <hr>
@@ -26,12 +24,17 @@
                         <h6 id="cameraName">Camera Name:</h6>
                         <h6 id="cameraId">Camera ID:</h6>
                         <hr>
-                        <h5>Code</h5>
-                        <h4 id='code'>Code Appears Here...</h4>
-
+                        <h5 id="codeIndicator">Code</h5>
+                        <textarea class="text-center" id="code" name="code" value="" rows="2" cols="33" placeholder="Code Appears Here..." readonly style="border:0; background-color: transparent;">
+                        </textarea>
+                        <br>
+                        <small class="form-text text-muted">Valid QR Code format:<br> '/orders/o/0X0X0X0X-0X0X-0X0X-0X0X-0X0X0X0X0X0X'</small>
                     </div>
                 </div>
             <hr>
+            <a href="/orders">
+                <button class="btn btn-secondary col-md-12 mb-1">Go back</button>
+            </a>
         </div>
     </div>
 </div>
