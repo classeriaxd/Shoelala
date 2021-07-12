@@ -9,7 +9,14 @@
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
             <div class="card mb-2">
-                <div class="card-header text-center">{{$shoe->name}}</div>
+                <div class="card-header text-center" style="text-transform: uppercase">{{$shoe->name}}</div>
+                <div class="card-body text-center">
+                    <div class="row justify-content-center">
+                    @foreach($shoeImages as $shoeImage)
+                        <img src="{{'/storage/'.$shoeImage->image}}" class="mr-2 mb-2" style="max-width:200px; max-height:200px;min-width:200px; min-height:200px;">
+                    @endforeach
+                    </div>
+                </div>  
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -78,13 +85,7 @@
                     </div>
 @endrole
                 </div>
-                <div class="card-body text-center">
-                    <div class="row justify-content-center">
-                    @foreach($shoeImages as $shoeImage)
-                        <img src="{{'/storage/'.$shoeImage->image}}" class="mr-2 mb-2" style="max-width:200px; max-height:200px;min-width:200px; min-height:200px;">
-                    @endforeach
-                    </div>
-                </div>    
+                  
             </div>
             <hr>
         </div>
