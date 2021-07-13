@@ -17,7 +17,7 @@
                             </a>
                         @elserole('Admin')
                             <a href="/orders/scan">
-                                <button class="btn btn-primary">Scan QR</button>
+                                <button class="btn btn-primary col-md-12 btn-lg">Scan QR</button>
                             </a>
                         @endrole
                     </div>
