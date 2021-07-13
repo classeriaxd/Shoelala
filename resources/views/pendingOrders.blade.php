@@ -18,13 +18,21 @@ use Carbon\Carbon;
             <tr>
             <td scope="col">Order Code </td>
             <td scope="col">Action</td>
+            <td scope="col"> QR Code</td>
             </tr>
+            </thead>
             
-            <tr></tr>
-            
+            <tbody>
             <tr>
             <td>{{$pendingOrder->order_uuid}}</td>
             <td><a href="/c/pendingOrders/{{$pendingOrder->order_uuid}}" class="btn btn-success">View</a> </td>
+            <td>{!! QrCode::size(250)
+                ->format('svg')
+                //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
+                //->backgroundColor(255,55,0)
+                ->style('round')
+                ->eye('circle')
+                ->generate("http://127.0.0.1:8000/orders/o/$pendingOrder->order_uuid"); !!}</td>
             </tr>
           
         </tbody>

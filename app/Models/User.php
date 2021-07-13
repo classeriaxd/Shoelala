@@ -48,5 +48,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     protected $primaryKey = 'user_id';
 
-    
+    public function completes()
+    {
+        return $this->hasMany(Order::class, 'completed_by');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 }

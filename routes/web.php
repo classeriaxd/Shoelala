@@ -98,8 +98,16 @@ Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name
 
 
 //Order Routes
-Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::get('/orders/o/{order_uuid}', [App\Http\Controllers\OrdersController::class, 'show'])->middleware('auth')->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:Super Admin,Admin'])->name('orders.show');
+Route::post('/orders/o/{order_uuid}', [App\Http\Controllers\OrdersController::class, 'complete_order'])->middleware('auth')->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:Super Admin,Admin']);
 Route::get('/orders/scan', [App\Http\Controllers\OrdersController::class, 'scanQRView'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+
+
+//Maintenance Routes
+Route::get('/maintenance/users', [App\Http\Controllers\MaintenanceController::class, 'index'])->name('maintenance.index');
+Route::get('/maintenance/users/edit/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_edit']);
+Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_update']);
 
 //404 Routes
 Route::get('/{any}', function () {

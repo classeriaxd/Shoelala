@@ -16,7 +16,7 @@
                         <img src="{{'/storage/'.$shoeImage->image}}" class="mr-2 mb-2" style="max-width:200px; max-height:200px;min-width:200px; min-height:200px;">
                     @endforeach
                     </div>
-                </div>  
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">

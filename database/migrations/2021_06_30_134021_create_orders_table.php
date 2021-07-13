@@ -21,8 +21,11 @@ class CreateOrdersTable extends Migration
             $table->timestamp('order_date');
             $table->timestamp('pickup_date');
             $table->unsignedTinyInteger('status');
+            $table->date('completed_date')->nullable()->default(NULL);
+            $table->foreignId('completed_by')->nullable()->default(NULL);
 
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('completed_by')->references('user_id')->on('users');
         });
     }
 
@@ -35,5 +38,6 @@ class CreateOrdersTable extends Migration
     {
         Schema::dropIfExists('shoes');
         $table->dropForeign('user_id');
+        $table->dropForeign('completed_by');
     }
 }

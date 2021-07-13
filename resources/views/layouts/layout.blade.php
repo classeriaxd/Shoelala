@@ -29,6 +29,8 @@ $completedTotal=OrderController::completedOrderItem();
     <link rel="shortcut icon" href="{{ asset('imgs/favicon-logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/layout-css.css') }}">
 
+    @stack('scripts')
+
 </head>
 <body>
     <header id="app">
@@ -110,5 +112,8 @@ $completedTotal=OrderController::completedOrderItem();
             @yield('content')
         </main>
     </header>
+
+    @stack('custom-scripts')
+    
 </body>
 </html>
