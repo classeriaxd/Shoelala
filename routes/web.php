@@ -100,6 +100,11 @@ Route::get('/orders/scan', [App\Http\Controllers\OrdersController::class, 'scanQ
 Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
 
 
+//Maintenance Routes
+Route::get('/maintenance/users', [App\Http\Controllers\MaintenanceController::class, 'index'])->name('maintenance.index');
+Route::get('/maintenance/users/edit/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_edit']);
+Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_update']);
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);

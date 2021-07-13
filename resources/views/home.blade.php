@@ -63,8 +63,7 @@
                     <div class="collapse" id="collapseMaintenance">
                         <div class="d-flex flex-column text-center">
                             <p class="mb-1">Users</p>
-                            <a class="btn btn-link mb-1" href="#">Manage Users</a>
-                            <a class="btn btn-link mb-1" href="#">Manage Roles</a>
+                            <a class="btn btn-link mb-1" href="/maintenance/users">Manage Users</a>
                             <hr>
                             <p class="mb-1">Orders</p>
                             <a class="btn btn-link mb-1" href="#">Tag Overdue Orders</a>
