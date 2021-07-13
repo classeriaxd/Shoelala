@@ -30,7 +30,7 @@ class ShopController extends Controller
             ->join('shoe_images', 'shoe_images.shoe_id', '=', 'shoes.shoe_id')
             ->select('shoes.name as shoes', 'shoes.shoe_id as shoe_id', 'brands.name as brand',
             'brands.brand_id as brand_id','shoes.description as description', 
-            'shoe_images.image_angle_id as image_angle_id', 'shoes.price as price', 'shoe_images.image as image')
+            'shoe_images.image_angle_id as image_angle_id', 'shoes.price as price', 'shoe_images.image as image', 'shoes.slug as shoeslug' , 'brands.slug as brandslug')
             ->where('image_angle_id', '3')
             ->orderBy('shoes.name', 'ASC')
             ->get();

@@ -4,10 +4,23 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Shoe View</h2>
+            <h2 class="display-1 text-center">Shoe View</h2>
+            @role('Super Admin')
             <a href="/s">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
+            <a href="/s/{{$brand->slug}}/{{$shoe->slug}}/images/create">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Add Image</button>
+            </a>
+            @elserole('Admin')
+            <a href="/s">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
+            @elserole('User')
+            <a href="/shop">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
+            @endrole
             <div class="card mb-2">
                 <div class="card-header text-center">{{$shoe->name}}</div>
                 <div class="card-body">
@@ -67,16 +80,6 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header d-flex flex-row justify-content-between">
-                    <div class="my-auto h5">Images</div>
-@role('Super Admin')
-                    <div>
-                        <a href="/s/{{$brand->slug}}/{{$shoe->slug}}/images/create">
-                            <button class="btn btn-primary">Add Image</button>
-                        </a>
-                    </div>
-@endrole
                 </div>
                 <div class="card-body text-center">
                     <div class="row justify-content-center">

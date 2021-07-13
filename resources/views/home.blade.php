@@ -1,27 +1,30 @@
 @extends('layouts.layout')
 
 @section('content')
-<div id="main-container" class="container" style="margin-top: 100px;">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            @role('Super Admin')
-            <h3 class="display-4 text-center">Welcome Super Admin</h3>
-            <hr>
-            <h6 class="display-6 text-center">What do you want to do for today?</h6>
-            <div class="row justify-content-center"> {{-- Collapse Buttons --}}
-                <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
-                  Orders
-                </a>
-                <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseStocks" role="button" aria-expanded="false" aria-controls="collapseStocks">
-                  Stocks
-                </a>
-                <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseReports" role="button" aria-expanded="false" aria-controls="collapseReports">
-                  Reports
-                </a>
-                <a class="btn btn-link" data-toggle="collapse" href="#collapseMaintenance" role="button" aria-expanded="false" aria-controls="collapseMaintenance">
-                  Maintenance
-                </a>
-            </div>
+
+<div id="main-container" class="container" style="margin-top: 150px;">
+    <div class="card mb-2" style="width: 100%">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                @role('Super Admin')
+                <h3 class="display-2 text-center mt-3">Currently logged as {{Auth::user()->first_name}} Super Admin</h3>
+                <hr>
+
+                    <h6 class="display-6 text-center">What do you want to do for today?</h6>
+                    <div class="row justify-content-center"> {{-- Collapse Buttons --}}
+                        <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
+                        Orders
+                        </a>
+                        <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseStocks" role="button" aria-expanded="false" aria-controls="collapseStocks">
+                        Stocks
+                        </a>
+                        <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseReports" role="button" aria-expanded="false" aria-controls="collapseReports">
+                        Reports
+                        </a>
+                        <a class="btn btn-link" data-toggle="collapse" href="#collapseMaintenance" role="button" aria-expanded="false" aria-controls="collapseMaintenance">
+                        Maintenance
+                        </a>
+                    </div>
 
             <br>
 
@@ -63,14 +66,14 @@
                     <a class="btn btn-link" href="">Link</a>
                 </div>
             </div>
-      
-            @elserole('Admin') 
+
+            @elserole('Admin')
                 <div class="card">
                     <div class="card-header">Choices</div>
                     <div class="card-body text-center">
                         <a href="/orders">
                             <button class="btn btn-primary">Orders</button>
-                        </a>     
+                        </a>
                     </div>
                 </div>
             @elserole('User')
@@ -84,8 +87,31 @@
                             <button class="btn btn-primary">View Cart</button>
                         </a>
                     </div>
-                </div>
-            @endrole
+                    @elserole('Admin')
+                    <h3 class="display-2 text-center mt-2">Currently logged as {{Auth::user()->first_name}} Cashier</h3>
+                        <div class="card">
+                            <div class="card-header">Choices</div>
+                            <div class="card-body text-center">
+                                <a href="/orders">
+                                    <button class="btn btn-primary">Orders</button>
+                                </a>
+                            </div>
+                        </div>
+                    @elserole('User')
+                    <h3 class="display-2 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
+                        <div class="card">
+                            <div class="card-header">Choices</div>
+                            <div class="card-body text-center">
+                                <a href="/shop">
+                                    <button class="btn btn-primary">View Shop</button>
+                                </a>
+                                <a href="/c/cartlist">
+                                    <button class="btn btn-primary">View Cart</button>
+                                </a>
+                            </div>
+                        </div>
+                    @endrole
+            </div>
         </div>
     </div>
 </div>

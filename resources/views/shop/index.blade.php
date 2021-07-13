@@ -1,7 +1,7 @@
 @extends('layouts.header')
 
 @section('content')
-    <div class="mb-4">
+    <div class="col-md-12 text-center mt-2 mb-2">
       <span class="cardnew">SHOP SHOES</span>
     </div>
 
@@ -12,17 +12,17 @@
             <h5>Brands</h5>
               <button type="submit" class="btn btn-primary btn-sm float-right">Filter</button>
           </div>
-          <div class="card-body"> 
+          <div class="card-body">
             @foreach ($brand as $brand)
             @php
               $checked = [];
-              if (isset($_GET['filterbrand'])) 
+              if (isset($_GET['filterbrand']))
               {
                 $checked = $_GET['filterbrand'];
               }
             @endphp
             <div class="mb-1">
-              <input type="checkbox" name="filterbrand[]" value="{{$brand->brand_id}}" 
+              <input type="checkbox" name="filterbrand[]" value="{{$brand->brand_id}}"
               @if (in_array($brand->brand_id, $checked))
               checked
               @endif
@@ -38,13 +38,13 @@
             @foreach ($category as $category)
             @php
               $checked = [];
-              if (isset($_GET['filtercategory'])) 
+              if (isset($_GET['filtercategory']))
               {
                 $checked = $_GET['filtercategory'];
               }
             @endphp
             <div class="mb-1">
-              <input type="checkbox" name="filtercategory[]" value="{{$category->category_id}}" 
+              <input type="checkbox" name="filtercategory[]" value="{{$category->category_id}}"
               @if (in_array($category->category_id, $checked))
               checked
               @endif
@@ -60,13 +60,13 @@
             @foreach ($type as $type)
             @php
               $checked = [];
-              if (isset($_GET['filtertype'])) 
+              if (isset($_GET['filtertype']))
               {
                 $checked = $_GET['filtertype'];
               }
             @endphp
             <div class="mb-1">
-              <input type="checkbox" name="filtertype[]" value="{{$type->type_id}}" 
+              <input type="checkbox" name="filtertype[]" value="{{$type->type_id}}"
               @if (in_array($type->type_id, $checked))
               checked
               @endif
@@ -77,30 +77,30 @@
         </div>
       </form>
     </div>
-    
+
       <div class="container-fluid content-row">
         <div class="row">
             @foreach($shoe as $shoe)
-              
+
               <div class="col-lg-4 d-flex float-left">
                 <div class="card flex-fill">
-                    
+
                     @if($shoe->image_angle_id == 3)
                     <img id="cardimg" class="card-img-top"
                       src="{{'/storage/'.$shoe->image}}" alt="Card image cap">
                     @endif
-                    
+
                     <div class="card-body">
                       <h4 class="card-title">{{$shoe->shoes}}</h4>
                       <!--<p class="card-text">{{$shoe->description}}</p>-->
                       <p class="card-text">
-                        Price: ₱ {{$shoe->price}} 
+                        Price: ₱ {{$shoe->price}}
                       </p>
-                      <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                      <a class="card-block stretched-link text-decoration-none" href="/s/{{$shoe->brandslug}}/{{$shoe->shoeslug}}" class="btn" style="text-transform: uppercase">Buy</a>
                     </div>
                 </div>
               </div>
-             
+
             @endforeach
         </div>
       </div>
@@ -117,7 +117,7 @@
             </div>
         </div>
         -->
-        
+
         <!--
-                    
+
         <!--

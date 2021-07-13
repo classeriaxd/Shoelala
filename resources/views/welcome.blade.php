@@ -4,17 +4,17 @@
 <br>
         <div class="loader-wrapper">
             <h1 class="loader">
-                <span id="shoe" class="loader-logo">Shoe</span>                
-                <span id="lala" class="loader-logo">lala</span>                
+                <span id="shoe" class="loader-logo">Shoe</span>
+                <span id="lala" class="loader-logo">lala</span>
             </h1>
         </div>
   <!--Carousel Wrapper-->
-  
+
   <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-    
-    <div>
+
+    <div class="text-center">
       <span class="cardnew">NEW PAIRS</span>
-    </div> 
+    </div>
 
     <ol class="carousel-indicators">
       <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
@@ -38,9 +38,9 @@
                           <div class="card-body">
                           <h4 class="card-title">{{$shoe->name}}</h4>
                           <p class="card-text">
-                              Price: ₱ {{$shoe->price}} 
+                              Price: ₱ {{$shoe->price}}
                           </p>
-                          <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                          <a class="card-block stretched-link text-decoration-none" href="/s/{{$brand->slug}}/{{$shoe->slug}}" class="btn" style="text-transform: uppercase">Buy</a>
                           </div>
                       </div>
                   </div>
@@ -48,7 +48,7 @@
             @endforeach
         </div>
       <!--/.First slide-->
-  
+
       <!--Second slide-->
       <div class="carousel-item" data-interval="2500">
             @foreach($brands2 as $brand)
@@ -64,9 +64,9 @@
                           <div class="card-body">
                           <h4 class="card-title">{{$shoe->name}}</h4>
                           <p class="card-text">
-                              Price: ₱ {{$shoe->price}} 
+                              Price: ₱ {{$shoe->price}}
                           </p>
-                          <a href="https://www.nike.com/ph/launch/t/air-jordan-4-taupe-haze" class="btn">Buy</a>
+                          <a class="card-block stretched-link text-decoration-none" href="/s/{{$brand->slug}}/{{$shoe->slug}}" class="btn" style="text-transform: uppercase">Buy</a>
                           </div>
                       </div>
                   </div>
@@ -74,16 +74,16 @@
             @endforeach
         </div>
       <!--/.Second slide-->
-  
+
     </div>
     <!--/.Slides-->
 
   </div>
-    
+
   <script src="js/main.js"></script>
   <script>
     document.body.style.overflow = 'hidden';
   </script>
-  
+
 
 @endsection

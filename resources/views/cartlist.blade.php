@@ -4,7 +4,7 @@
 <div id="main-container" class="container">
    <div class="row">
         <div class="container">
-            <h2 class="display-2 text-center mb-1">Cart List</h2>
+            <h2 class="display-1 text-center mb-1">Cart List</h2>
             <a href="/home">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>

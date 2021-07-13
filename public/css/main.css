@@ -109,7 +109,7 @@ html, body
 
 .nav-item
 {
-    margin-left: 7rem;
+    margin-left: 5rem;
 }
 
 .nav-link
@@ -249,7 +249,6 @@ html, body
 
 .cardnew
 {
-    left: 43%;
     border-bottom: 2px solid;
     transform: translate(-50%,-50%);
     font-size: 60px;
