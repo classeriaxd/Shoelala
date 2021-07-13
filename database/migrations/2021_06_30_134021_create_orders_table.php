@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->id('order_id');
             $table->string('order_uuid')->unique();
             $table->foreignId('user_id');
-            $table->date('order_date');
-            $table->date('pickup_date');
+            $table->timestamp('order_date');
+            $table->timestamp('pickup_date');
             $table->unsignedTinyInteger('status');
 
             $table->foreign('user_id')->references('user_id')->on('users');

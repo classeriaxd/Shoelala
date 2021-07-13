@@ -74,11 +74,15 @@ Route::get('/c/cartlist', [App\Http\Controllers\CartController::class, 'cartlist
 Route::get('/c/cartlist/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart']);
 
 //Show Orders Routes
-Route::get('/c/PendingOrders', [App\Http\Controllers\OrderController::class, 'pendingOrders']);
+Route::get('/c/pendingOrders', [App\Http\Controllers\OrderController::class, 'pendingOrders']);
+Route::get('/c/pendingOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'pendingOrdersView']);
+Route::get('/c/completedOrders', [App\Http\Controllers\OrderController::class, 'completedOrders']);
+Route::get('/c/completedOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'completedOrdersView']);
 
 //order routes
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'order']);
 Route::post('/order/orderSuccess', [App\Http\Controllers\OrderController::class, 'orderSuccess']);
+Route::get('/c/pendingOrders/cancel/{order_uuid}', [App\Http\Controllers\OrderController::class, 'removeFromOrder']);
 
 // Stock Routes
 Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');

@@ -7,9 +7,9 @@ use Carbon\Carbon;
 <div class="container">
    <div class="row">
         <div id="main-container" class="container">
-        <h1>Pending Orders</h1>
-        @if ($pendingOrders->count()>0)
-        @foreach ($pendingOrders as $pendingOrder)
+        <h1>Completed Orders</h1>
+        @if ($completedOrders->count()>0)
+        @foreach ($completedOrders as $completedOrder)
         <div class="card">
         <div class="card-header">
         <table class="table table-hover">
@@ -23,8 +23,8 @@ use Carbon\Carbon;
             <tr></tr>
             
             <tr>
-            <td>{{$pendingOrder->order_uuid}}</td>
-            <td><a href="/c/pendingOrders/{{$pendingOrder->order_uuid}}" class="btn btn-success">View</a> </td>
+            <td>{{$completedOrder->order_uuid}}</td>
+            <td><a href="/c/completedOrders/{{$completedOrder->order_uuid}}" class="btn btn-success">View</a> </td>
             </tr>
           
         </tbody>
