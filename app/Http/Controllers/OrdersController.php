@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use \App\Models\Order;
 
@@ -30,6 +31,7 @@ class OrdersController extends Controller
                             'orders.order_date as order_date',
                             'orders.pickup_date as pickup_date',
                             'orders.status as status',
+                            'orders.completed_date as completed_date'
                         )->first();
             $orderItems = DB::table('orders')
                     ->join('order_items', 'order_items.order_id', '=', 'orders.order_id')
@@ -51,9 +53,6 @@ class OrdersController extends Controller
                     ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
                     ->where('orders.order_uuid', $order_uuid)
                     ->sum(DB::raw('order_items.quantity * shoes.price'));
-                    //->sum('quantity * unit_price');
-
-            //dd($userDetails, $orderItems, $totalAmount);
                             
             return view('orders.show', compact('userDetails', 'orderItems', 'totalAmount'));
         }
@@ -66,6 +65,8 @@ class OrdersController extends Controller
         {
             $order = Order::where('order_uuid', $order_uuid)->first();
             $order->status = '2';
+            $order->completed_date = date('Y-m-d H:i:s');
+            $order->completed_by = Auth::user()->user_id;
             $order->save();
             return redirect()->route('orders.show',['order_uuid' => $order_uuid,]);
         }

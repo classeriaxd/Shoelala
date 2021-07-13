@@ -17,6 +17,7 @@
                             <p>Status: <span style="color: ORANGE">PENDING</span></p>
                         @elseif($userDetails->status == 2)
                             <p>Status: <span style="color: GREEN">COMPLETED</span></p>
+                            <p>Completed On: {{$userDetails->completed_date}}</p>
                         @elseif($userDetails->status == 3)
                             <p>Status: <span style="color: RED">CANCELLED</span></p>
                         @elseif($userDetails->status == 4)
@@ -34,13 +35,13 @@
                             <p>Size(US): {{$orderItem->size_us}}</p>
                             <p>Price: {{$orderItem->unit_price}}</p>
                             <p>Quantity: {{$orderItem->quantity}}</p>
-                            <h5>Subtotal: {{$orderItem->subtotal}}</h5>
+                            <u><h5>Subtotal: {{$orderItem->subtotal}}</h5></u>
                             <hr>
                         @endforeach
                     </div>
                     <div class="text-center">
                         <h5 class="card-title text-center">Total Amount Due</h5>
-                        <h4 class="text-center">₱ {{$totalAmount}}</h4>
+                        <h4 class="text-center" style="text-decoration-line:underline; text-decoration-style:double;">₱ {{$totalAmount}}</h4>
                     </div>
                 @if($userDetails->status == 1)
                     <div class="text-center">
