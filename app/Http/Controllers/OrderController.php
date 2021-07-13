@@ -19,6 +19,7 @@ use \App\Models\Cart;
 use \App\Models\User;
 use \App\Models\Order;
 use \App\Models\OrderItem;
+use \App\Models\Stock;
 
 use \App\Rules\ShoeSKU;
 use Session;
@@ -76,15 +77,15 @@ class OrderController extends Controller
 
     public function orderSuccess(Request $req)
     {
-        $current_date = Carbon::now()->format('Y-m-d');
-        $current_date_string=Carbon::parse($current_date);
+        $current_date_time = Carbon::now();
+        $current_date_time_string=Carbon::parse($current_date_time);
         $daysToAdd = 7;
-        $pickup_date = $current_date_string->addDays($daysToAdd);
+        $pickup_date = $current_date_time_string->addDays($daysToAdd);
         $user_id=Auth::user()->user_id;
         $orderId=Order::create([
             'order_uuid'=>Str::uuid()->toString(),
             'user_id' => Auth::user()->user_id,
-            'order_date' => $current_date,
+            'order_date' => $current_date_time,
             'pickup_date' => $pickup_date,
             'status'=> '1',
         ])->order_id;
@@ -181,18 +182,44 @@ class OrderController extends Controller
     public function pendingOrders()
     {
         $user_id=Auth::user()->user_id;
-        $pendingOrders=DB::table('order_items')
+        /*$pendingOrders=DB::table('order_items')
         ->join('stocks','stocks.stock_id','=','order_items.stock_id')
         ->join('sizes','sizes.size_id','=','stocks.size_id')
         ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
         ->join('orders','orders.order_id','=','order_items.order_id')
         ->where('user_id',$user_id)
         ->where('orders.status',1)
-        
         //->where('cart.size_id','=','sizes.user_id')
         ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
                 'order_date','pickup_date')
-        ->get();
+        ->get();*/
+        $pendingOrders12= DB::table('orders')
+        ->join('order_items','order_items.order_id','=','orders.order_id')
+        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+        ->where('user_id',$user_id)
+        ->where('orders.status',1)
+        ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
+                'order_date','pickup_date')
+        ->get();  
+        $pendingOrders=DB::table('orders')
+        ->where('orders.user_id',$user_id)
+        ->where('orders.status',1)
+        ->select('orders.order_uuid')
+        ->get();  
+        /*$pendingOrdersList = DB::table('order_items')
+        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+        ->join('orders','orders.order_id','=','order_items.order_id')
+        ->where('user_id',$user_id)
+        ->where('orders.status',1)
+        ->where('order_items.order_id',)
+        ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
+                'order_date','pickup_date')
+        ->get();*/
+
         $conditions=[
             ['status','=','1'],
             ['user_id','=',$user_id],
@@ -216,5 +243,120 @@ class OrderController extends Controller
         
         
     }
+
+    public function pendingOrdersView($uuid)
+    {
+        $user_id=Auth::user()->user_id;
+        $pendingOrdersItems= DB::table('orders')
+        ->join('order_items','order_items.order_id','=','orders.order_id')
+        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+        ->where('orders.user_id',$user_id)
+        ->where('orders.order_uuid',$uuid)
+        ->where('orders.status',1)
+        ->select('orders.order_id as pendingOrder_id','orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
+                'order_date','pickup_date','sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4')
+        ->get();
+        
+        $order_date=Carbon::parse(Order::where('order_uuid',$uuid)->value('order_date'));
+        $today=Carbon::parse(Carbon::now());
+        $check_date=$today->diffInDays($order_date, false);
+        if($check_date ==0)
+            $eligible=true;
+        else
+            $eligible=false;
+        
+
+
+        return view('pendingOrdersView',compact('pendingOrdersItems','eligible'));
+    }
     
+    public function removeFromOrder($order_uuid)
+    {
+        if(Order::where('order_uuid',$order_uuid)->exists())
+        {      
+            $order=Order::where('order_uuid',$order_uuid)->first();
+            $order->status='3';
+            $order->save();
+            $order_items=DB::table('orders')
+            ->join('order_items','order_items.order_id','=','orders.order_id')
+            ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+            ->where('orders.order_uuid',$order_uuid)
+            ->select('stocks.stock_id as stock_id','order_items.quantity as quantity')
+            ->get();
+            foreach ($order_items as $order_item)
+            {
+                $stock=Stock::where('stock_id',$order_item->stock_id)->first();
+                $stock->stocks+=$order_item->quantity;
+                $stock->save();
+            }
+            return redirect('/home');
+        }
+        else
+        {
+            abort (404);
+        }
+    }
+
+    public function completedOrders()
+    {
+        $user_id=Auth::user()->user_id;
+        $completedOrders12= DB::table('orders')
+        ->join('order_items','order_items.order_id','=','orders.order_id')
+        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+        ->where('user_id',$user_id)
+        ->where('orders.status',2)
+        ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
+                'order_date','pickup_date')
+        ->get();  
+        $completedOrders=DB::table('orders')
+        ->where('orders.user_id',$user_id)
+        ->where('orders.status',2)
+        ->select('orders.order_uuid')
+        ->get();  
+
+        $conditions=[
+            ['status','=','2'],
+            ['user_id','=',$user_id],
+        ];
+        $completedOrdersCount=Order::where($conditions)->count();
+
+        return view('completedOrders',['completedOrders'=>$completedOrders,'completedOrdersCount'=>$completedOrdersCount]);
+        //return redirect()->route('cartlist.show',['cartlist'=>$cartlist]);
+    }
+    static public function completedOrderItem()
+    {
+        if (Auth::check())
+        {
+            $user_id=Auth::user()->user_id;
+            $conditions=[
+                ['status','=','2'],
+                ['user_id','=',$user_id],
+            ];
+        return Order::where($conditions)->count();
+        }
+        
+        
+    }
+
+    public function completedOrdersView($uuid)
+    {
+        $user_id=Auth::user()->user_id;
+        $completedOrdersItems= DB::table('orders')
+        ->join('order_items','order_items.order_id','=','orders.order_id')
+        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+        ->join('sizes','sizes.size_id','=','stocks.size_id')
+        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+        ->where('orders.user_id',$user_id)
+        ->where('orders.order_uuid',$uuid)
+        ->where('orders.status',2)
+        ->select('orders.order_id as pendingOrder_id','orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
+                'order_date','pickup_date','sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4')
+        ->get();
+
+        return view('completedOrdersView',['completedOrdersItems'=>$completedOrdersItems]);
+    }
 }

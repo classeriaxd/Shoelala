@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->id('order_id');
             $table->string('order_uuid')->unique();
             $table->foreignId('user_id');
-            $table->date('order_date');
-            $table->date('pickup_date');
+            $table->timestamp('order_date');
+            $table->timestamp('pickup_date');
             $table->unsignedTinyInteger('status');
             $table->date('completed_date')->nullable()->default(NULL);
             $table->foreignId('completed_by')->nullable()->default(NULL);
