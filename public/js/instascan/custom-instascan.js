@@ -42,15 +42,21 @@ function isCodeValid(valid, result)
 {
     let code = document.getElementById('code');
     let codeIndicator = document.getElementById('codeIndicator');
+    let orderRedirect = document.getElementById('orderRedirect');
+
     if(valid)
     {
         code.value = result;
         codeIndicator.style.color = 'green';
+        orderRedirect.href = result;
+        orderRedirect.style.display = 'block';
     }
     else
     {
         code.value = 'Invalid Code';
         codeIndicator.style.color = 'red';
+        orderRedirect.href = '#';
+        orderRedirect.style.display = 'none';
     }
 }
 function openCamera()

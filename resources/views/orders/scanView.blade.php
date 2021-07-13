@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header text-center">{{ __('Scan Here') }}</div>
                     <div class="card-body text-center">
-                        <video id="preview" width="320" height="240"></video>
+                        <video id="preview" width="600" height="400"></video>
                         <hr>
                             <button class="btn btn-primary mx-auto" id="cameraFinder" onclick="getCameras();" style="display: block;">Get Cameras</button>
                             <button class="btn btn-success mx-auto" id="cameraToggle" onclick="openCamera();" style="display: none; disabled: true;">Turn ON Camera</button>
@@ -27,8 +27,11 @@
                         <h5 id="codeIndicator">Code</h5>
                         <textarea class="text-center" id="code" name="code" value="" rows="2" cols="33" placeholder="Code Appears Here..." readonly style="border:0; background-color: transparent;">
                         </textarea>
+                        <a id="orderRedirect" href="#" style="display: none;">
+                            <button class="btn btn-success">Go to Order</button>
+                        </a>
                         <br>
-                        <small class="form-text text-muted">Valid QR Code format:<br> '/orders/o/0X0X0X0X-0X0X-0X0X-0X0X-0X0X0X0X0X0X'</small>
+                        <small id="qrCodeHelper" class="form-text text-muted">Valid QR Code format:<br> '/orders/o/0X0X0X0X-0X0X-0X0X-0X0X-0X0X0X0X0X0X'</small>
                     </div>
                 </div>
             <hr>
