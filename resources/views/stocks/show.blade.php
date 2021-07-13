@@ -6,6 +6,9 @@
         <div class="col-md-8">
             <h2 class="display-2 text-center">{{$brand->name}}</h2>
             <h5 class="display-4 text-center">{{$shoe->name}}</h5>
+            <a href="/stocks">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
             @php $i = 1; @endphp
             <table class="table table-striped table-bordered table-hover">
                 <thead>
@@ -49,9 +52,7 @@
     </div>
     <br>
         <div class="row justify-content-center pt-1">
-            <a href="/stocks">
-                <button class="btn btn-secondary">Go back</button>
-            </a>
+            
         </div>
 </div>
 @endsection

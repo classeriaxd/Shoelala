@@ -4,12 +4,12 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Add Stocks</h2>
+            <h2 class="display-1 text-center">Add Stocks</h2>
             <a href="/stocks">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
             <div class="card">
-                <div class="card-header">Add New Stocks</div>
+                <div class="card-header text-center" style="font-size: 25px;">Add New Stocks</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('stocks.store')}}" enctype="multipart/form-data" id="StocksForm">
                         @csrf

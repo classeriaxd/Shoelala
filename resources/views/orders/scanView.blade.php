@@ -4,12 +4,12 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Scan QR</h2>
+            <h2 class="display-1 text-center">Scan QR</h2>
                 <a href="/orders">
                     <button class="btn btn-secondary col-md-12 mb-1">Go back</button>
                 </a>
                 <div class="card">
-                    <div class="card-header">{{ __('Scan Here') }}</div>
+                    <div class="card-header text-center" style="font-size: 25px">{{ __('Scan Here') }}</div>
                     <div class="card-body text-center">
                         <video id="preview" width="320" height="240"></video>
                         <hr>

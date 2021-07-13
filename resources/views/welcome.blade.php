@@ -36,7 +36,7 @@
                           @endif
                           @endforeach
                           <div class="card-body">
-                          <h4 class="card-title">{{$shoe->name}}</h4>
+                          <h4 class="card-title" style="text-transform: uppercase">{{$shoe->name}}</h4>
                           <p class="card-text">
                               Price: ₱ {{$shoe->price}}
                           </p>

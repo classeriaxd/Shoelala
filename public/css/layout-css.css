@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
 *
 {
     top: 0;
     right: 0;
     box-sizing: border-box;
-    font-family: 'Bebas', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
 }
 
@@ -26,6 +28,16 @@ body
 }
 
 .display-2
+{
+    font-size: 30px;
+}
+
+.btn
+{
+    font-size: 20px;
+}
+
+#brandname
 {
     font-size: 30px;
 }
@@ -66,7 +78,7 @@ body
 
 .nav-item
 {
-    margin-left: 3rem;
+    margin-left: 5rem;
 }
 
 .nav-link
@@ -96,7 +108,7 @@ body
 
 .nav-link::after
 {
-    content: ' ';
+    content: '';
     display: block;
     width: 0;
     height: 2px;

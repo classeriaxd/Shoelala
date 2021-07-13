@@ -4,7 +4,7 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Stock Index</h2>
+            <h2 class="display-1 text-center">Stock Index</h2>
             <a href="/home">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>

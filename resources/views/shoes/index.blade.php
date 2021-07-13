@@ -5,27 +5,19 @@
     <div class="row justify-content-center">
         
         <div id="main-container" class="col-md-8">
-            <div class="row justify-content-center pt-1">
-                <a href="/home">
-                    <button class="btn btn-outline-secondary">Go back</button>
-                </a>
-            @role('Super Admin')
-                <a href="/s/create" class="mr-2">
-                    <button class="btn btn-primary">Add Shoes</button>
-                </a>
-            @endrole
-                </div>
-            <h2 class="display-2 text-center mb-1">Shoes View</h2>
+            <h2 class="display-1 text-center mb-1">Shoes View</h2>
             <a href="/home">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
-            @if (Route::has('login'))
-                    @auth
-                        <a href="/s/create" class="mr-2">
-                            <button class="btn btn-primary col-md-12 btn-lg mb-2">Add a Shoe</button>
-                        </a>
-                    @endauth
-            @endif
+            @role('Super Admin')
+                @if (Route::has('login'))
+                        @auth
+                            <a href="/s/create" class="mr-2">
+                                <button class="btn btn-primary col-md-12 btn-lg mb-2">Add a Shoe</button>
+                            </a>
+                        @endauth
+                @endif
+            @endrole
             @foreach($brands as $brand)
             <div class="row">
                 <div class="card mb-2" style="width: 100%">

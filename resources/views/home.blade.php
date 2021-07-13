@@ -7,21 +7,21 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @role('Super Admin')
-                <h3 class="display-2 text-center mt-3">Currently logged as {{Auth::user()->first_name}} Super Admin</h3>
+                <h3 class="display-2 text-center mt-3">Currently logged as Super Admin <span style="text-decoration: underline; font-size: 30px;"> {{Auth::user()->first_name}} </span> </h3>
                 <hr>
 
                     <h6 class="display-6 text-center">What do you want to do for today?</h6>
                     <div class="row justify-content-center"> {{-- Collapse Buttons --}}
-                        <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
+                        <a class="btn btn-link mr-5" style="font-size: 25px;" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
                         Orders
                         </a>
-                        <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseStocks" role="button" aria-expanded="false" aria-controls="collapseStocks">
+                        <a class="btn btn-link mr-5" style="font-size: 25px;" data-toggle="collapse" href="#collapseStocks" role="button" aria-expanded="false" aria-controls="collapseStocks">
                         Stocks
                         </a>
-                        <a class="btn btn-link mr-5" data-toggle="collapse" href="#collapseReports" role="button" aria-expanded="false" aria-controls="collapseReports">
+                        <a class="btn btn-link mr-5" style="font-size: 25px;" data-toggle="collapse" href="#collapseReports" role="button" aria-expanded="false" aria-controls="collapseReports">
                         Reports
                         </a>
-                        <a class="btn btn-link" data-toggle="collapse" href="#collapseMaintenance" role="button" aria-expanded="false" aria-controls="collapseMaintenance">
+                        <a class="btn btn-link" style="font-size: 25px;" data-toggle="collapse" href="#collapseMaintenance" role="button" aria-expanded="false" aria-controls="collapseMaintenance">
                         Maintenance
                         </a>
                     </div>
@@ -30,24 +30,24 @@
 
             <div class="row justify-content-center"> {{-- Orders --}}
                 <div class="collapse" id="collapseOrders">
-                    <a class="btn btn-link" href="/orders/scan">Scan QR</a>
-                    <a class="btn btn-link" href="/orders">View Orders</a>
+                    <hr>
+                    <a class="btn btn-link btn-primary mb-2" style="color: white; text-decoration: none;" href="/orders/scan">Scan QR</a>
+                    <a class="btn btn-link btn-primary mb-2" style="color: white; text-decoration: none;" href="/orders">View Orders</a>
+                    <hr>
                 </div>
             </div>
             <div class="row justify-content-center"> {{-- Stocks --}}
-                <div class="collapse" id="collapseStocks">
-                    <div class="d-flex flex-column text-center">
-                        <p class="mb-1">Stocks</p>
-                        <a class="btn btn-link mb-1" href="/stocks">View Stocks</a>
+                <div class="collapse text-center" id="collapseStocks">
                         <hr>
-                        <p class="mb-1">Brands</p>
-                        <a class="btn btn-link mb-1" href="/b">View Brands</a>
-                        <a class="btn btn-link mb-1" href="/b/create">Add Brand</a>
+                        <a class="btn btn-link btn-primary" style="color: white; text-decoration: none;" href="/stocks" >View Stocks</a>
                         <hr>
-                        <p class="mb-1">Shoes</p>
-                        <a class="btn btn-link mb-1" href="/s">View Shoes</a>
-                        <a class="btn btn-link mb-1" href="/s/create">Add Shoes</a>
-                    </div>
+                        <a class="btn btn-link btn-primary" style="color: white; text-decoration: none;" href="/b">View Brands</a>
+                        <hr>
+                        <a class="btn btn-link btn-primary" style="color: white; text-decoration: none;" href="/b/create">Add Brand</a>
+                        <hr>
+                        <a class="btn btn-link btn-primary" style="color: white; text-decoration: none;" href="/s">View Shoes</a>
+                        <a class="btn btn-link btn-primary" style="color: white; text-decoration: none;" href="/s/create">Add Shoes</a>
+                        <hr>
                 </div>
             </div>
             <div class="row justify-content-center"> {{-- Reports --}}

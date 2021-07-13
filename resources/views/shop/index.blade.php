@@ -10,7 +10,6 @@
         <div class="card pr-5">
           <div class="card-header">
             <h5>Brands</h5>
-              <button type="submit" class="btn btn-primary btn-sm float-right">Filter</button>
           </div>
           <div class="card-body">
             @foreach ($brand as $brand)
@@ -74,6 +73,7 @@
             </div>
             @endforeach
           </div>
+          <button type="submit" class="btn btn-primary btn-lg col-md-12">Filter</button>
         </div>
       </form>
     </div>
@@ -91,7 +91,7 @@
                     @endif
 
                     <div class="card-body">
-                      <h4 class="card-title">{{$shoe->shoes}}</h4>
+                      <h4 class="card-title" style="text-transform: uppercase">{{$shoe->shoes}}</h4>
                       <!--<p class="card-text">{{$shoe->description}}</p>-->
                       <p class="card-text">
                         Price: ₱ {{$shoe->price}}
