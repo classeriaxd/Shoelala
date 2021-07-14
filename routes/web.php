@@ -66,23 +66,22 @@ Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name
 
 
 // Shoe Details Routes
-Route::get("/d/{shoe_slug}",[App\Http\Controllers\ShoesController::class,'detail']);
-
+Route::get("/d/{shoe_slug}",[App\Http\Controllers\ShoesController::class,'detail'])->middleware(['auth','role_auth:User']);
 // Add to Cart Routes
-Route::post('/c/add_to_cart', [App\Http\Controllers\CartController::class, 'addToCart']);
-Route::get('/c/cartlist', [App\Http\Controllers\CartController::class, 'cartlist'])->name('cart.cartlist');
-Route::get('/c/cartlist/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart']);
+Route::post('/c/add_to_cart', [App\Http\Controllers\CartController::class, 'addToCart'])->middleware(['auth','role_auth:User']);
+Route::get('/c/cartlist', [App\Http\Controllers\CartController::class, 'cartlist'])->name('cart.cartlist')->middleware(['auth','role_auth:User']);
+Route::get('/c/cartlist/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart'])->where('id', '^[0-9]$')->middleware(['auth','role_auth:User']);
 
 //Show Orders Routes
-Route::get('/c/pendingOrders', [App\Http\Controllers\OrderController::class, 'pendingOrders']);
-Route::get('/c/pendingOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'pendingOrdersView']);
-Route::get('/c/completedOrders', [App\Http\Controllers\OrderController::class, 'completedOrders']);
-Route::get('/c/completedOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'completedOrdersView']);
+Route::get('/c/pendingOrders', [App\Http\Controllers\OrderController::class, 'pendingOrders'])->middleware(['auth','role_auth:User']);
+Route::get('/c/pendingOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'pendingOrdersView'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
+Route::get('/c/completedOrders', [App\Http\Controllers\OrderController::class, 'completedOrders'])->middleware(['auth','role_auth:User']);
+Route::get('/c/completedOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'completedOrdersView'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
 
 //order routes
-Route::get('/order', [App\Http\Controllers\OrderController::class, 'order']);
-Route::post('/order/orderSuccess', [App\Http\Controllers\OrderController::class, 'orderSuccess']);
-Route::get('/c/pendingOrders/cancel/{order_uuid}', [App\Http\Controllers\OrderController::class, 'removeFromOrder']);
+Route::get('/order', [App\Http\Controllers\OrderController::class, 'order'])->middleware(['auth','role_auth:User']);
+Route::post('/order/orderSuccess', [App\Http\Controllers\OrderController::class, 'orderSuccess'])->middleware(['auth','role_auth:User']);
+Route::get('/c/pendingOrders/cancel/{order_uuid}', [App\Http\Controllers\OrderController::class, 'removeFromOrder'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
 
 // Stock Routes
 Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');

@@ -29,8 +29,6 @@ class OrderController extends Controller
 
     public function order()
     {
-        
-        ////////////////////
         if (Cart::where('user_id', Auth::user()->user_id)->exists()) {
             $user_id=Auth::user()->user_id;
         $orderTable= $orders=DB::table('cart')
@@ -63,12 +61,7 @@ class OrderController extends Controller
         ->where('cart.user_id',$user_id)
         ->select('cart.user_id as cart_user_id')
         ->first();
-       /*$stocks=DB::table('stocks')
-        ->join('cart','stocks.shoe_id','=','cart.shoe_id')
-        ->where('stocks.size_id','cart.size_id')
-        ->select('cart.size_id as cart_size_id','cart.shoe_id as cart_shoe_id','cart.quantity as cart_quantity')
-       ->get();*/
-        return view('order',['orderTable'=>$orderTable,'numOfOrders'=>$numOfOrders,'checkoutPrice'=>$checkoutPrice,'userID'=>$userID]);
+        return view('orders.order',compact('orderTable','numOfOrders','checkoutPrice','userID'));
          }
          else{
              abort(404);
@@ -89,13 +82,7 @@ class OrderController extends Controller
             'pickup_date' => $pickup_date,
             'status'=> '1',
         ])->order_id;
-
-        /*OrderItem::create([
-            'user_id' => Auth::user()->user_id,
-            'order_date' => $current_date,
-            'pickup_date' => $pickup_date,
-            'status'=> '1',
-        ]);*/
+        
         $cartItems=DB::table('cart')
         ->join('stocks','stocks.stock_id','=','cart.stock_id')
         ->join('sizes','sizes.size_id','=','stocks.size_id')
@@ -103,20 +90,7 @@ class OrderController extends Controller
         ->where('cart.user_id',$user_id)
         ->select('cart.stock_id as cart_stock_id','cart.quantity as cart_quantity')
         ->get();
-        /*$stock_id=DB::table('cart')
-        ->join('stocks','stocks.stock_id','=','cart.stock_id')
-        ->join('sizes','sizes.size_id','=','stocks.size_id')
-        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
-        ->where('cart.user_id',$user_id)
-        ->select('stocks.stock_id')
-        ->get();
-        $quantity=DB::table('cart')
-        ->join('stocks','stocks.stock_id','=','cart.stock_id')
-        ->join('sizes','sizes.size_id','=','stocks.size_id')
-        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
-        ->where('cart.user_id',$user_id)
-        ->select('cart.quantity')
-        ->get();*/
+
         foreach($cartItems as $cartItem)
         {
             OrderItem::create([
@@ -125,23 +99,9 @@ class OrderController extends Controller
                 'quantity'=> $cartItem->cart_quantity,
             ]);
         }
-        
-        
         return $this->subtractFromStocks();
     }
     
-    /*public function addToOrderItems(Request $req)
-    {
-        $orderItem=DB::table('cart')
-        ->join('stocks','cart.size_id','=','stocks.shoe_id')
-        ->where('cart.shoe_id',request('shoe_id'))
-        ->select('cart.*')
-       ->get();
-        //return view('order',['orderItem'=>$orderItem]);
-
-        
-        return $this->deleteCartRecords();
-    }*/
     public function subtractFromStocks(){
         $user_id=Auth::user()->user_id;
         $cartItems=DB::table('cart')
@@ -152,8 +112,6 @@ class OrderController extends Controller
         ->select('cart.id as cart_id','cart.stock_id as cart_stock_id','cart.quantity as cart_quantity','stocks.stocks as stocks_quantity','shoes.shoe_id as shoes_shoe_id')
         ->get();
         
-        
-        //$cartItems->decrement('stocks',$cartItems['cart_quantity']);
         foreach($cartItems as $cartItem)
         {
             $stocks=DB::table('cart')
@@ -166,7 +124,6 @@ class OrderController extends Controller
             ->update(['stocks.stocks'=> $cartItem->stocks_quantity - $cartItem->cart_quantity]);
         }
         return $this->deleteCartRecords();
-        
     }
 
     public function deleteCartRecords()
@@ -177,22 +134,11 @@ class OrderController extends Controller
         ->delete();
 
         return redirect()->route('home');
-        
     }
     public function pendingOrders()
     {
         $user_id=Auth::user()->user_id;
-        /*$pendingOrders=DB::table('order_items')
-        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
-        ->join('sizes','sizes.size_id','=','stocks.size_id')
-        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
-        ->join('orders','orders.order_id','=','order_items.order_id')
-        ->where('user_id',$user_id)
-        ->where('orders.status',1)
-        //->where('cart.size_id','=','sizes.user_id')
-        ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
-                'order_date','pickup_date')
-        ->get();*/
+
         $pendingOrders12= DB::table('orders')
         ->join('order_items','order_items.order_id','=','orders.order_id')
         ->join('stocks','stocks.stock_id','=','order_items.stock_id')
@@ -203,22 +149,12 @@ class OrderController extends Controller
         ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
                 'order_date','pickup_date')
         ->get();  
+
         $pendingOrders=DB::table('orders')
         ->where('orders.user_id',$user_id)
         ->where('orders.status',1)
         ->select('orders.order_uuid')
         ->get();  
-        /*$pendingOrdersList = DB::table('order_items')
-        ->join('stocks','stocks.stock_id','=','order_items.stock_id')
-        ->join('sizes','sizes.size_id','=','stocks.size_id')
-        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
-        ->join('orders','orders.order_id','=','order_items.order_id')
-        ->where('user_id',$user_id)
-        ->where('orders.status',1)
-        ->where('order_items.order_id',)
-        ->select('orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
-                'order_date','pickup_date')
-        ->get();*/
 
         $conditions=[
             ['status','=','1'],
@@ -226,8 +162,7 @@ class OrderController extends Controller
         ];
         $pendingOrdersCount=Order::where($conditions)->count();
 
-        return view('pendingOrders',['pendingOrders'=>$pendingOrders,'pendingOrdersCount'=>$pendingOrdersCount]);
-        //return redirect()->route('cartlist.show',['cartlist'=>$cartlist]);
+        return view('orders.pendingOrders',compact('pendingOrders','pendingOrdersCount'));
     }
     static public function pendingOrderItem()
     {
@@ -240,8 +175,6 @@ class OrderController extends Controller
             ];
         return Order::where($conditions)->count();
         }
-        
-        
     }
 
     public function pendingOrdersView($uuid)
@@ -267,9 +200,7 @@ class OrderController extends Controller
         else
             $eligible=false;
         
-
-
-        return view('pendingOrdersView',compact('pendingOrdersItems','eligible'));
+        return view('orders.pendingOrdersView',compact('pendingOrdersItems','eligible'));
     }
     
     public function removeFromOrder($order_uuid)
@@ -291,7 +222,7 @@ class OrderController extends Controller
                 $stock->stocks+=$order_item->quantity;
                 $stock->save();
             }
-            return redirect('/home');
+            return redirect('/c/pendingOrders');
         }
         else
         {
@@ -324,9 +255,9 @@ class OrderController extends Controller
         ];
         $completedOrdersCount=Order::where($conditions)->count();
 
-        return view('completedOrders',['completedOrders'=>$completedOrders,'completedOrdersCount'=>$completedOrdersCount]);
-        //return redirect()->route('cartlist.show',['cartlist'=>$cartlist]);
+        return view('orders.completedOrders',compact('completedOrders','completedOrdersCount'));
     }
+
     static public function completedOrderItem()
     {
         if (Auth::check())
@@ -338,8 +269,6 @@ class OrderController extends Controller
             ];
         return Order::where($conditions)->count();
         }
-        
-        
     }
 
     public function completedOrdersView($uuid)
@@ -354,9 +283,9 @@ class OrderController extends Controller
         ->where('orders.order_uuid',$uuid)
         ->where('orders.status',2)
         ->select('orders.order_id as pendingOrder_id','orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
-                'order_date','pickup_date','sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4')
+                'order_date','pickup_date','sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4','orders.completed_date as completed_date')
         ->get();
 
-        return view('completedOrdersView',['completedOrdersItems'=>$completedOrdersItems]);
+        return view('orders.completedOrdersView',compact('completedOrdersItems'));
     }
 }
