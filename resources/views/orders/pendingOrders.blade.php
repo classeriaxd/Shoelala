@@ -1,9 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-<?php
-use Carbon\Carbon;
-?>
+
 <div class="container">
    <div class="row">
         <div id="main-container" class="container">
@@ -16,16 +14,17 @@ use Carbon\Carbon;
             <thead>
             </div>
             <tr>
+            <td scope="col">Order Number </td>
             <td scope="col">Order Code </td>
-            <td scope="col">Action</td>
             <td scope="col"> QR Code</td>
+            <td scope="col">Action</td>
             </tr>
             </thead>
             
             <tbody>
             <tr>
+            <th scope="row">{{$loop->iteration}}</th>
             <td>{{$pendingOrder->order_uuid}}</td>
-            <td><a href="/c/pendingOrders/{{$pendingOrder->order_uuid}}" class="btn btn-success">View</a> </td>
             <td>{!! QrCode::size(250)
                 ->format('svg')
                 //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
@@ -33,6 +32,7 @@ use Carbon\Carbon;
                 ->style('round')
                 ->eye('circle')
                 ->generate("http://127.0.0.1:8000/orders/o/$pendingOrder->order_uuid"); !!}</td>
+            <td><a href="/c/pendingOrders/{{$pendingOrder->order_uuid}}" class="btn btn-success">View</a> </td>
             </tr>
           
         </tbody>

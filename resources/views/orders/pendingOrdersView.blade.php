@@ -15,7 +15,7 @@ use Carbon\Carbon;
         <table class="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">Order Number</th>
+                <th scope="col">Item Number</th>
                 <th scope="col">Shoe Name</th>
                 <th scope="col" colspan="5">SKU</th>
                 <th scope="col">Size(US/EUR/UK/CM)</th>
