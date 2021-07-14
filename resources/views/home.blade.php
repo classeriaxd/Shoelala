@@ -36,7 +36,7 @@ $completedTotal=HomeController::completedCount();
                     <div class="collapse" id="collapseOrders">
                         <a class="btn btn-link" href="/orders/scan">Scan QR</a>
                         <a class="btn btn-link" href="/orders">View Orders</a>
-                        <a class="btn btn-link" href="#">Tag Overdue Orders</a>
+                        <a class="btn btn-link" href="/orders/e">Tag Overdue Orders</a>
                     </div>
                 </div>
             {{-- Stocks --}}
@@ -72,7 +72,7 @@ $completedTotal=HomeController::completedCount();
                             <a class="btn btn-link mb-1" href="/maintenance/users">Manage Users</a>
                             <hr>
                             <p class="mb-1">Orders</p>
-                            <a class="btn btn-link mb-1" href="#">Tag Overdue Orders</a>
+                            <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
                             <hr>
                             <p class="mb-1">Restore</p>
                             <a class="btn btn-link mb-1" href="#">Shoes</a>
@@ -100,6 +100,7 @@ $completedTotal=HomeController::completedCount();
                         <div class="collapse" id="collapseOrders-cashier">
                             <a class="btn btn-link" href="#">Pending Orders of this week</a>
                             <a class="btn btn-link" href="/orders/scan">Scan QR</a>
+                            <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
                         </div>
                     </div>
             {{-- Stocks --}}

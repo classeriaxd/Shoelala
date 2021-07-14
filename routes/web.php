@@ -97,10 +97,14 @@ Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name
 
 
 //Order Routes
+Route::post('/orders/e/all', [App\Http\Controllers\OrdersController::class, 'tag_all_expired_orders'])->middleware(['auth','role_auth:Super Admin,Admin'])->name('order.all_expired');
+Route::post('/orders/e/{order_uuid}', [App\Http\Controllers\OrdersController::class, 'tag_expired_order'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:Super Admin,Admin'])->name('order.expired');
+Route::get('/orders/e', [App\Http\Controllers\OrdersController::class, 'show_expired_orders'])->middleware(['auth','role_auth:Super Admin,Admin'])->name('expired_orders.show');
+
 Route::get('/orders/o/{order_uuid}', [App\Http\Controllers\OrdersController::class, 'show'])->middleware('auth')->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:Super Admin,Admin'])->name('orders.show');
 Route::post('/orders/o/{order_uuid}', [App\Http\Controllers\OrdersController::class, 'complete_order'])->middleware('auth')->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:Super Admin,Admin']);
-Route::get('/orders/scan', [App\Http\Controllers\OrdersController::class, 'scanQRView'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
-Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::get('/orders/scan', [App\Http\Controllers\OrdersController::class, 'scanQRView'])->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware(['auth','role_auth:Super Admin,Admin']);
 
 
 //Maintenance Routes

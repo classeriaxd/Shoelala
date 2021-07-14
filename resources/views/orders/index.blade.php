@@ -12,12 +12,18 @@
                     <div class="card-header text-center">{{ __('Order Dashboard') }}</div>
                     <div class="card-body">
                         @role('Super Admin')
-                            <a href="/orders/scan">
-                                <button class="btn btn-primary col-md-12 btn-lg">Scan QR</button>
+                            <a href="/orders/scan" class="mb-2">
+                                <button class="btn btn-primary col-md-12 btn-lg mb-2">Scan QR</button>
+                            </a>
+                            <a href="/orders/e">
+                                <button class="btn btn-primary col-md-12 btn-lg">Tag Expired Orders</button>
                             </a>
                         @elserole('Admin')
                             <a href="/orders/scan">
-                                <button class="btn btn-primary col-md-12 btn-lg">Scan QR</button>
+                                <button class="btn btn-primary col-md-12 btn-lg  mb-2">Scan QR</button>
+                            </a>
+                            <a href="/orders/e">
+                                <button class="btn btn-primary col-md-12 btn-lg">Tag Expired Orders</button>
                             </a>
                         @endrole
                     </div>
