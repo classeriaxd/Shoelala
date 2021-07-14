@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use \App\Models\Order;
+use \App\Models\Stock;
 
 class OrdersController extends Controller
 {
@@ -72,5 +73,73 @@ class OrdersController extends Controller
         }
         else
             abort(403);
+    }
+    public function show_expired_orders()
+    {
+        $expired_orders = DB::table('orders')
+                    ->join('users', 'users.user_id', '=', 'orders.user_id')
+                    ->where(DB::raw('DATEDIFF(CURRENT_DATE(), orders.pickup_date)'), '>', '0')
+                    ->where('orders.status', '1')
+                    ->select('orders.order_uuid as order_uuid', 
+                        DB::raw('DATEDIFF(CURRENT_DATE(), orders.pickup_date) as days_late'),
+                        DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as user_fullName'),
+                        'orders.pickup_date as pickup_date',)
+                    ->get();
+        return view('orders.showExpired', compact('expired_orders'));
+    }
+    public function tag_expired_order($order_uuid)
+    {
+        if(Order::where('order_uuid', $order_uuid)->exists())
+        {
+            $order = Order::where('order_uuid',$order_uuid)->first();
+            $order->status='4';
+            $order->completed_date = date('Y-m-d H:i:s');
+            $order->completed_by = Auth::user()->user_id;
+            $order->save();
+            $order_items=DB::table('orders')
+            ->join('order_items','order_items.order_id','=','orders.order_id')
+            ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+            ->where('orders.order_uuid',$order_uuid)
+            ->select('stocks.stock_id as stock_id','order_items.quantity as quantity')
+            ->get();
+            foreach ($order_items as $order_item)
+            {
+                $stock=Stock::where('stock_id',$order_item->stock_id)->first();
+                $stock->stocks+=$order_item->quantity;
+                $stock->save();
+            }
+            return redirect()->route('expired_orders.show');
+        }
+        else
+            abort(404);
+    }
+    public function tag_all_expired_orders()
+    {
+        $expired_orders = DB::table('orders')
+                    ->where(DB::raw('DATEDIFF(CURRENT_DATE(), orders.pickup_date)'), '>', '0')
+                    ->where('orders.status', '1')
+                    ->select('orders.order_uuid as order_uuid',)
+                    ->get();
+        foreach($expired_orders as $expired_order)
+        {
+            $order = Order::where('order_uuid', $expired_order->order_uuid)->first();
+            $order->status='4';
+            $order->completed_date = date('Y-m-d H:i:s');
+            $order->completed_by = Auth::user()->user_id;
+            $order->save();
+            $order_items=DB::table('orders')
+            ->join('order_items','order_items.order_id','=','orders.order_id')
+            ->join('stocks','stocks.stock_id','=','order_items.stock_id')
+            ->where('orders.order_uuid',$expired_order->order_uuid)
+            ->select('stocks.stock_id as stock_id','order_items.quantity as quantity')
+            ->get();
+            foreach ($order_items as $order_item)
+            {
+                $stock=Stock::where('stock_id',$order_item->stock_id)->first();
+                $stock->stocks+=$order_item->quantity;
+                $stock->save();
+            }
+        }
+        return redirect()->route('expired_orders.show');
     }
 }

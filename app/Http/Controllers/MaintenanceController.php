@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 use \App\Models\User;
 
-
 use \App\Rules\UserContact;
 class MaintenanceController extends Controller
 {
@@ -15,6 +14,7 @@ class MaintenanceController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $this->middleware('auth');
@@ -41,7 +41,6 @@ class MaintenanceController extends Controller
             ->where('roles.role_id', '!=', '3')
             ->get();
         return view('maintenance.edit', compact('users', 'roles'));
-        
     }
 
     public function role_update($user_id)
@@ -73,4 +72,5 @@ class MaintenanceController extends Controller
         else
             abort(404);
     }
+
 }
