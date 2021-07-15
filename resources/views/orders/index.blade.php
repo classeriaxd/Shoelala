@@ -9,21 +9,18 @@
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
 @role('Super Admin')            
-            <div class="card">
-                <div class="card-header text-center">{{ __('Order Dashboard') }}</div>
-                <div class="card-body">
-                    <a href="/orders/scan" class="mb-2">
-                        <button class="btn btn-primary col-md-12 btn-lg mb-2">Scan QR</button>
-                    </a>
-                    <a href="/orders/e">
-                        <button class="btn btn-primary col-md-12 btn-lg">Tag Expired Orders</button>
-                    </a>
-                </div>
+            <div>
+                <a href="/orders/scan" class="mb-2">
+                     <button class="btn btn-primary col-md-12 btn-lg mb-2">Scan QR</button>
+                 </a>
+                 <a href="/orders/e">
+                     <button class="btn btn-primary col-md-12 btn-lg">Tag Expired Orders</button>
+                 </a>
             </div>
             @php $i= 1; @endphp
             <hr>
             <div id="pendingOrdersTable" class="mt-4">
-                <h4 class="text-center mt-2">Pending Orders</h4>
+                <u><h4 class="text-center mt-2">Pending Orders</h4></u>
                 <table class="table-hover table-bordered w-100 text-center">
                     <thead class="thead-dark">
                         <tr>
@@ -49,8 +46,8 @@
             @php $i= 1; @endphp
             <hr>
             <div id="completedOrdersTable" class="mt-3">
-                <h4 class="text-center mt-2">Completed Orders</h4>
-               <table class="table-hover table-bordered w-100 text-center">
+                <u><h4 class="text-center mt-2">Completed Orders</h4></u>
+                <table class="table-hover table-bordered w-100 text-center">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
@@ -77,7 +74,7 @@
             @php $i= 1; @endphp
             <hr>
             <div id="cancelledOrdersTable" class="mt-3">
-                <h4 class="text-center mt-2">Cancelled Orders</h4>
+                <u><h4 class="text-center mt-2">Cancelled Orders</h4></u>
                 <table class="table-hover table-bordered w-100 text-center">
                     <thead class="thead-dark">
                         <tr>
@@ -103,8 +100,8 @@
             @php $i= 1; @endphp
             <hr>
             <div id="expiredOrdersTable" class="mt-3">
-                <h4 class="text-center mt-2">Expired Orders</h4>
-               <table class="table-hover table-bordered w-100 text-center">
+                <u><h4 class="text-center mt-2">Expired Orders</h4></u>
+                <table class="table-hover table-bordered w-100 text-center">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
@@ -129,16 +126,39 @@
                 </table>
             </div>
 @elserole('Admin')
-            <div class="card">
-                <div class="card-header text-center">{{ __('Order Dashboard') }}</div>
-                <div class="card-body">
-                    <a href="/orders/scan" class="mb-2">
-                        <button class="btn btn-primary col-md-12 btn-lg mb-2">Scan QR</button>
-                    </a>
-                    <a href="/orders/e">
-                        <button class="btn btn-primary col-md-12 btn-lg">Tag Expired Orders</button>
-                    </a>
-                </div>
+            <div>
+                <a href="/orders/scan" class="mb-2">
+                    <button class="btn btn-primary col-md-12 btn-lg mb-2">Scan QR</button>
+                </a>
+                <a href="/orders/e">
+                    <button class="btn btn-primary col-md-12 btn-lg">Tag Expired Orders</button>
+                </a>
+            </div>
+            @php $i= 1; @endphp
+            <hr>
+            <div id="pendingOrdersTable" class="mt-4">
+                <u><h4 class="text-center mt-2">Pending Orders for this week</h4></u>
+                <table class="table-hover table-bordered w-100 text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Buyer</th>
+                            <th scope="col">Order Date</th>
+                            <th scope="col">Pickup Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @foreach($pendingOrders as $pendingOrder)
+                    <tr>
+                        <td scope="row">{{$i}}</td>
+                        <td scope="row">{{$pendingOrder->buyer_fullName}}</td>
+                        <td scope="row">{{$pendingOrder->order_date}}</td>
+                        <td scope="row">{{$pendingOrder->pickup_date}}</td>
+                    </tr>
+                @php $i += 1; @endphp
+                @endforeach
+                    </tbody>
+                </table>
             </div>
 @endrole
             <hr>

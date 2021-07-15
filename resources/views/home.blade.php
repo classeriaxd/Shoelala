@@ -98,7 +98,7 @@ $completedTotal=HomeController::completedCount();
             {{-- Orders --}}  
                     <div class="row justify-content-center mb-2">
                         <div class="collapse" id="collapseOrders-cashier">
-                            <a class="btn btn-link" href="#">Pending Orders of this week</a>
+                            <a class="btn btn-link" href="/orders">Pending Orders of this week</a>
                             <a class="btn btn-link" href="/orders/scan">Scan QR</a>
                             <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
                         </div>

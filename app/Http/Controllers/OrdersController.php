@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use \App\Models\Order;
 use \App\Models\Stock;
 
+use Carbon\Carbon;
+
 class OrdersController extends Controller
 {
     public function index()
@@ -53,7 +55,23 @@ class OrdersController extends Controller
                 ->get();
             return view('orders.index', compact('pendingOrders', 'completedOrders', 'cancelledOrders', 'expiredOrders'));
         }
-        
+        else if(Auth::check() && Auth::user()->role->name == 'Admin')
+        {
+            $pendingOrders = DB::table('orders')
+                ->join('users','orders.user_id','=','users.user_id')
+                ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    'orders.pickup_date as pickup_date',)
+                ->where('orders.status','1')
+                ->where('orders.pickup_date', '>=', Carbon::now())
+                ->where('orders.pickup_date', '>=', Carbon::now()->addDays(6))
+                ->orderBy('orders.order_date', 'DESC')
+                ->get();
+            return view('orders.index', compact('pendingOrders'));
+        }
+        else
+            abort(404);
+
         
     }
     public function scanQRView()
