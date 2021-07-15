@@ -5,6 +5,8 @@ use App\Http\Controllers\OrderController;
 $total=CartController::cartItem();
 $pendingTotal=OrderController::pendingOrderItem();
 $completedTotal=OrderController::completedOrderItem();
+$cancelledTotal=OrderController::cancelledOrderItem();
+$expiredTotal=OrderController::expiredOrderItem();
 ?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -78,29 +80,41 @@ $completedTotal=OrderController::completedOrderItem();
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name}}
-                                </a>
+                            
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/c/cartlist">Your Cart({{$total}})</a>
-                                    <a class="dropdown-item" href="/c/pendingOrders">Pending Items({{$pendingTotal}})</a>
-                                    <a class="dropdown-item" href="/c/completedOrders">Completed Items({{$completedTotal}})</a>
-                                    <a class="dropdown-item" href="{{ route('home') }}">
+                            <div class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->first_name}}
+                            </a>
+
+                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                            <li><a class="dropdown-item" href="/c/cartlist">Your Cart({{$total}})</a></li>
+                            <li><a class="dropdown-item" href="/c/pendingOrders">Pending Items({{$pendingTotal}})</a></li>
+                            <li class="divider"></li>
+                            
+                            <li><a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('dashboard') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    </a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>  
+                                    </a></li>
+
+                                    <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">My Other Orders</a>
+                                <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="/c/completedOrders">Completed Items({{$completedTotal}})</a></li>
+                                <li><a tabindex="-1" href="/c/cancelledOrders">Cancelled Items({{$cancelledTotal}})</a></li>
+                                <li><a tabindex="-1" href="/c/expiredOrders">Expired Items({{$expiredTotal}})</a></li>
+                                </ul>
                             </li>
+                                    
+                            </ul>
+                        </div>
   
                         @endguest
                     </ul>

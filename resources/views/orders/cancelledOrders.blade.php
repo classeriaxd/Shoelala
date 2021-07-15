@@ -7,9 +7,9 @@ use Carbon\Carbon;
 <div class="container">
    <div class="row">
         <div id="main-container" class="container">
-        <h1>Completed Orders</h1>
-        @if ($completedOrders->count()>0)
-        @foreach ($completedOrders as $completedOrder)
+        <h1>Cancelled Orders</h1>
+        @if ($cancelledOrders->count()>0)
+        @foreach ($cancelledOrders as $cancelledOrder)
         <div class="card">
         <div class="card-header">
         <table class="table table-hover">
@@ -26,15 +26,15 @@ use Carbon\Carbon;
             <tbody>
             <tr>
             <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$completedOrder->order_uuid}}</td>
+            <td>{{$cancelledOrder->order_uuid}}</td>
             <td>{!! QrCode::size(250)
                 ->format('svg')
                 //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
                 //->backgroundColor(255,55,0)
                 ->style('round')
                 ->eye('circle')
-                ->generate("http://127.0.0.1:8000/orders/o/$completedOrder->order_uuid"); !!}</td>
-            <td><a href="/c/completedOrders/{{$completedOrder->order_uuid}}" class="btn btn-success">View</a> </td>
+                ->generate("http://127.0.0.1:8000/orders/o/$cancelledOrder->order_uuid"); !!}</td>
+            <td><a href="/c/cancelledOrders/{{$cancelledOrder->order_uuid}}" class="btn btn-success">View</a> </td>
             </tr>
           
         </tbody>

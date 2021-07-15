@@ -57,10 +57,6 @@ class HomeController extends Controller
         ->select('orders.order_uuid')
         ->get();  
 
-        $conditions=[
-            ['status','=','1'],
-            ['user_id','=',$user_id],
-        ];
 
         $completedOrders=DB::table('orders')
         ->where('orders.user_id',$user_id)
@@ -68,13 +64,19 @@ class HomeController extends Controller
         ->select('orders.order_uuid')
         ->get();  
 
-        $conditions=[
-            ['status','=','2'],
-            ['user_id','=',$user_id],
-        ];
+        $cancelledOrders=DB::table('orders')
+        ->where('orders.user_id',$user_id)
+        ->where('orders.status',3)
+        ->select('orders.order_uuid')
+        ->get();  
 
+        $expiredOrders=DB::table('orders')
+        ->where('orders.user_id',$user_id)
+        ->where('orders.status',4)
+        ->select('orders.order_uuid')
+        ->get();  
 
-        return view('home',compact('cartlist','pendingOrders','completedOrders'));
+        return view('home',compact('cartlist','pendingOrders','completedOrders','cancelledOrders','expiredOrders'));
     }
 
     public static function cartCount(){
@@ -103,6 +105,30 @@ class HomeController extends Controller
             $user_id=Auth::user()->user_id;
             $conditions=[
                 ['status','=','2'],
+                ['user_id','=',$user_id],
+            ];
+            return Order::where($conditions)->count();
+        }
+    }
+
+    public static function cancelledCount(){
+        if (Auth::check())
+        {
+            $user_id=Auth::user()->user_id;
+            $conditions=[
+                ['status','=','3'],
+                ['user_id','=',$user_id],
+            ];
+            return Order::where($conditions)->count();
+        }
+    }
+
+    public static function expiredCount(){
+        if (Auth::check())
+        {
+            $user_id=Auth::user()->user_id;
+            $conditions=[
+                ['status','=','4'],
                 ['user_id','=',$user_id],
             ];
             return Order::where($conditions)->count();
