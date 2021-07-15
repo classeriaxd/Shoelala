@@ -32,7 +32,7 @@ use Carbon\Carbon;
                 <td>{{$item->size_id}}/{{$item->size_id2}}/{{$item->size_id3}}/{{$item->size_id4}}</td>
                 <td>{{$item->shoe_price}}x{{$item->order_quantity}}</td>
                 <td>={{number_format($item->shoe_price*$item->order_quantity,2)}}</td>
-                <td>{{$item->completed_date}}</td>
+                <td>{{strftime("%B %e, %Y",strtotime($item->completed_date))}}</td>
                 </tr>
             </tbody>
         </table>

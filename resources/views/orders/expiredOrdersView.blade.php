@@ -12,6 +12,7 @@ use Carbon\Carbon;
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
         @foreach ($expiredOrdersItems as $item)
+        <p >Date of Expiration:  {{strftime("%B %e, %Y",strtotime($item->expired_date))}}</p>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -21,7 +22,6 @@ use Carbon\Carbon;
                 <th scope="col">Size(US/EUR/UK/CM)</th>
                 <th scope="col">Unit Price (Quantity)</th>
                 <th scope="col">Total</th>
-                <th scope="col">Date of Expiration</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,6 @@ use Carbon\Carbon;
                 <td>{{$item->size_id}}/{{$item->size_id2}}/{{$item->size_id3}}/{{$item->size_id4}}</td>
                 <td>{{$item->shoe_price}}x{{$item->order_quantity}}</td>
                 <td>={{number_format($item->shoe_price*$item->order_quantity,2)}}</td>
-                <td>{{$item->expired_date}}</td>
                 </tr>
             </tbody>
         </table>

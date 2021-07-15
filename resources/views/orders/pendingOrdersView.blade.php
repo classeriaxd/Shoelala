@@ -11,7 +11,10 @@ use Carbon\Carbon;
             <a href="/c/pendingOrders">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
+            
         @foreach ($pendingOrdersItems as $item)
+        <p >Order Date: {{strftime("%B %e, %Y",strtotime($item->order_date))}}</p>
+        <p >Pick-up Date: {{strftime("%B %e, %Y",strtotime($item->pickup_date))}}</p>
         <table class="table table-hover">
             <thead>
                 <tr>
