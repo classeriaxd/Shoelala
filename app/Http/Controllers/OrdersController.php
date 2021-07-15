@@ -13,43 +13,48 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        $pendingOrders = DB::table('orders')
-            ->join('users','orders.user_id','=','users.user_id')
-            ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
-                'orders.order_date as order_date',
-                'orders.pickup_date as pickup_date',)
-            ->where('orders.status','1')
-            ->orderBy('orders.order_date', 'DESC')
-            ->get();
-        $completedOrders = DB::table('orders')
-            ->join('users as buyers','orders.user_id','=','buyers.user_id')
-            ->join('users as recievers', 'orders.completed_by', '=', 'recievers.user_id')
-            ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name, " ", buyers.middle_name) as buyer_fullName'),
-                'orders.order_date as order_date',
-                DB::raw('CONCAT(recievers.last_name, ", ", recievers.first_name) as reciever_fullName'),
-                'orders.completed_date as completed_date',)
-            ->where('orders.status','2')
-            ->orderBy('orders.completed_date', 'DESC')
-            ->get();
-        $cancelledOrders = DB::table('orders')
-            ->join('users','orders.user_id','=','users.user_id')
-            ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
-                'orders.order_date as order_date',
-                'orders.completed_date as cancel_date',)
-            ->where('orders.status','3')
-            ->orderBy('orders.order_date', 'DESC')
-            ->get();
-        $expiredOrders = DB::table('orders')
-            ->join('users as buyers','orders.user_id','=','buyers.user_id')
-            ->join('users as recievers', 'orders.completed_by', '=', 'recievers.user_id')
-            ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name, " ", buyers.middle_name) as buyer_fullName'),
-                'orders.order_date as order_date',
-                DB::raw('CONCAT(recievers.last_name, ", ", recievers.first_name) as reciever_fullName'),
-                'orders.completed_date as completed_date')
-            ->where('orders.status','4')
-            ->orderBy('orders.completed_date', 'DESC')
-            ->get();
-        return view('orders.index', compact('pendingOrders', 'completedOrders', 'cancelledOrders', 'expiredOrders'));
+        if(Auth::check() && Auth::user()->role->name == 'Super Admin')
+        {
+            $pendingOrders = DB::table('orders')
+                ->join('users','orders.user_id','=','users.user_id')
+                ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    'orders.pickup_date as pickup_date',)
+                ->where('orders.status','1')
+                ->orderBy('orders.order_date', 'DESC')
+                ->get();
+            $completedOrders = DB::table('orders')
+                ->join('users as buyers','orders.user_id','=','buyers.user_id')
+                ->join('users as recievers', 'orders.completed_by', '=', 'recievers.user_id')
+                ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name, " ", buyers.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    DB::raw('CONCAT(recievers.last_name, ", ", recievers.first_name) as reciever_fullName'),
+                    'orders.completed_date as completed_date',)
+                ->where('orders.status','2')
+                ->orderBy('orders.completed_date', 'DESC')
+                ->get();
+            $cancelledOrders = DB::table('orders')
+                ->join('users','orders.user_id','=','users.user_id')
+                ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    'orders.completed_date as cancel_date',)
+                ->where('orders.status','3')
+                ->orderBy('orders.order_date', 'DESC')
+                ->get();
+            $expiredOrders = DB::table('orders')
+                ->join('users as buyers','orders.user_id','=','buyers.user_id')
+                ->join('users as recievers', 'orders.completed_by', '=', 'recievers.user_id')
+                ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name, " ", buyers.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    DB::raw('CONCAT(recievers.last_name, ", ", recievers.first_name) as reciever_fullName'),
+                    'orders.completed_date as completed_date')
+                ->where('orders.status','4')
+                ->orderBy('orders.completed_date', 'DESC')
+                ->get();
+            return view('orders.index', compact('pendingOrders', 'completedOrders', 'cancelledOrders', 'expiredOrders'));
+        }
+        
+        
     }
     public function scanQRView()
     {
