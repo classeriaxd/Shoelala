@@ -64,7 +64,7 @@ class OrdersController extends Controller
                     'orders.pickup_date as pickup_date',)
                 ->where('orders.status','1')
                 ->where('orders.pickup_date', '>=', Carbon::now())
-                ->where('orders.pickup_date', '>=', Carbon::now()->addDays(6))
+                ->where('orders.pickup_date', '<=', Carbon::now()->addDays(8))
                 ->orderBy('orders.order_date', 'DESC')
                 ->get();
             return view('orders.index', compact('pendingOrders'));
