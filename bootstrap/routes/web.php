@@ -1,0 +1,112 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+use App\Models\Brand;
+
+use App\Http\Controllers\ShoesController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    $brands = Brand::with(['shoes' => function ($query) {
+        $query->orderBy('created_at', 'DESC')->limit(3);}, 
+        'shoes.shoeImages' => function ($query) {
+        $query->where('image_angle_id', '3')->pluck('image');},])
+    ->orderBy('name', 'ASC')
+    ->get();
+    $brands2 = Brand::with(['shoes' => function ($query) {
+        $query->orderBy('created_at', 'DESC')->skip(3)->take(3);}, 
+        'shoes.shoeImages' => function ($query) {
+        $query->where('image_angle_id', '3')->pluck('image');},])
+    ->orderBy('name', 'ASC')
+    ->get();
+    return view('welcome', compact('brands','brands2'));
+});
+
+Auth::routes(['verify'=> true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
+// Todo: custom shoe 404, 403
+Route::get('/s/restore-index', [App\Http\Controllers\ShoesController::class, 'restore_index'])->name('shoes.restore')->middleware(['auth','role_auth:Super Admin']); 
+Route::get('/s/restore-shoes/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'restore_shoes'])->where('shoe_slug', '^[a-zA-Z0-9-_]{2,255}$')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/s/{brand_slug}/{shoe_slug}/edit', [App\Http\Controllers\ShoesController::class, 'edit'])->middleware(['auth','role_auth:Super Admin']);
+Route::get('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'show'])->name('shoes.show')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::patch('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'update'])->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$'])->middleware(['auth','role_auth:Super Admin']);
+Route::delete('/s/{brand_slug}/{shoe_slug}', [App\Http\Controllers\ShoesController::class, 'destroy'])->name('shoes.destroy')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$'])->middleware(['auth','role_auth:Super Admin']);
+Route::get('/s/create', [App\Http\Controllers\ShoesController::class, 'create'])->middleware(['auth','role_auth:Super Admin']);
+Route::get('/s', [App\Http\Controllers\ShoesController::class, 'index'])->name('shoes.index');
+Route::post('/s', [App\Http\Controllers\ShoesController::class, 'store'])->name('shoes.store')->middleware(['auth','role_auth:Super Admin']);
+
+
+// Shoe Images Routes
+
+Route::get('/shoes/{shoe}/images', [App\Http\Controllers\ShoeImagesController::class, 'index'])->name('shoeimage.home');
+Route::get('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'create'])->name('shoeimage.create')->middleware(['auth','role_auth:Super Admin']);
+Route::post('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'store'])->name('shoeimage.store')->middleware(['auth','role_auth:Super Admin']);
+
+// Brand Routes
+// Todo: custom brand 404, 403
+Route::get('/b/restore-index', [App\Http\Controllers\BrandsController::class, 'restore_index'])->name('brands.restore')->middleware(['auth','role_auth:Super Admin']); 
+Route::get('/b/restore-brand/{brands_slug}', [App\Http\Controllers\BrandsController::class, 'restore_brand'])->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/b/create', [App\Http\Controllers\BrandsController::class, 'create'])->middleware('auth');
+Route::get('/b/create', [App\Http\Controllers\BrandsController::class, 'create'])->middleware('auth')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'show'])->name('brand.show')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$');
+Route::delete('/b/{brand_slug}', [App\Http\Controllers\BrandsController::class, 'destroy'])->name('brand.destroy')->where('brand_slug', '^[a-zA-Z0-9-_]{2,255}$')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/b', [App\Http\Controllers\BrandsController::class, 'index'])->name('brand.index');
+Route::post('/b', [App\Http\Controllers\BrandsController::class, 'store'])->name('brand.store')->middleware('auth');
+
+
+
+
+// Shoe Details Routes
+Route::get("/d/{shoe_slug}",[App\Http\Controllers\ShoesController::class,'detail']);
+
+// Add to Cart Routes
+Route::post('/c/add_to_cart', [App\Http\Controllers\CartController::class, 'addToCart']);
+Route::get('/c/cartlist', [App\Http\Controllers\CartController::class, 'cartlist'])->name('cart.cartlist');
+Route::get('/c/cartlist/{id}', [App\Http\Controllers\CartController::class, 'removeFromCart']);
+
+//Show Orders Routes
+Route::get('/c/PendingOrders', [App\Http\Controllers\OrderController::class, 'pendingOrders']);
+
+//order routes
+Route::get('/order', [App\Http\Controllers\OrderController::class, 'order']);
+Route::post('/order/orderSuccess', [App\Http\Controllers\OrderController::class, 'orderSuccess']);
+
+// Stock Routes
+Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
+Route::get('/stocks/{brand_slug}/{shoe_slug}', [App\Http\Controllers\StocksController::class, 'show'])->name('stocks.show')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::delete('/stocks/{brand_slug}/{shoe_slug}/{size_id}', [App\Http\Controllers\StocksController::class, 'destroy'])->name('stocks.destroy')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::get('/stocks/{brand_slug}/{shoe_slug}/{size_id}/edit', [App\Http\Controllers\StocksController::class, 'edit']);
+Route::patch('/stocks/{brand_slug}/{shoe_slug}/{size_id}', [App\Http\Controllers\StocksController::class, 'update'])->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::get('/stocks/create', [App\Http\Controllers\StocksController::class, 'create'])->middleware('auth');
+Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])->name('stocks.store')->middleware('auth');
+
+// Shop Route
+Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
+
+
+//Order Routes
+Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::get('/orders/scan', [App\Http\Controllers\OrdersController::class, 'scanQRView'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+
+//404 Routes
+Route::get('/{any}', function () {
+    abort(404);
+});
+
+
+

@@ -38,7 +38,7 @@ $expiredTotal=HomeController::expiredCount();
                     <div class="collapse" id="collapseOrders">
                         <a class="btn btn-link" href="/orders/scan">Scan QR</a>
                         <a class="btn btn-link" href="/orders">View Orders</a>
-                        <a class="btn btn-link" href="/orders/e">Tag Overdue Orders</a>
+                        <a class="btn btn-link" href="#">Tag Overdue Orders</a>
                     </div>
                 </div>
             {{-- Stocks --}}
@@ -71,14 +71,15 @@ $expiredTotal=HomeController::expiredCount();
                     <div class="collapse" id="collapseMaintenance">
                         <div class="d-flex flex-column text-center">
                             <p class="mb-1">Users</p>
-                            <a class="btn btn-link mb-1" href="/maintenance/users">Manage Users</a>
+                            <a class="btn btn-link mb-1" href="#">Manage Users</a>
+                            <a class="btn btn-link mb-1" href="#">Manage Roles</a>
                             <hr>
                             <p class="mb-1">Orders</p>
-                            <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
+                            <a class="btn btn-link mb-1" href="#">Tag Overdue Orders</a>
                             <hr>
                             <p class="mb-1">Restore</p>
-                            <a class="btn btn-link mb-1" href="#">Shoes</a>
-                            <a class="btn btn-link mb-1" href="#">Brands</a>
+                            <a class="btn btn-link mb-1" href="/s/restore-index">Shoes</a>
+                            <a class="btn btn-link mb-1" href="/b/restore-index">Brands</a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +103,6 @@ $expiredTotal=HomeController::expiredCount();
                         <div class="collapse" id="collapseOrders-cashier">
                             <a class="btn btn-link" href="/orders">Pending Orders of this week</a>
                             <a class="btn btn-link" href="/orders/scan">Scan QR</a>
-                            <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
                         </div>
                     </div>
             {{-- Stocks --}}
@@ -115,7 +115,8 @@ $expiredTotal=HomeController::expiredCount();
         @elserole('User')
                     <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
                     <h6 class="text-muted text-center">User</h6>
-                    <div id="accordion">
+                    
+                    <div id="accordion" class="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
