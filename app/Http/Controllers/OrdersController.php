@@ -9,11 +9,70 @@ use Illuminate\Support\Facades\Auth;
 use \App\Models\Order;
 use \App\Models\Stock;
 
+use Carbon\Carbon;
+
 class OrdersController extends Controller
 {
     public function index()
     {
-        return view('orders.index');
+        if(Auth::check() && Auth::user()->role->name == 'Super Admin')
+        {
+            $pendingOrders = DB::table('orders')
+                ->join('users','orders.user_id','=','users.user_id')
+                ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    'orders.pickup_date as pickup_date',)
+                ->where('orders.status','1')
+                ->orderBy('orders.order_date', 'DESC')
+                ->get();
+            $completedOrders = DB::table('orders')
+                ->join('users as buyers','orders.user_id','=','buyers.user_id')
+                ->join('users as recievers', 'orders.completed_by', '=', 'recievers.user_id')
+                ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name, " ", buyers.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    DB::raw('CONCAT(recievers.last_name, ", ", recievers.first_name) as reciever_fullName'),
+                    'orders.completed_date as completed_date',)
+                ->where('orders.status','2')
+                ->orderBy('orders.completed_date', 'DESC')
+                ->get();
+            $cancelledOrders = DB::table('orders')
+                ->join('users','orders.user_id','=','users.user_id')
+                ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    'orders.completed_date as cancel_date',)
+                ->where('orders.status','3')
+                ->orderBy('orders.order_date', 'DESC')
+                ->get();
+            $expiredOrders = DB::table('orders')
+                ->join('users as buyers','orders.user_id','=','buyers.user_id')
+                ->join('users as recievers', 'orders.completed_by', '=', 'recievers.user_id')
+                ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name, " ", buyers.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    DB::raw('CONCAT(recievers.last_name, ", ", recievers.first_name) as reciever_fullName'),
+                    'orders.completed_date as completed_date')
+                ->where('orders.status','4')
+                ->orderBy('orders.completed_date', 'DESC')
+                ->get();
+            return view('orders.index', compact('pendingOrders', 'completedOrders', 'cancelledOrders', 'expiredOrders'));
+        }
+        else if(Auth::check() && Auth::user()->role->name == 'Admin')
+        {
+            $pendingOrders = DB::table('orders')
+                ->join('users','orders.user_id','=','users.user_id')
+                ->select(DB::raw('CONCAT(users.last_name, ", ", users.first_name, " ", users.middle_name) as buyer_fullName'),
+                    'orders.order_date as order_date',
+                    'orders.pickup_date as pickup_date',)
+                ->where('orders.status','1')
+                ->where('orders.pickup_date', '>=', Carbon::now())
+                ->where('orders.pickup_date', '<=', Carbon::now()->addDays(8))
+                ->orderBy('orders.order_date', 'DESC')
+                ->get();
+            return view('orders.index', compact('pendingOrders'));
+        }
+        else
+            abort(404);
+
+        
     }
     public function scanQRView()
     {
@@ -118,11 +177,11 @@ class OrdersController extends Controller
         $expired_orders = DB::table('orders')
                     ->where(DB::raw('DATEDIFF(CURRENT_DATE(), orders.pickup_date)'), '>', '0')
                     ->where('orders.status', '1')
-                    ->select('orders.order_uuid as order_uuid',)
+                    ->select('orders.order_id as order_id',)
                     ->get();
         foreach($expired_orders as $expired_order)
         {
-            $order = Order::where('order_uuid', $expired_order->order_uuid)->first();
+            $order = Order::where('order_id', $expired_order->order_id)->first();
             $order->status='4';
             $order->completed_date = date('Y-m-d H:i:s');
             $order->completed_by = Auth::user()->user_id;
@@ -130,7 +189,7 @@ class OrdersController extends Controller
             $order_items=DB::table('orders')
             ->join('order_items','order_items.order_id','=','orders.order_id')
             ->join('stocks','stocks.stock_id','=','order_items.stock_id')
-            ->where('orders.order_uuid',$expired_order->order_uuid)
+            ->where('orders.order_id',$expired_order->order_id)
             ->select('stocks.stock_id as stock_id','order_items.quantity as quantity')
             ->get();
             foreach ($order_items as $order_item)
