@@ -4,8 +4,8 @@
 <br>
         <div class="loader-wrapper">
             <h1 class="loader">
-                <span id="shoe" class="loader-logo">Shoe</span>
-                <span id="lala" class="loader-logo">lala</span>
+                <span id="shoe" class="loader-logo" style="text-transform: uppercase; font-weight: bold;">Shoe</span>
+                <span id="lala" class="loader-logo" style="text-transform: uppercase; font-weight: bold;">lala</span>
             </h1>
         </div>
   <!--Carousel Wrapper-->
