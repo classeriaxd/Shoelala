@@ -14,10 +14,18 @@ class Order extends Model
     public $timestamps = false;
     protected $primaryKey = 'order_id';
     
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function order_items()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id');
+    }
+
+    public function completed_by()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

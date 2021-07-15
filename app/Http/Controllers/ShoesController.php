@@ -147,23 +147,4 @@ class ShoesController extends Controller
         return view('detail',compact('data'));
     }
     
-    public function restore_index()
-    {
-        $shoes = Shoe::onlyTrashed()->get();
-
-        return view('shoes.restore', compact('shoes'));
-
-    }
-
-    public function restore_shoes($shoe_slug)
-    {
-        $shoe = Shoe::withTrashed()->where('slug', $shoe_slug)->first();
-        if($shoe->restore())
-        {
-            $shoes = Shoe::onlyTrashed()->get();
-            return view('shoes.restore',compact('shoes'));
-        }
-        else
-            abort(404);
-    }
 }
