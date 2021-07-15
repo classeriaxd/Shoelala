@@ -4,6 +4,7 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @role('Super Admin')
             <h2 class="display-2 text-center">Stock Index</h2>
             <a href="/home">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
@@ -43,6 +44,38 @@
             @endforeach
                 </tbody>
             </table>
+        @elserole('Admin')
+        <h2 class="display-2 text-center">Stocks</h2>
+            <a href="/home">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
+            <br>
+            <br>
+            @php $i = 1; @endphp
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-md-2 text-center">#</th>
+                        <th scope="col" class="col-md-2 text-center">Brand</th>
+                        <th scope="col" class="col-md-5 text-center">Shoe</th>
+                        <th scope="col" class="col-md-2 text-center">SKU</th>
+                        <th scope="col" class="col-md-2 text-center">Stocks</th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach($stocks as $stock)
+                    <tr>
+                        <td>{{$i}}</td>
+                        <td>{{$stock->brand}}</td>
+                        <td><a href="/s/{{$stock->brand_slug}}/{{$stock->shoe_slug}}">{{$stock->shoe}}</a></td>
+                        <td>{{$stock->sku}}</td>
+                        <td>{{$stock->stock}}</td>
+                    </tr>
+                @php $i += 1; @endphp
+            @endforeach
+                </tbody>
+            </table>
+        @endrole
         </div>
     </div>
 </div>

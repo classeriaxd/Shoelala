@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Auth;
 use \App\Models\User;
 
 use \App\Rules\UserContact;
@@ -22,6 +23,7 @@ class MaintenanceController extends Controller
             ->join('roles', 'roles.role_id', '=', 'users.role_id')
             ->select(DB::raw("CONCAT(users.first_name,' ',users.middle_name,' ',users.last_name) as name"), 'users.role_id as role_id', 'roles.name as role', 'users.user_id as user_id')
             ->whereNull('users.deleted_at')
+            ->where('users.user_id', '!=', Auth::user()->user_id)
             ->orderBy('users.user_id', 'ASC')
             ->get();
             //dd($stocks);

@@ -84,13 +84,13 @@ Route::post('/order/orderSuccess', [App\Http\Controllers\OrderController::class,
 Route::get('/c/pendingOrders/cancel/{order_uuid}', [App\Http\Controllers\OrderController::class, 'removeFromOrder'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
 
 // Stock Routes
-Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->name('stocks.index');
-Route::get('/stocks/{brand_slug}/{shoe_slug}', [App\Http\Controllers\StocksController::class, 'show'])->name('stocks.show')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
+Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->middleware(['auth','role_auth:Super Admin,Admin'])->name('stocks.index');
+Route::get('/stocks/{brand_slug}/{shoe_slug}', [App\Http\Controllers\StocksController::class, 'show'])->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$'])->middleware(['auth','role_auth:Super Admin,Admin'])->name('stocks.show');
 Route::delete('/stocks/{brand_slug}/{shoe_slug}/{size_id}', [App\Http\Controllers\StocksController::class, 'destroy'])->name('stocks.destroy')->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
-Route::get('/stocks/{brand_slug}/{shoe_slug}/{size_id}/edit', [App\Http\Controllers\StocksController::class, 'edit']);
+Route::get('/stocks/{brand_slug}/{shoe_slug}/{size_id}/edit', [App\Http\Controllers\StocksController::class, 'edit'])->middleware(['auth','role_auth:Super Admin,Admin']);
 Route::patch('/stocks/{brand_slug}/{shoe_slug}/{size_id}', [App\Http\Controllers\StocksController::class, 'update'])->where(['brand_slug' => '^[a-zA-Z0-9-_]{2,255}$', 'shoe_slug' => '^[a-zA-Z0-9-_]{2,255}$']);
-Route::get('/stocks/create', [App\Http\Controllers\StocksController::class, 'create'])->middleware('auth');
-Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])->name('stocks.store')->middleware('auth');
+Route::get('/stocks/create', [App\Http\Controllers\StocksController::class, 'create'])->middleware('auth')->middleware(['auth','role_auth:Super Admin,Admin']);
+Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'store'])->middleware('auth')->name('stocks.store');
 
 // Shop Route
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
@@ -108,7 +108,7 @@ Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->
 
 
 //Maintenance Routes
-Route::get('/maintenance/users', [App\Http\Controllers\MaintenanceController::class, 'index'])->name('maintenance.index');
+Route::get('/maintenance/users', [App\Http\Controllers\MaintenanceController::class, 'index'])->name('maintenance.index')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/maintenance/users/edit/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_edit']);
 Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_update']);
 
