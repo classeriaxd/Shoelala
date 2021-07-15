@@ -11,13 +11,13 @@
                     <div class="text-center">
                         <h5 class="card-title">Buyer Details</h5>
                             <p>Buyer: {{$userDetails->user_fullName}}</p>
-                            <p>Order Date: {{$userDetails->order_date}}</p>
-                            <p>Pickup Date: {{$userDetails->pickup_date}}</p>
+                            <p>Order Date: {{strftime("%B %e, %Y",strtotime($userDetails->order_date))}}</p>
+                            <p>Pickup Date: {{strftime("%B %e, %Y",strtotime($userDetails->pickup_date))}}</p>
                         @if($userDetails->status == 1)
                             <p>Status: <span style="color: ORANGE">PENDING</span></p>
                         @elseif($userDetails->status == 2)
                             <p>Status: <span style="color: GREEN">COMPLETED</span></p>
-                            <p>Completed On: {{$userDetails->completed_date}}</p>
+                            <p>Completed On: {{strftime("%B %e, %Y",strtotime($userDetails->completed_date))}}</p>
                         @elseif($userDetails->status == 3)
                             <p>Status: <span style="color: RED">CANCELLED</span></p>
                         @elseif($userDetails->status == 4)

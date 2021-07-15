@@ -27,7 +27,7 @@
                     <tr>
                         <td scope="row">{{$i}}</td>
                         <td>{{$order->user_fullName}}</td>
-                        <td>{{$order->pickup_date}}</td>
+                        <td>{{strftime("%B %e, %Y",strtotime($order->pickup_date))}}</td>
                         <td>{{$order->days_late}}</td>
                         <td>
                             <form action="{{route('order.expired', [$order->order_uuid,])}}" method="POST">
