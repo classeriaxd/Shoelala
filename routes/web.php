@@ -77,6 +77,11 @@ Route::get('/c/pendingOrders', [App\Http\Controllers\OrderController::class, 'pe
 Route::get('/c/pendingOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'pendingOrdersView'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
 Route::get('/c/completedOrders', [App\Http\Controllers\OrderController::class, 'completedOrders'])->middleware(['auth','role_auth:User']);
 Route::get('/c/completedOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'completedOrdersView'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
+Route::get('/c/cancelledOrders', [App\Http\Controllers\OrderController::class, 'cancelledOrders'])->middleware(['auth','role_auth:User']);
+Route::get('/c/cancelledOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'cancelledOrdersView'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
+Route::get('/c/expiredOrders', [App\Http\Controllers\OrderController::class, 'expiredOrders'])->middleware(['auth','role_auth:User']);
+Route::get('/c/expiredOrders/{order_uuid}', [App\Http\Controllers\OrderController::class, 'expiredOrdersView'])->where(['order_uuid' => '^[a-zA-Z0-9\-]{36}$'])->middleware(['auth','role_auth:User']);
+
 
 //order routes
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'order'])->middleware(['auth','role_auth:User']);

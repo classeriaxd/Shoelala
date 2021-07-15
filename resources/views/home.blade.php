@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 $cartTotal=HomeController::cartCount();
 $pendingTotal=HomeController::pendingCount();
 $completedTotal=HomeController::completedCount();
+$cancelledTotal=HomeController::cancelledCount();
+$expiredTotal=HomeController::expiredCount();
 ?>
 <div id="main-container" class="container" style="margin-top: 150px;">
     <div class="card mb-2" style="width: 100%">
@@ -224,52 +226,161 @@ $completedTotal=HomeController::completedCount();
                         </h5>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
-                        @if ($completedOrders->count()>0)
-                        @foreach ($completedOrders as $completedOrder)
-                        <div class="card">
-                        <div class="card-header">
-                        <table class="table table-hover">
-                            <thead>
+                            <div class="card-body">
+                                @if ($completedOrders->count()>0)
+                                @foreach ($completedOrders as $completedOrder)
+                                    <div class="card">
+                                        <div class="card-header">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            </div>
+                                            <tr>
+                                            <td scope="col">Order Number </td>
+                                            <td scope="col">Order Code </td>
+                                            <td scope="col"> QR Code</td>
+                                            </tr>
+                                            
+                                            <tr></tr>
+                                            
+                                            <tr>
+                                            <td scope="row">{{$loop->iteration}}</td>
+                                            <td>{{$completedOrder->order_uuid}}</td>
+                                            <td>{!! QrCode::size(250)
+                                                                ->format('svg')
+                                                                //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
+                                                                //->backgroundColor(255,55,0)
+                                                                ->style('round')
+                                                                ->eye('circle')
+                                                                ->generate("http://127.0.0.1:8000/orders/o/$completedOrder->order_uuid"); !!}</td>
+                                            </tr>
+                                        
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                @endforeach
+                                        <div class="row justify-content-center pt-1">
+                                            <a href="/c/completedOrders" class="btn btn-success">Go to Completed Orders</a> 
+                                        </div> 
+                                    </div>
+                                    @else
+                                    <h4 class="text-center">There are no items in your cart.</h4>
+                                    <div class="row justify-content-center pt-1">
+                                        <a href="/s" class="btn btn-success">Shop Now</a> 
+                                    </div> 
+                                    @endif
                             </div>
-                            <tr>
-                            <td scope="col">Order Number </td>
-                            <td scope="col">Order Code </td>
-                            <td scope="col"> QR Code</td>
-                            </tr>
+                            </div>
+                            <div class="card">
+                            <div class="card-header" id="headingFour">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Expired Orders ({{$expiredTotal}})
+                                </button>
+                            </h5>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                            <div class="card-body">
+                            @if ($expiredOrders->count()>0)
+                            @foreach ($expiredOrders as $expiredOrder)
+                            <div class="card">
+                            <div class="card-header">
+                            <table class="table table-hover">
+                                <thead>
+                                </div>
+                                <tr>
+                                <td scope="col">Order Number </td>
+                                <td scope="col">Order Code </td>
+                                <td scope="col"> QR Code</td>
+                                </tr>
+                                </thead>
+                                
+                                <tbody>
+                                <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$expiredOrder->order_uuid}}</td>
+                                <td>{!! QrCode::size(250)
+                                    ->format('svg')
+                                    //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
+                                    //->backgroundColor(255,55,0)
+                                    ->style('round')
+                                    ->eye('circle')
+                                    ->generate("http://127.0.0.1:8000/orders/o/$expiredOrder->order_uuid"); !!}</td>
+                                </tr>
                             
-                            <tr></tr>
-                            
-                            <tr>
-                            <td scope="row">{{$loop->iteration}}</td>
-                            <td>{{$completedOrder->order_uuid}}</td>
-                            <td>{!! QrCode::size(250)
-                                                ->format('svg')
-                                                //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
-                                                //->backgroundColor(255,55,0)
-                                                ->style('round')
-                                                ->eye('circle')
-                                                ->generate("http://127.0.0.1:8000/orders/o/$pendingOrder->order_uuid"); !!}</td>
-                            </tr>
-                        
-                        </tbody>
-                        </table>
-                        </div>
-                        @endforeach
-                        <div class="row justify-content-center pt-1">
-                                <a href="/c/pendingOrders" class="btn btn-success">Go to Completed Orders</a> 
+                            </tbody>
+                            </table>
+                            </div>
+                            @endforeach
+                            <div class="row justify-content-center pt-1">
+                                            <a href="/c/expiredOrders" class="btn btn-success">Go to Expired Orders</a> 
                             </div> 
+                            </div>
+                            @else
+                            <h2>There are no items in your cart.</h2>
+                            <div class="row justify-content-center pt-1">
+                                <a href="/s" class="btn btn-success">Shop Now</a> 
+                            </div> 
+                            @endif
+                            </div>
+                            </div>
                         </div>
-                        @else
-                        <h4 class="text-center">There are no items in your cart.</h4>
-                        <div class="row justify-content-center pt-1">
-                            <a href="/s" class="btn btn-success">Shop Now</a> 
-                        </div> 
-                        @endif
+                        <div class="card">
+                            <div class="card-header" id="headingFive">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Cancelled Orders ({{$cancelledTotal}})
+                                </button>
+                            </h5>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                            <div class="card-body">
+                            @if ($cancelledOrders->count()>0)
+                            @foreach ($cancelledOrders as $cancelledOrder)
+                            <div class="card">
+                            <div class="card-header">
+                            <table class="table table-hover">
+                                <thead>
+                                </div>
+                                <tr>
+                                <td scope="col">Order Number </td>
+                                <td scope="col">Order Code </td>
+                                <td scope="col"> QR Code</td>
+                                </tr>
+                                </thead>
+                                
+                                <tbody>
+                                <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$cancelledOrder->order_uuid}}</td>
+                                <td>{!! QrCode::size(250)
+                                    ->format('svg')
+                                    //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
+                                    //->backgroundColor(255,55,0)
+                                    ->style('round')
+                                    ->eye('circle')
+                                    ->generate("http://127.0.0.1:8000/orders/o/$cancelledOrder->order_uuid"); !!}</td>
+                                
+                                </tr>
+                            
+                            </tbody>
+                            </table>
+                            </div>
+                            @endforeach
+                            <div class="row justify-content-center pt-1">
+                                            <a href="/c/cancelledOrders" class="btn btn-success">Go to Cancelled Orders</a> 
+                            </div> 
+                            </div>
+                            @else
+                            <h2>There are no items in your cart.</h2>
+                            <div class="row justify-content-center pt-1">
+                                <a href="/s" class="btn btn-success">Shop Now</a> 
+                            </div> 
+                            @endif                  
+                            </div>
+                            </div>
                         </div>
                         </div>
-                    </div>
-                    </div>
+                </div>
         @endrole
             </div>
         </div>
