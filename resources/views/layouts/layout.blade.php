@@ -7,7 +7,6 @@ $pendingTotal=OrderController::pendingOrderItem();
 $completedTotal=OrderController::completedOrderItem();
 $cancelledTotal=OrderController::cancelledOrderItem();
 $expiredTotal=OrderController::expiredOrderItem();
-
 ?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -31,6 +30,8 @@ $expiredTotal=OrderController::expiredOrderItem();
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('imgs/favicon-logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/layout-css.css') }}">
+
+    @stack('scripts')
 
 </head>
 <body>
@@ -125,5 +126,8 @@ $expiredTotal=OrderController::expiredOrderItem();
             @yield('content')
         </main>
     </header>
+
+    @stack('custom-scripts')
+    
 </body>
 </html>

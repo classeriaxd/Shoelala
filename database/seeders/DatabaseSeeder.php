@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             ShoeSeeder::class,
             ShoeImageSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

@@ -3,6 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
+
+use Auth;
+use \App\Models\Brand;
+use \App\Models\Shoe;
+use \App\Models\ShoeImage;
+use \App\Models\Category;
+use \App\Models\Type;
+use \App\Models\Cart;
+use \App\Models\User;
+use \App\Models\Order;
+
+use \App\Rules\ShoeSKU;
+use Session;
 
 class HomeController extends Controller
 {
