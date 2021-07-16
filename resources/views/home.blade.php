@@ -61,7 +61,7 @@ $expiredTotal=HomeController::expiredCount();
             {{-- Reports --}}
                 <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseReports">
-                        <a class="btn btn-link" href="#">Order Report</a>
+                        <a class="btn btn-link" href="/reports/orders">Order Report</a>
                         <a class="btn btn-link" href="#">Stock Report</a>
                         <a class="btn btn-link" href="#">User Report</a>
                     </div>
