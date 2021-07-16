@@ -73,7 +73,7 @@ $total=CartController::cartItem();
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown" href="{{ route('home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name}}
                                 </a>
 
@@ -82,6 +82,7 @@ $total=CartController::cartItem();
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('Dashboard') }}
                                     </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
