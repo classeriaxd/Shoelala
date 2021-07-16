@@ -117,6 +117,10 @@ Route::get('/maintenance/users', [App\Http\Controllers\MaintenanceController::cl
 Route::get('/maintenance/users/edit/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_edit']);
 Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_update']);
 
+//Report Routes
+Route::post('/reports/orders/show', [App\Http\Controllers\ReportsController::class, 'show_order_report'])->name('orderreport.show')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/reports/orders', [App\Http\Controllers\ReportsController::class, 'order_report_index'])->middleware(['auth','role_auth:Super Admin']);
+
 //404 Routes
 Route::get('/{any}', function () {
     abort(404);
