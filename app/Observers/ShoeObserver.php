@@ -32,7 +32,13 @@ class ShoeObserver
      */
     public function restored(Shoe $shoe)
     {
-        //
+      $shoeImages_TBD = ShoeImage::onlyTrashed()->get();
+      foreach($shoeImages_TBD as $shoeImage_TBD)
+      {
+          $shoeImage = ShoeImage::withTrashed()->where('shoe_id', $shoeImage_TBD->shoe_id);
+          $shoeImage->restore();
+      }
+      unset($shoeImages_TBD);
     }
 
     /**

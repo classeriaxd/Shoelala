@@ -65,4 +65,24 @@ class BrandsController extends Controller
             abort(404);
     }
 
+    public function restore_index()
+    {
+        $brands = Brand::onlyTrashed()->get();
+
+        return view('brands.restore', compact('brands'));
+
+    }
+
+    public function restore_brand($brand_slug)
+    {
+        $brand = Brand::withTrashed()->where('slug', $brand_slug)->first();
+        if($brand->restore())
+        {
+            $brands = Brand::onlyTrashed()->get();
+            return view('brands.restore',compact('brands'));
+        }
+        else
+            abort(404);
+    }
+
 }
