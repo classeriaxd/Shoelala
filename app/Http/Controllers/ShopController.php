@@ -14,13 +14,8 @@ use \App\Models\Type;
 
 class ShopController extends Controller
 {
-    /*public function __construct()
-    {
-        $this->middleware('auth');
-    }*/
     public function index()
     {
-        //$this->middleware('auth');
         $brand = Brand::all();
         $type = Type::all();
         $category = Category::all();
