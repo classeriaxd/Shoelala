@@ -58,7 +58,7 @@ body
 
 .nav-item
 {
-    margin-left: 5rem;
+    margin-left:    2rem;
 }
 
 .nav-link
@@ -157,8 +157,35 @@ body
 
 .dropdown-submenu.pull-left>.dropdown-menu {
     left: -100%;
-    margin-left: 10px;
+    margin-left: 20px;
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
+}
+
+.dropdown-menu 
+{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 12rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 0.9rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+}
+
+#otherOrders {
+
+    margin-left: -.7rem;
+
 }

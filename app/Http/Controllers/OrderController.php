@@ -302,7 +302,7 @@ class OrderController extends Controller
         ->where('orders.order_uuid',$uuid)
         ->where('orders.status',3)
         ->select('orders.order_id as pendingOrder_id','orders.order_uuid','shoes.name','shoes.sku','shoes.price as shoe_price','order_items.quantity as order_quantity',
-                'order_date','pickup_date','sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4','orders.completed_date as expired_date')
+                'order_date','pickup_date','sizes.us as size_id','sizes.eur as size_id2','sizes.uk as size_id3','sizes.cm as size_id4','orders.completed_date as cancelled_date')
         ->get();
 
         return view('orders.cancelledOrdersView',compact('cancelledOrdersItems'));

@@ -61,7 +61,7 @@ $expiredTotal=HomeController::expiredCount();
             {{-- Reports --}}
                 <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseReports">
-                        <a class="btn btn-link" href="#">Order Report</a>
+                        <a class="btn btn-link" href="/reports/orders">Order Report</a>
                         <a class="btn btn-link" href="#">Stock Report</a>
                         <a class="btn btn-link" href="#">User Report</a>
                     </div>
@@ -77,8 +77,8 @@ $expiredTotal=HomeController::expiredCount();
                             <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
                             <hr>
                             <p class="mb-1">Restore</p>
-                            <a class="btn btn-link mb-1" href="#">Shoes</a>
-                            <a class="btn btn-link mb-1" href="#">Brands</a>
+                            <a class="btn btn-link mb-1" href="/s/restore-index">Shoes</a>
+                            <a class="btn btn-link mb-1" href="/b/restore-index">Brands</a>
                         </div>
                     </div>
                 </div>

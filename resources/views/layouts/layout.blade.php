@@ -104,12 +104,12 @@ $expiredTotal=OrderController::expiredOrderItem();
                                     </form>
                                     </a></li>
 
-                                    <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#">My Other Orders</a>
-                                <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="/c/completedOrders">Completed Items({{$completedTotal}})</a></li>
-                                <li><a tabindex="-1" href="/c/cancelledOrders">Cancelled Items({{$cancelledTotal}})</a></li>
-                                <li><a tabindex="-1" href="/c/expiredOrders">Expired Items({{$expiredTotal}})</a></li>
+                            <li class="dropdown-submenu" >
+                                <a style="margin-left: 29px">My Other Orders</a>
+                                <ul class="dropdown-menu" >
+                                <li><a class="dropdown-item" href="/c/completedOrders" >Completed Items({{$completedTotal}})</a></li>
+                                <li><a class="dropdown-item" href="/c/cancelledOrders" >Cancelled Items({{$cancelledTotal}})</a></li>
+                                <li><a class="dropdown-item" href="/c/expiredOrders" >Expired Items({{$expiredTotal}})</a></li>
                                 </ul>
                             </li>
                                     

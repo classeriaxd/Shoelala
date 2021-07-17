@@ -37,10 +37,26 @@ class BrandObserver
      *
      * @param  \App\Models\Brand  $brand
      * @return void
+     */
      
     public function restored(Brand $brand)
     {
-        //
+        $shoes_TBD = Shoe::onlyTrashed()
+        ->where('brand_id', $brand->brand_id)
+        ->with(['shoeImages' => function ($query) {$query->onlyTrashed()->get();}])
+        ->get();
+        foreach($shoes_TBD as $shoe_TBD)
+        {
+            foreach ($shoe_TBD->shoeImages as $image_TBD) 
+            {
+                $shoeImage = ShoeImage::withTrashed()->where('shoe_id', $image_TBD->shoe_id);
+                $shoeImage->restore();   
+            }
+            $shoe_TBD = Shoe::withTrashed()->where('brand_id', $brand->brand_id);
+            $shoe_TBD->restore();    
+            
+        }
+        unset($shoes_TBD);
     }
 
      /**
