@@ -17,6 +17,10 @@
             <a href="/s">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go Back</button>
             </a>
+        @else
+            <a href="/s">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go Back</button>
+            </a>
         @endrole
             <div class="card mb-2">
                 <div class="card-header text-center" style="text-transform: uppercase">{{$shoe->name}}</div>
