@@ -10,7 +10,7 @@
             <table class="table-striped table-bordered text-center w-100 mb-1">
                 <thead class="thead-dark">
                     <tr class="bg-danger">
-                        <th scope="col" colspan="3" style="color: white;">NO STOCKS</th>  
+                        <th scope="col" colspan="3" style="color: white;">OUT OF STOCK</th>  
                     </tr>
                 </thead>
                 <tbody>
