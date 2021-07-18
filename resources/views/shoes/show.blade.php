@@ -51,11 +51,7 @@
                                         <select class="form-control @error('size') is-invalid @enderror" id="stock_id" name="stock_id" required> 
                                             <option value="-1">Select Size</option>
                                         @foreach ($stocks as $stock)
-                                            @foreach($size as $size)
-                                                @if($stock->size_id==$size->size_id)
-                                                <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$size->size_us}}</option>
-                                                @endif
-                                            @endforeach
+                                            <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$stock->size_us}}</option>
                                         @endforeach
                                         </select>
                             <label for="quantity">Quantity: </label>
