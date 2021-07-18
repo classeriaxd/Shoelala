@@ -116,9 +116,13 @@ Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->
 
 
 //Maintenance Routes
+Route::get('/maintenance/users/edit/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_edit'])->middleware(['auth','role_auth:Super Admin']);
+Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_update'])->middleware(['auth','role_auth:Super Admin']);
+Route::get('/maintenance/categories', [App\Http\Controllers\MaintenanceController::class, 'categories_index'])->name('maintenance.category.index')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/maintenance/categories/create', [App\Http\Controllers\MaintenanceController::class, 'categories_create'])->name('maintenance.category.create')->middleware(['auth','role_auth:Super Admin']);
+Route::post('/maintenance/categories/', [App\Http\Controllers\MaintenanceController::class, 'categories_store'])->name('maintenance.category.store')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/maintenance/users', [App\Http\Controllers\MaintenanceController::class, 'index'])->name('maintenance.index')->middleware(['auth','role_auth:Super Admin']);
-Route::get('/maintenance/users/edit/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_edit']);
-Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\MaintenanceController::class, 'role_update']);
+
 
 //Report Routes
 Route::post('/reports/orders/show', [App\Http\Controllers\ReportsController::class, 'show_order_report'])->name('orderreport.show')->middleware(['auth','role_auth:Super Admin']);

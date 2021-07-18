@@ -89,6 +89,9 @@ $expiredTotal=HomeController::expiredCount();
                             <p class="mb-1">Orders</p>
                             <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
                             <hr>
+                            <p class="mb-1">Categories</p>
+                            <a class="btn btn-link mb-1" href="/maintenance/categories">All Categories</a>
+                            <hr>
                             <p class="mb-1">Restore</p>
                             <a class="btn btn-link mb-1" href="/s/restore-index">Shoes</a>
                             <a class="btn btn-link mb-1" href="/b/restore-index">Brands</a>
