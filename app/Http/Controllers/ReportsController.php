@@ -335,6 +335,7 @@ class ReportsController extends Controller
                 ->where('orders.completed_date', '<=', $end)
                 ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name) as user_fullName'),
                 DB::raw('shoes.price * order_items.quantity as amount'),'orders.order_id as order_id')
+                ->groupBy('order_id')
                 ->orderBy('amount','DESC')
                 ->get();
             $startDate = Carbon::parse($start)->format('F d, Y');
