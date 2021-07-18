@@ -12,9 +12,6 @@ use Carbon\Carbon;
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
             
-        @foreach ($pendingOrdersItems as $item)
-        <p >Order Date: {{strftime("%B %e, %Y",strtotime($item->order_date))}}</p>
-        <p >Pick-up Date: {{strftime("%B %e, %Y",strtotime($item->pickup_date))}}</p>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -26,7 +23,7 @@ use Carbon\Carbon;
                 <th scope="col">Total</th>
                 </tr>
             </thead>
-            <tbody>
+                @foreach ($pendingOrdersItems as $item)
                 <tr>
                 <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$item->name}}</td>
@@ -36,13 +33,17 @@ use Carbon\Carbon;
                 <td>={{number_format($item->shoe_price*$item->order_quantity,2)}}</td>
                 </tr>
             </tbody>
+            @endforeach
         </table>
-                
-        @endforeach
             <div class="text-center">
                 @if ($eligible)
+                
+        <p >Order Date: {{strftime("%B %e, %Y",strtotime($item->order_date))}}</p>
+        <p >Pick-up Date: {{strftime("%B %e, %Y",strtotime($item->pickup_date))}}</p>
                 <a href="/c/pendingOrders/cancel/{{$item->order_uuid}}" class="btn btn-danger">Cancel</a>
                 @else
+                <p >Order Date: {{strftime("%B %e, %Y",strtotime($item->order_date))}}</p>
+                <p >Pick-up Date: {{strftime("%B %e, %Y",strtotime($item->pickup_date))}}</p>
                 <button class="btn btn-danger" disabled>Cancel</button>
                 @endif
                 <br>

@@ -63,7 +63,16 @@ $expiredTotal=HomeController::expiredCount();
                     <div class="collapse" id="collapseReports">
                         <a class="btn btn-link" href="/reports/orders">Order Report</a>
                         <a class="btn btn-link" href="#">Stock Report</a>
-                        <a class="btn btn-link" href="#">User Report</a>
+                        <a class="btn btn-link" data-toggle="collapse" href="#collapseUserReports" role="button" aria-expanded="false" aria-controls="collapseUserReports">
+                            User Report
+                        </a>
+                        <div class="row justify-content-center mb-2"> 
+                            <div class="collapse" id="collapseUserReports">
+                                <a class="btn btn-link" href="reports/users/verified">Verified Users</a>
+                                <a class="btn btn-link" href="reports/users/notverified">Non-verified Users</a>
+                                <a class="btn btn-link" href="reports/users/purchasers">Top Purchasers</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {{-- Maintenance --}}
@@ -128,7 +137,6 @@ $expiredTotal=HomeController::expiredCount();
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                         @if ($cartlist->count()>0)
-                        @foreach ($cartlist as $cartItem)
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -141,6 +149,7 @@ $expiredTotal=HomeController::expiredCount();
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($cartlist as $cartItem)
                                 <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$cartItem->name}}</td>
@@ -150,8 +159,8 @@ $expiredTotal=HomeController::expiredCount();
                                 <td>={{number_format($cartItem->shoe_price*$cartItem->cart_quantity,2)}}</td>
                                 </tr>
                             </tbody>
+                            @endforeach
                         </table>
-                        @endforeach
                         </div>
                         <div class="row justify-content-center pt-1">
                             <a href="/c/cartlist" class="btn btn-success">Go to Cart</a> 

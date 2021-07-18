@@ -125,6 +125,12 @@ Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\Mainten
 //Report Routes
 Route::post('/reports/orders/show', [App\Http\Controllers\ReportsController::class, 'show_order_report'])->name('orderreport.show')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/reports/orders', [App\Http\Controllers\ReportsController::class, 'order_report_index'])->middleware(['auth','role_auth:Super Admin']);
+Route::get('/reports/users/verified', [App\Http\Controllers\ReportsController::class, 'users_report_verified_index'])->middleware(['auth','role_auth:Super Admin']);
+Route::post('/reports/users/verified/show', [App\Http\Controllers\ReportsController::class, 'show_users_verified_report'])->name('verifiedreport.show')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/reports/users/notverified', [App\Http\Controllers\ReportsController::class, 'users_report_not_verified_index'])->middleware(['auth','role_auth:Super Admin']);
+Route::post('/reports/users/notverified/show', [App\Http\Controllers\ReportsController::class, 'show_users_not_verified_report'])->name('notverifiedreport.show')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/reports/users/purchasers', [App\Http\Controllers\ReportsController::class, 'users_report_purchasers_index'])->middleware(['auth','role_auth:Super Admin']);
+Route::post('/reports/users/purchasers/show', [App\Http\Controllers\ReportsController::class, 'show_users_purchasers_report'])->name('purchasers.show')->middleware(['auth','role_auth:Super Admin']);
 
 //404 Routes
 Route::get('/{any}', function () {
