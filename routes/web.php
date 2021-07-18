@@ -52,8 +52,6 @@ Route::post('/s', [App\Http\Controllers\ShoesController::class, 'store'])->name(
 
 // Shoe Images Routes
 
-
-Route::get('/shoes/{shoe}/images', [App\Http\Controllers\ShoeImagesController::class, 'index'])->name('shoeimage.home');
 Route::get('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'create'])->name('shoeimage.create')->middleware(['auth','role_auth:Super Admin']);
 Route::post('/s/{brand_slug}/{shoe_slug}/images/create', [App\Http\Controllers\ShoeImagesController::class, 'store'])->name('shoeimage.store')->middleware(['auth','role_auth:Super Admin']);
 

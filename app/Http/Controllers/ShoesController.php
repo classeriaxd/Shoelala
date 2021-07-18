@@ -104,7 +104,7 @@ class ShoesController extends Controller
         $shoe = Shoe::where('shoe_id', $shoe_id)->first();
         $brand = Brand::where('brand_id', $shoe->brand_id)->first();
 
-        return redirect()->route('shoes.show',['brand_slug' => $brand->slug, 'shoe_slug' => $shoe->slug]);
+        return redirect()->route('shoeimage.create',['brand_slug' => $brand->slug, 'shoe_slug' => $shoe->slug]);
     }
     public function update($brand_slug, $shoe_slug)
     {
