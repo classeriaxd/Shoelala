@@ -21,13 +21,13 @@ use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     $brands = Brand::with(['shoes' => function ($query) {
-        $query->orderBy('created_at', 'DESC')->limit(3);}, 
+        $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->limit(3);}, 
         'shoes.shoeImages' => function ($query) {
         $query->where('image_angle_id', '3')->pluck('image');},])
     ->orderBy('name', 'ASC')
     ->get();
     $brands2 = Brand::with(['shoes' => function ($query) {
-        $query->orderBy('created_at', 'DESC')->skip(3)->take(3);}, 
+        $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->skip(3)->take(3);}, 
         'shoes.shoeImages' => function ($query) {
         $query->where('image_angle_id', '3')->pluck('image');},])
     ->orderBy('name', 'ASC')

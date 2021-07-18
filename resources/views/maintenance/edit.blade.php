@@ -6,7 +6,7 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Edit User</h2>
+            <h2 class="display-1 text-center">Edit User</h2>
             <div class="card">
                 <div class="card-header">Edit {{$users->first_name}}</div>
                 <div class="card-body">

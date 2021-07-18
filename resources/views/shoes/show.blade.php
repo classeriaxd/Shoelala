@@ -4,7 +4,7 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Shoe View</h2>
+            <h2 class="display-1 text-center">Shoe View</h2>
             <a href="/s">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
@@ -51,11 +51,7 @@
                                         <select class="form-control @error('size') is-invalid @enderror" id="stock_id" name="stock_id" required> 
                                             <option value="-1">Select Size</option>
                                         @foreach ($stocks as $stock)
-                                            @foreach($size as $size)
-                                                @if($stock->size_id==$size->size_id)
-                                                <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$size->size_us}}</option>
-                                                @endif
-                                            @endforeach
+                                            <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$stock->size_us}}</option>
                                         @endforeach
                                         </select>
                             <label for="quantity">Quantity: </label>
@@ -74,19 +70,19 @@
                     </div>
                 </div>
             </div>
+@role('Super Admin')
             <div class="card">
                 <div class="card-header d-flex flex-row justify-content-between">
                     <div class="my-auto h5">Images</div>
-@role('Super Admin')
+
                     <div>
                         <a href="/s/{{$brand->slug}}/{{$shoe->slug}}/images/create">
                             <button class="btn btn-primary">Add Image</button>
                         </a>
                     </div>
-@endrole
                 </div>
-                  
             </div>
+@endrole
             <hr>
         </div>
     </div>

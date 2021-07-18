@@ -5,7 +5,7 @@
 
 <div class="container" style="margin-top: 120px;" id="main-container">
    <div class="col-md-12">
-      <h2 class="display-2 text-center mb-1">Order</h2>
+      <h2 class="display-1 text-center mb-1">Order</h2>
       <a href="/c/cartlist">
          <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
      </a>

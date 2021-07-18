@@ -35,10 +35,14 @@ $expiredTotal=HomeController::expiredCount();
                 </div>
             {{-- Orders --}}
                 <div class="row justify-content-center mb-2"> 
-                    <div class="collapse" id="collapseOrders">
+                    <div class="collapse text-center" id="collapseOrders">
+                        <hr>
                         <a class="btn btn-link" href="/orders/scan">Scan QR</a>
+                        <hr>
                         <a class="btn btn-link" href="/orders">View Orders</a>
+                        <hr>
                         <a class="btn btn-link" href="/orders/e">Tag Overdue Orders</a>
+                        <hr>
                     </div>
                 </div>
             {{-- Stocks --}}

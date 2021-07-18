@@ -4,7 +4,7 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-4 text-center">Order Details</h2>
+            <h2 class="display-1 text-center">Order Details</h2>
             <div class="card">
                 <div class="card-header text-center">Order</div>
                 <div class="card-body">

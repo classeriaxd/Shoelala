@@ -4,8 +4,8 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-12 col-lg-12">
-            <h3 class="display-4 text-center mt-4">ORDER REPORT</h3>
-            <h3 class="display-5 text-center mt-1">{{$startDate.' - '.$endDate}}</h3>
+            <h3 class="display-1 text-center mt-4">ORDER REPORT</h3>
+            <h3 class="display-2 text-center mt-1">{{$startDate.' - '.$endDate}}</h3>
             <hr>
         {{-- PENDING ORDERS --}}
             @php $i = 1; @endphp
