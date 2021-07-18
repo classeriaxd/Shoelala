@@ -1,8 +1,8 @@
 @extends('layouts.header')
 
 @section('content')
-    <div class="mb-4">
-      <span class="cardnew">SHOP SHOES</span>
+    <div class="mb-4 text-center">
+      <span class="cardnew text-center">SHOP SHOES</span>
     </div>
 
     <div class="col-md-2 float-left">

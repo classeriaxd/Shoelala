@@ -12,9 +12,9 @@
   
   <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
     
-    <div>
-      <span class="cardnew">NEW PAIRS</span>
-    </div> 
+    <div class="mb-2 mt-2 text-center">
+      <span class="cardnew text-center">NEW PAIR</span>
+    </div>
 
     <ol class="carousel-indicators">
       <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
