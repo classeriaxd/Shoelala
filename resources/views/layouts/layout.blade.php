@@ -49,14 +49,10 @@ $expiredTotal=OrderController::expiredOrderItem();
                     <!-- Left Side Of Navbar -->
                     <ul class="nav-menu">
                         <li class="nav-item active">
-                            <a class="nav-link " href="/">HOME</a>
+                            <a class="nav-link " href="/home">HOME</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="/shop">SHOP</a>
-                            <!--<ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/shop/mens">Mens</a></li>
-                                <li><a class="dropdown-item" href="/shop/womens">Womens</a></li>
-                            </ul>-->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">ABOUT</a>

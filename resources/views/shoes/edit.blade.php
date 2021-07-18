@@ -5,7 +5,7 @@
     @role('Super Admin')
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Edit Shoes</h2>
+            <h2 class="display-1 text-center">Edit Shoes</h2>
             <a href="/s/{{$shoebrandslug}}/{{$shoe->slug}}">
                 <button class="btn btn-secondary col-md-12 bt-lg mb-2">Go back</button>
             </a>

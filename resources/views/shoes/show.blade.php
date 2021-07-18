@@ -4,7 +4,7 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">Shoe View</h2>
+            <h2 class="display-1 text-center">Shoe View</h2>
             <a href="/s">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
@@ -74,19 +74,19 @@
                     </div>
                 </div>
             </div>
+@role('Super Admin')
             <div class="card">
                 <div class="card-header d-flex flex-row justify-content-between">
                     <div class="my-auto h5">Images</div>
-@role('Super Admin')
+
                     <div>
                         <a href="/s/{{$brand->slug}}/{{$shoe->slug}}/images/create">
                             <button class="btn btn-primary">Add Image</button>
                         </a>
                     </div>
-@endrole
                 </div>
-                  
             </div>
+@endrole
             <hr>
         </div>
     </div>
