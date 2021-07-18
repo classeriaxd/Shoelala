@@ -4,8 +4,8 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-2 text-center">{{$brand->name}}</h2>
-            <h5 class="display-4 text-center">{{$shoe->name}}</h5>
+            <h2 class="display-1 text-center">{{$brand->name}}</h2>
+            <h5 class="display-2 text-center">{{$shoe->name}}</h5>
             @php $i = 1; @endphp
             <table class="table table-striped table-bordered table-hover">
                 <thead>

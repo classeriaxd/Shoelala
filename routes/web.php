@@ -21,13 +21,13 @@ use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     $brands = Brand::with(['shoes' => function ($query) {
-        $query->orderBy('created_at', 'DESC')->limit(3);}, 
+        $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->limit(3);}, 
         'shoes.shoeImages' => function ($query) {
         $query->where('image_angle_id', '3')->pluck('image');},])
     ->orderBy('name', 'ASC')
     ->get();
     $brands2 = Brand::with(['shoes' => function ($query) {
-        $query->orderBy('created_at', 'DESC')->skip(3)->take(3);}, 
+        $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->skip(3)->take(3);}, 
         'shoes.shoeImages' => function ($query) {
         $query->where('image_angle_id', '3')->pluck('image');},])
     ->orderBy('name', 'ASC')
@@ -125,12 +125,17 @@ Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\Mainten
 //Report Routes
 Route::post('/reports/orders/show', [App\Http\Controllers\ReportsController::class, 'show_order_report'])->name('orderreport.show')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/reports/orders', [App\Http\Controllers\ReportsController::class, 'order_report_index'])->middleware(['auth','role_auth:Super Admin']);
+
 Route::get('/reports/users/verified', [App\Http\Controllers\ReportsController::class, 'users_report_verified_index'])->middleware(['auth','role_auth:Super Admin']);
 Route::post('/reports/users/verified/show', [App\Http\Controllers\ReportsController::class, 'show_users_verified_report'])->name('verifiedreport.show')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/reports/users/notverified', [App\Http\Controllers\ReportsController::class, 'users_report_not_verified_index'])->middleware(['auth','role_auth:Super Admin']);
 Route::post('/reports/users/notverified/show', [App\Http\Controllers\ReportsController::class, 'show_users_not_verified_report'])->name('notverifiedreport.show')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/reports/users/purchasers', [App\Http\Controllers\ReportsController::class, 'users_report_purchasers_index'])->middleware(['auth','role_auth:Super Admin']);
 Route::post('/reports/users/purchasers/show', [App\Http\Controllers\ReportsController::class, 'show_users_purchasers_report'])->name('purchasers.show')->middleware(['auth','role_auth:Super Admin']);
+
+Route::post('/reports/stocks/show', [App\Http\Controllers\ReportsController::class, 'show_stock_report'])->name('stockreport.show')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/reports/stocks', [App\Http\Controllers\ReportsController::class, 'stock_report_index'])->middleware(['auth','role_auth:Super Admin']);
+
 
 //404 Routes
 Route::get('/{any}', function () {

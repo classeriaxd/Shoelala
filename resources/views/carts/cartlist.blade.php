@@ -4,7 +4,7 @@
 <div id="main-container" class="container">
    <div class="row">
         <div class="container">
-            <h2 class="display-2 text-center mb-1">Cart List</h2>
+            <h2 class="display-1 text-center mb-1">Cart List</h2>
             <a href="/home">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
@@ -23,6 +23,7 @@
             </thead>
             @foreach ($cartlist as $cartItem)
             <tbody>
+            @foreach ($cartlist as $cartItem)
                 <tr>
                 <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$cartItem->name}}</td>
@@ -34,6 +35,7 @@
                 <a href="/c/cartlist/{{$cartItem->cart_id}}" class="btn btn-warning">Remove from Cart</a>     
                 </td>
                 </tr>
+            @endforeach
             </tbody>
             @endforeach
         </table>

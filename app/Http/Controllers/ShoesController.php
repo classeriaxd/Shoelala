@@ -65,7 +65,7 @@ class ShoesController extends Controller
         ->join('sizes','sizes.size_id','=','stocks.size_id')
         ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
         ->where('shoes.slug',$shoe_slug)
-        ->select('stocks.stock_id','stocks.size_id')
+        ->select('stocks.stock_id','stocks.size_id', 'sizes.us as size_us')
         ->get();
         return view('shoes.show', compact('shoe', 'brand', 'shoeImages', 'type', 'category','size','stocks'));
     }
