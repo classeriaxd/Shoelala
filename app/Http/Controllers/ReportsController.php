@@ -343,6 +343,7 @@ class ReportsController extends Controller
         }
         else
             abort(404);
+    }
 
     public function stock_report_index()
     {
