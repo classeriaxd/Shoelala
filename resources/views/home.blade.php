@@ -129,7 +129,7 @@ $expiredTotal=HomeController::expiredCount();
                     <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
                     <h6 class="text-muted text-center">User</h6>
                     <div id="accordion">
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -139,7 +139,7 @@ $expiredTotal=HomeController::expiredCount();
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                         @if ($cartlist->count()>0)
                         <table class="table table-hover">
                             <thead>
@@ -178,7 +178,7 @@ $expiredTotal=HomeController::expiredCount();
                         </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -187,7 +187,7 @@ $expiredTotal=HomeController::expiredCount();
                         </h5>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                         @if ($pendingOrders->count()>0)
                         @foreach ($pendingOrders as $pendingOrder)
                         <div class="card">
@@ -231,7 +231,7 @@ $expiredTotal=HomeController::expiredCount();
                          </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card text-center">
                         <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -240,7 +240,7 @@ $expiredTotal=HomeController::expiredCount();
                         </h5>
                         </div>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 @if ($completedOrders->count()>0)
                                 @foreach ($completedOrders as $completedOrder)
                                     <div class="card">
@@ -284,7 +284,7 @@ $expiredTotal=HomeController::expiredCount();
                                     @endif
                             </div>
                             </div>
-                            <div class="card">
+                            <div class="card text-center">
                             <div class="card-header" id="headingFour">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -293,7 +293,7 @@ $expiredTotal=HomeController::expiredCount();
                             </h5>
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                             @if ($expiredOrders->count()>0)
                             @foreach ($expiredOrders as $expiredOrder)
                             <div class="card">
@@ -338,7 +338,7 @@ $expiredTotal=HomeController::expiredCount();
                             </div>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card text-center">
                             <div class="card-header" id="headingFive">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -347,7 +347,7 @@ $expiredTotal=HomeController::expiredCount();
                             </h5>
                             </div>
                             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                             @if ($cancelledOrders->count()>0)
                             @foreach ($cancelledOrders as $cancelledOrder)
                             <div class="card">

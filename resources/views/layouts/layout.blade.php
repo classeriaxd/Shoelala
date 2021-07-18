@@ -48,9 +48,15 @@ $expiredTotal=OrderController::expiredOrderItem();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav-menu">
-                        <li class="nav-item active">
-                            <a class="nav-link " href="/home">HOME</a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">HOME</a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home">Dashboard</a>
+                            </li>
+                        @endguest
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="/shop">SHOP</a>
                         </li>
@@ -82,29 +88,37 @@ $expiredTotal=OrderController::expiredOrderItem();
                             </a>
                         @role('User')
                             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                                <li><a class="dropdown-item" href="/c/cartlist">Your Cart({{$total}})</a></li>
-                                <li><a class="dropdown-item" href="/c/pendingOrders">Pending Items({{$pendingTotal}})</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Dashboard') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/c/cartlist">Your Cart({{$total}})
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/c/pendingOrders">Pending Items({{$pendingTotal}})
+                                    </a>
+                                </li>
                                 <li class="divider"></li>
-
-                                <li><a class="dropdown-item" href="{{ route('home') }}">
-                                            {{ __('Dashboard') }}
-                                        </a></li>
-                                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                <li class="dropdown-submenu" >
+                                    <a style="margin-left: 29px">My Other Orders</a>
+                                    <ul class="dropdown-menu" >
+                                    <li><a id="submenuitem" class="dropdown-item" href="/c/completedOrders" >Completed Items({{$completedTotal}})</a></li>
+                                    <li><a id="submenuitem" class="dropdown-item" href="/c/cancelledOrders" >Cancelled Items({{$cancelledTotal}})</a></li>
+                                    <li><a id="submenuitem" class="dropdown-item" href="/c/expiredOrders" >Expired Items({{$expiredTotal}})</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                        </a></li>
-
-                                <li class="dropdown-submenu" >
-                                    <a style="margin-left: 29px">My Other Orders</a>
-                                    <ul class="dropdown-menu" >
-                                    <li><a class="dropdown-item" href="/c/completedOrders" >Completed Items({{$completedTotal}})</a></li>
-                                    <li><a class="dropdown-item" href="/c/cancelledOrders" >Cancelled Items({{$cancelledTotal}})</a></li>
-                                    <li><a class="dropdown-item" href="/c/expiredOrders" >Expired Items({{$expiredTotal}})</a></li>
-                                    </ul>
+                                                @csrf
+                                            </form>
+                                    </a>
                                 </li>
                             </ul>
                         @elserole('Admin')

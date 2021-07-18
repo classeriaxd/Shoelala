@@ -29,9 +29,16 @@ $total=CartController::cartItem();
                     </a>
 
                         <ul class="nav-menu">
+                            @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="/home">HOME</a>
+                                <a class="nav-link" href="/">HOME</a>
                             </li>
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home">Dashboard</a>
+                            </li>
+                            @endguest
+                            
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="/shop">SHOP</a>
                             </li>
@@ -65,7 +72,7 @@ $total=CartController::cartItem();
                                     <a class="dropdown-item" href="/c/cartlist">cart({{$total}})</a>
                                     @endrole
                                     <a class="dropdown-item" href="{{ route('home') }}">
-                                        {{ __('dashboard') }}
+                                        {{ __('Dashboard') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
