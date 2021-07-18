@@ -112,6 +112,7 @@ class OrdersController extends Controller
                     ->join('stocks', 'stocks.stock_id', '=', 'order_items.stock_id')
                     ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
                     ->where('orders.order_uuid', $order_uuid)
+                    //->where('orders.user_id', '3')
                     ->sum(DB::raw('order_items.quantity * shoes.price'));
                             
             return view('orders.show', compact('userDetails', 'orderItems', 'totalAmount'));

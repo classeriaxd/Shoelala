@@ -33,13 +33,21 @@ class CartController extends Controller
                     ->first();
                  if($checkStocks->stocksLeft>=request('cart_quantity'))//check kung mas malaki ung stocks sa updated quantity,update
                     {
+                        $cartQuantity=DB::table('cart')
+                            ->join('stocks','stocks.stock_id','=','cart.stock_id')
+                            ->join('sizes','sizes.size_id','=','stocks.size_id')
+                            ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+                            ->where('cart.stock_id',request('stock_id'))
+                            ->where('cart.user_id',Auth::user()->user_id)
+                            ->select('cart.quantity as cart_quantity')
+                            ->first();
                         $cartlist=DB::table('cart')
-                        ->join('stocks','stocks.stock_id','=','cart.stock_id')
-                        ->join('sizes','sizes.size_id','=','stocks.size_id')
-                        ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
-                        ->where('cart.stock_id',request('stock_id'))
-                        ->where('cart.user_id',Auth::user()->user_id)
-                        ->update(['cart.quantity'=> request('cart_quantity')]);
+                            ->join('stocks','stocks.stock_id','=','cart.stock_id')
+                            ->join('sizes','sizes.size_id','=','stocks.size_id')
+                            ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
+                            ->where('cart.stock_id',request('stock_id'))
+                            ->where('cart.user_id',Auth::user()->user_id)
+                            ->update(['cart.quantity'=>$cartQuantity->cart_quantity+request('cart_quantity')]);
                         return back();
                     }
                     else{//kung indi mas malaki ung quantity, error
