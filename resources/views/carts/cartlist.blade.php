@@ -21,7 +21,6 @@
                 <th scope="col">Action</th>
                 </tr>
             </thead>
-            @foreach ($cartlist as $cartItem)
             <tbody>
             @foreach ($cartlist as $cartItem)
                 <tr>
@@ -37,7 +36,6 @@
                 </tr>
             @endforeach
             </tbody>
-            @endforeach
         </table>
         </div>
         <div class="row justify-content-center pt-1">
