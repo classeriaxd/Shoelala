@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use Auth;
 use \App\Models\User;
+use \App\Models\Category;
 
 use \App\Rules\UserContact;
 class MaintenanceController extends Controller
@@ -32,6 +33,29 @@ class MaintenanceController extends Controller
         return view('maintenance.index', compact('users', 'roles'));
     }
 
+    public function categories_index()
+    {
+        $categories = Category::all();
+        return view('maintenance.categories_index', compact('categories'));
+    }
+
+    public function categories_create()
+    {
+        return view('maintenance.categories_create');
+    }
+    public function categories_store()
+    {
+        $data = request()->validate([
+            'category' => 'required|unique:categories,category',
+        ]);
+        if (Category::create(['category' => $data['category'],]))
+        {
+            $categories = Category::all();
+            return view('maintenance.categories_index', compact('categories'));
+        }
+        else
+            abort(404);
+    }
     public function role_edit($user_id)
     {
         $this->middleware('auth');
