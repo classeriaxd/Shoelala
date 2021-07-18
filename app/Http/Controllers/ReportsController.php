@@ -116,4 +116,137 @@ class ReportsController extends Controller
         else
             abort(403);
     }
+
+    public function stock_report_index()
+    {
+    	return view('reports.stockReportIndex');
+    }
+    public function show_stock_report()
+    {
+        if(Auth::check() && Auth::user()->role->name == 'Super Admin')
+        {
+            $choices = ['no', 'low', 'high', 'all'];
+            if(request('no'))
+            {
+                $data = request()->validate([
+                    'no' => Rule::in($choices),
+                ]);
+                $NoStocks = DB::table('shoes')
+                ->leftJoin('stocks', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->whereNull('stocks.shoe_id')
+                ->get();
+                return view('reports.showNoStockReport', compact('NoStocks'));
+            }
+            else if(request('low'))
+            {
+                $data = request()->validate([
+                    'low' => Rule::in($choices),
+                ]);
+
+                $TotalStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->select('shoes.name as shoe', 'shoes.sku as sku', DB::raw('sum(stocks.stocks) as stock'), 'shoes.shoe_id as shoe_id')
+                ->whereNull('stocks.deleted_at')
+                ->groupBy('stocks.shoe_id')
+                ->havingRaw('sum(stocks.stocks) < 100')
+                ->orderBy('shoes.name', 'ASC')
+                ->get();
+                
+                $LowStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->join('types', 'types.type_id', '=', 'sizes.type_id')
+                ->select('shoes.name as shoe', 'types.type as type', 'sizes.us as size', 'stocks.stocks as stock', 'stocks.shoe_id as shoe_id')
+                //->whereRaw('stocks.stocks < 100')
+                ->whereNull('stocks.deleted_at')
+                ->orderBy('sizes.size_id', 'ASC')
+                ->get();
+
+                return view('reports.showLowStockReport', compact('LowStocks', 'TotalStocks'));
+            }
+            else if(request('high'))
+            {
+                $data = request()->validate([
+                    'high' => Rule::in($choices),
+                ]);
+                $TotalStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->select('shoes.name as shoe', 'shoes.sku as sku', DB::raw('sum(stocks.stocks) as stock'), 'shoes.shoe_id as shoe_id')
+                ->whereNull('stocks.deleted_at')
+                ->groupBy('stocks.shoe_id')
+                ->havingRaw('sum(stocks.stocks) >= 100')
+                ->orderBy('shoes.name', 'ASC')
+                ->get();
+                
+                $HighStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->join('types', 'types.type_id', '=', 'sizes.type_id')
+                ->select('shoes.name as shoe', 'types.type as type', 'sizes.us as size', 'stocks.stocks as stock', 'stocks.shoe_id as shoe_id')
+                //->whereRaw('stocks.stocks < 100')
+                ->whereNull('stocks.deleted_at')
+                ->orderBy('sizes.size_id', 'ASC')
+                ->get();
+
+                return view('reports.showHighStockReport', compact('HighStocks', 'TotalStocks'));
+            }
+            else if(request('all'))
+            {
+                $data = request()->validate([
+                    'all' => Rule::in($choices),
+                ]);
+                $NoStocks = DB::table('shoes')
+                ->leftJoin('stocks', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->whereNull('stocks.shoe_id')
+                ->get();
+
+                $TotalLowStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->select('shoes.name as shoe', 'shoes.sku as sku', DB::raw('sum(stocks.stocks) as stock'), 'shoes.shoe_id as shoe_id')
+                ->whereNull('stocks.deleted_at')
+                ->groupBy('stocks.shoe_id')
+                ->havingRaw('sum(stocks.stocks) < 100')
+                ->orderBy('shoes.name', 'ASC')
+                ->get();
+                
+                $LowStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->join('types', 'types.type_id', '=', 'sizes.type_id')
+                ->select('shoes.name as shoe', 'types.type as type', 'sizes.us as size', 'stocks.stocks as stock', 'stocks.shoe_id as shoe_id')
+                //->whereRaw('stocks.stocks < 100')
+                ->whereNull('stocks.deleted_at')
+                ->orderBy('sizes.size_id', 'ASC')
+                ->get();       
+                
+                $TotalHighStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->select('shoes.name as shoe', 'shoes.sku as sku', DB::raw('sum(stocks.stocks) as stock'), 'shoes.shoe_id as shoe_id')
+                ->whereNull('stocks.deleted_at')
+                ->groupBy('stocks.shoe_id')
+                ->havingRaw('sum(stocks.stocks) >= 100')
+                ->orderBy('shoes.name', 'ASC')
+                ->get();
+                
+                $HighStocks = DB::table('stocks')
+                ->join('shoes', 'shoes.shoe_id', '=', 'stocks.shoe_id')
+                ->join('sizes', 'sizes.size_id', '=', 'stocks.size_id')
+                ->join('types', 'types.type_id', '=', 'sizes.type_id')
+                ->select('shoes.name as shoe', 'types.type as type', 'sizes.us as size', 'stocks.stocks as stock', 'stocks.shoe_id as shoe_id')
+                //->whereRaw('stocks.stocks < 100')
+                ->whereNull('stocks.deleted_at')
+                ->orderBy('sizes.size_id', 'ASC')
+                ->get();
+                return view('reports.showStockReport', compact('NoStocks','TotalLowStocks', 'LowStocks', 'TotalHighStocks', 'HighStocks'));
+            }
+            else
+                abort(404);
+        }
+        else
+            abort(403);
+    }
 }

@@ -125,6 +125,8 @@ Route::patch('/maintenance/users/update/{user_id}',[App\Http\Controllers\Mainten
 //Report Routes
 Route::post('/reports/orders/show', [App\Http\Controllers\ReportsController::class, 'show_order_report'])->name('orderreport.show')->middleware(['auth','role_auth:Super Admin']);
 Route::get('/reports/orders', [App\Http\Controllers\ReportsController::class, 'order_report_index'])->middleware(['auth','role_auth:Super Admin']);
+Route::post('/reports/stocks/show', [App\Http\Controllers\ReportsController::class, 'show_stock_report'])->name('stockreport.show')->middleware(['auth','role_auth:Super Admin']);
+Route::get('/reports/stocks', [App\Http\Controllers\ReportsController::class, 'stock_report_index'])->middleware(['auth','role_auth:Super Admin']);
 
 //404 Routes
 Route::get('/{any}', function () {

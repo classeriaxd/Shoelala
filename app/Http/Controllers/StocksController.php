@@ -65,6 +65,7 @@ class StocksController extends Controller
         $stocks= DB::table('stocks')
         ->select('stocks.stocks as stock')
         ->where('stocks.size_id', $size_id)
+        ->where('stocks.shoe_id', $shoe->shoe_id)
         ->first();
         return view('stocks.edit', compact('shoe', 'brand', 'size', 'stocks'));
     }
@@ -131,8 +132,10 @@ class StocksController extends Controller
 
         $stocks = Stock::where(['shoe_id' => $stock['shoe_id'], 'size_id' => $stock['size_id']])->first();
 
-        if ($stocks) 
+        if ($stocks) {
             $stocks->increment('stocks', $stock['stocks']);
+            return redirect()->route('stocks.index');   
+        }
         else 
         {
             if(Stock::create($stock))
