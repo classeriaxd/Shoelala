@@ -76,10 +76,8 @@ $expiredTotal=OrderController::expiredOrderItem();
                                 </li>
                             @endif
                         @else
-                            
-
                             <div class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown" href="{{ route('home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name}}
                             </a>
 
