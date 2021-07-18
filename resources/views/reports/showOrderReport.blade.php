@@ -32,7 +32,7 @@
                 @endforeach
             @else
                     <tr>
-                        <td scope="row" colspan="3">NO ORDERS FOUND</td>
+                        <td scope="row" colspan="4">NO STOCKS FOUND</td>
                     </tr>
             @endif
                 </tbody>

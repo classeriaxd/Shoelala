@@ -5,9 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-1 text-center">Shoe View</h2>
-            <a href="/s">
-                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+        @role('User')
+            <a href="/shop">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go to Shop</button>
             </a>
+        @elserole('Admin')
+            <a href="/s">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go Back</button>
+            </a>
+        @elserole('Super Admin')
+            <a href="/s">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go Back</button>
+            </a>
+        @endrole
             <div class="card mb-2">
                 <div class="card-header text-center" style="text-transform: uppercase">{{$shoe->name}}</div>
                 <div class="card-body text-center">

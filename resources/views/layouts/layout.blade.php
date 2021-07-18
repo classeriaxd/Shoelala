@@ -80,34 +80,62 @@ $expiredTotal=OrderController::expiredOrderItem();
                             <a id="navbarDropdown" class="nav-link dropdown" href="{{ route('home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name}}
                             </a>
-
+                        @role('User')
                             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                            <li><a class="dropdown-item" href="/c/cartlist">Your Cart({{$total}})</a></li>
-                            <li><a class="dropdown-item" href="/c/pendingOrders">Pending Items({{$pendingTotal}})</a></li>
-                            <li class="divider"></li>
-                            
-                            <li><a class="dropdown-item" href="{{ route('home') }}">
-                                        {{ __('Dashboard') }}
-                                    </a></li>
-                            <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                    </a></li>
+                                <li><a class="dropdown-item" href="/c/cartlist">Your Cart({{$total}})</a></li>
+                                <li><a class="dropdown-item" href="/c/pendingOrders">Pending Items({{$pendingTotal}})</a></li>
+                                <li class="divider"></li>
 
-                            <li class="dropdown-submenu" >
-                                <a style="margin-left: 29px">My Other Orders</a>
-                                <ul class="dropdown-menu" >
-                                <li><a class="dropdown-item" href="/c/completedOrders" >Completed Items({{$completedTotal}})</a></li>
-                                <li><a class="dropdown-item" href="/c/cancelledOrders" >Cancelled Items({{$cancelledTotal}})</a></li>
-                                <li><a class="dropdown-item" href="/c/expiredOrders" >Expired Items({{$expiredTotal}})</a></li>
-                                </ul>
-                            </li>
-                                    
+                                <li><a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ __('Dashboard') }}
+                                        </a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                        </a></li>
+
+                                <li class="dropdown-submenu" >
+                                    <a style="margin-left: 29px">My Other Orders</a>
+                                    <ul class="dropdown-menu" >
+                                    <li><a class="dropdown-item" href="/c/completedOrders" >Completed Items({{$completedTotal}})</a></li>
+                                    <li><a class="dropdown-item" href="/c/cancelledOrders" >Cancelled Items({{$cancelledTotal}})</a></li>
+                                    <li><a class="dropdown-item" href="/c/expiredOrders" >Expired Items({{$expiredTotal}})</a></li>
+                                    </ul>
+                                </li>
                             </ul>
+                        @elserole('Admin')
+                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                <li><a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ __('Dashboard') }}
+                                        </a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                </a></li>
+                            </ul>
+                        @elserole('Super Admin')
+                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                <li><a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ __('Dashboard') }}
+                                        </a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                </a></li>
+                            </ul>
+                        @endrole
                         </div>
   
                         @endguest

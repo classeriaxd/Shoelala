@@ -12,6 +12,7 @@
                         <th scope="col" colspan="4" style="color: white;">HIGH STOCKS</th>  
                     </tr>
                 </thead>
+            @if($TotalStocks->count() > 0)
                 @foreach ($TotalStocks as $shoe)
                 <tr>
                     <th scope="col" colspan="4">{{$shoe->shoe}}</th>
@@ -43,6 +44,13 @@
                 </tr>
                 @endforeach
                 </tbody>
+            @else
+                <tbody>
+                    <tr>
+                        <td scope="row" colspan="4">NO ORDERS FOUND</td>
+                    </tr>
+                </tbody>
+            @endif
             </table>
         </div>
     </div>

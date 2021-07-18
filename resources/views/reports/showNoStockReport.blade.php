@@ -19,6 +19,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">SKU</th>
                     </tr>
+            @if($NoStocks->count() > 0)
                 @foreach($NoStocks as $stock)
                     <tr>
                         <td scope="row">{{$i}}</td>
@@ -27,6 +28,11 @@
                     </tr>
                 @php $i += 1; @endphp
                 @endforeach
+            @else
+                    <tr>
+                        <td scope="row" colspan="3">EVERYTHING IS GUCCI</td>
+                    </tr>
+            @endif
                 </tbody>
             </table>
         </div>

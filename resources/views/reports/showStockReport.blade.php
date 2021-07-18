@@ -19,6 +19,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">SKU</th>
                     </tr>
+            @if($NoStocks->count() > 0)
                 @foreach($NoStocks as $stock)
                     <tr>
                         <td scope="row">{{$i}}</td>
@@ -27,6 +28,11 @@
                     </tr>
                 @php $i += 1; @endphp
                 @endforeach
+            @else
+                    <tr>
+                        <td scope="row" colspan="3">EVERYTHING IS GUCCI</td>
+                    </tr>
+            @endif
                 </tbody>
             </table>
             <br>
@@ -36,6 +42,7 @@
                         <th scope="col" colspan="4" style="color: white;">LOW STOCKS</th>  
                     </tr>
                 </thead>
+            @if($TotalLowStocks->count() > 0)
                 @foreach ($TotalLowStocks as $shoe)
                 <tr>
                     <th scope="col" colspan="4">{{$shoe->shoe}}</th>
@@ -48,7 +55,7 @@
                     <th scope="col">Stocks</th>
                 </tr>
                 @php $i = 1; @endphp
-                @foreach($LowStocks as $stock)
+            @foreach($LowStocks as $stock)
                 @if ($shoe->shoe_id == $stock->shoe_id)
                 <tr>
                     <td scope="row">{{$i}}</td>
@@ -58,7 +65,7 @@
                 </tr>
                 @php $i += 1; @endphp
                 @endif
-                @endforeach
+            @endforeach
                 <tr>
                     <th scope="col">Total:</th>
                     <th></th>
@@ -67,6 +74,13 @@
                 </tr>
                 @endforeach
                 </tbody>
+            @else
+                <tbody>
+                    <tr>
+                        <td scope="row" colspan="4">NO STOCKS FOUND</td>
+                    </tr>
+                </tbody>
+            @endif
             </table>
             <br>
             <table class="table-striped table-bordered text-center w-100 mb-1">
@@ -75,6 +89,7 @@
                         <th scope="col" colspan="4" style="color: white;">HIGH STOCKS</th>  
                     </tr>
                 </thead>
+            @if($TotalHighStocks->count() > 0)
                 @foreach ($TotalHighStocks as $shoe)
                 <tr>
                     <th scope="col" colspan="4">{{$shoe->shoe}}</th>
@@ -106,6 +121,13 @@
                 </tr>
                 @endforeach
                 </tbody>
+            @else
+                <tbody>
+                    <tr>
+                        <td scope="row" colspan="4">NO STOCKS FOUND</td>
+                    </tr>
+                </tbody>
+            @endif
             </table>
         </div>
     </div>

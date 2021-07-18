@@ -61,7 +61,9 @@ $total=CartController::cartItem();
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @role('User')
                                     <a class="dropdown-item" href="/c/cartlist">cart({{$total}})</a>
+                                    @endrole
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('dashboard') }}
                                     </a>

@@ -10,7 +10,6 @@
         <div class="card pr-5">
           <div class="card-header">
             <h5>Brands</h5>
-              <button type="submit" class="btn btn-primary btn-sm float-right">Filter</button>
           </div>
           <div class="card-body"> 
             @foreach ($brand as $brand)
@@ -74,6 +73,7 @@
             </div>
             @endforeach
           </div>
+          <button type="submit" class="btn btn-primary btn-lg">Filter</button>
         </div>
       </form>
     </div>
