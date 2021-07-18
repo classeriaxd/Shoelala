@@ -53,10 +53,10 @@ $expiredTotal=OrderController::expiredOrderItem();
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="/shop">SHOP</a>
-                            <ul class="dropdown-menu">
+                            <!--<ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/shop/mens">Mens</a></li>
                                 <li><a class="dropdown-item" href="/shop/womens">Womens</a></li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">ABOUT</a>
@@ -93,7 +93,7 @@ $expiredTotal=OrderController::expiredOrderItem();
                             <li class="divider"></li>
                             
                             <li><a class="dropdown-item" href="{{ route('home') }}">
-                                        {{ __('dashboard') }}
+                                        {{ __('Dashboard') }}
                                     </a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
