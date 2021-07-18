@@ -9,7 +9,7 @@
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
           @if ($cartlist->count()>0)
-        @foreach ($cartlist as $cartItem)
+        
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -23,6 +23,7 @@
                 </tr>
             </thead>
             <tbody>
+            @foreach ($cartlist as $cartItem)
                 <tr>
                 <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$cartItem->name}}</td>
@@ -34,9 +35,10 @@
                 <a href="/c/cartlist/{{$cartItem->cart_id}}" class="btn btn-warning">Remove from Cart</a>     
                 </td>
                 </tr>
+            @endforeach
             </tbody>
         </table>
-        @endforeach
+        
         </div>
         <div class="row justify-content-center pt-1">
             <a href="/order" class="btn btn-success">Buy Now</a> 
