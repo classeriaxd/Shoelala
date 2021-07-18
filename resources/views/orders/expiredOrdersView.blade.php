@@ -11,8 +11,6 @@ use Carbon\Carbon;
             <a href="/c/pendingOrders">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
-        @foreach ($expiredOrdersItems as $item)
-        <p >Date of Expiration:  {{strftime("%B %e, %Y",strtotime($item->expired_date))}}</p>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -25,6 +23,7 @@ use Carbon\Carbon;
                 </tr>
             </thead>
             <tbody>
+                @foreach ($expiredOrdersItems as $item)
                 <tr>
                 <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$item->name}}</td>
@@ -33,10 +32,10 @@ use Carbon\Carbon;
                 <td>{{$item->shoe_price}}x{{$item->order_quantity}}</td>
                 <td>={{number_format($item->shoe_price*$item->order_quantity,2)}}</td>
                 </tr>
+                @endforeach
+                <p >Date of Expiration:  {{strftime("%B %e, %Y",strtotime($item->expired_date))}}</p>
             </tbody>
         </table>
-                
-        @endforeach
         </div>
    </div></div>
 @endsection

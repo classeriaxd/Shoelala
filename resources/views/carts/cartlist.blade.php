@@ -9,11 +9,10 @@
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>
           @if ($cartlist->count()>0)
-        
         <table class="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">Order Number</th>
+                <th scope="col">Cart Number</th>
                 <th scope="col">Shoe Name</th>
                 <th scope="col" colspan="5">SKU</th>
                 <th scope="col">Size(US/EUR/UK/CM)</th>
@@ -22,6 +21,7 @@
                 <th scope="col">Action</th>
                 </tr>
             </thead>
+            @foreach ($cartlist as $cartItem)
             <tbody>
             @foreach ($cartlist as $cartItem)
                 <tr>
@@ -37,8 +37,8 @@
                 </tr>
             @endforeach
             </tbody>
+            @endforeach
         </table>
-        
         </div>
         <div class="row justify-content-center pt-1">
             <a href="/order" class="btn btn-success">Buy Now</a> 
