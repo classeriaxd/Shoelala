@@ -37,14 +37,16 @@
             @endforeach
             </tbody>
         </table>
+            <div class="row justify-content-center pt-1">
+                <a href="/order" class="btn btn-success btn-lg col-md-12">Buy Now</a> 
+            </div> 
         </div>
-        <div class="row justify-content-center pt-1">
-            <a href="/order" class="btn btn-success">Buy Now</a> 
-        </div> 
         @else
-        <h2>There are no items in your cart.</h2>
+        <marquee scrollamount="35"> 
+        <h2 class="text-center mt-2 mb-2">There are no items in your cart.</h2>
+        </marquee>
         <div class="row justify-content-center pt-1">
-            <a href="/s" class="btn btn-success">Shop Now</a> 
+            <a href="/s" class="btn btn-success  btn-lg col-md-12">Shop Now</a> 
         </div> 
         @endif
    </div></div>
