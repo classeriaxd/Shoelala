@@ -189,6 +189,7 @@ $expiredTotal=HomeController::expiredCount();
                         </div>
                         </div>
                     </div>
+
                     <div class="card text-center">
                         <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
@@ -198,50 +199,52 @@ $expiredTotal=HomeController::expiredCount();
                         </h5>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body text-center">
-                        @if ($pendingOrders->count()>0)
-                        @foreach ($pendingOrders as $pendingOrder)
-                        <div class="card">
-                            <div class="card-header">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <td scope="col">Order Number </td>
-                                            <td scope="col">Order Code </td>
-                                            <td scope="col"> QR Code</td>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">{{$loop->iteration}}</th>
-                                            <td>{{$pendingOrder->order_uuid}}</td>
-                                            <td>{!! QrCode::size(250)
-                                                ->format('svg')
-                                                //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
-                                                //->backgroundColor(255,55,0)
-                                                ->style('round')
-                                                ->eye('circle')
-                                                ->generate("http://127.0.0.1:8000/orders/o/$pendingOrder->order_uuid"); !!}</td>
-                                        </tr>
-                                    
-                                    </tbody>
-                                </table>
+                            <div class="card-body text-center">
+                                @if ($pendingOrders->count()>0)
+                                @foreach ($pendingOrders as $pendingOrder)
+                                <div class="card">
+                                    <div class="card-header">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <td scope="col">Order Number </td>
+                                                    <td scope="col">Order Code </td>
+                                                    <td scope="col"> QR Code</td>
+                                                </tr>
+                                            </thead>
+                                            
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">{{$loop->iteration}}</th>
+                                                    <td>{{$pendingOrder->order_uuid}}</td>
+                                                    <td>{!! QrCode::size(250)
+                                                        ->format('svg')
+                                                        //->gradient(36, 161, 229, 110, 250, 205, 'vertical')
+                                                        //->backgroundColor(255,55,0)
+                                                        ->style('round')
+                                                        ->eye('circle')
+                                                        ->generate("http://127.0.0.1:8000/orders/o/$pendingOrder->order_uuid"); !!}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    @endforeach
+
+                                    <div class="row justify-content-center pt-2 pb-2">
+                                        <a href="/c/pendingOrders" class="btn btn-success">Go to Pending Orders</a> 
+                                    </div> 
+
+                                </div>
+                                    @else
+                                    <h4 class="text-center">There are no pending orders.</h4>
+                                    <div class="row justify-content-center pt-1">
+                                        <a href="/shop" class="btn btn-success">Shop Now</a> 
+                                    </div> 
+                                    @endif
                             </div>
-                            @endforeach
-                            <div class="row justify-content-center pt-2 pb-2">
-                                <a href="/c/pendingOrders" class="btn btn-success">Go to Pending Orders</a> 
-                            </div> 
-                            </div>
-                            @else
-                            <h4 class="text-center">There are no items in your cart.</h4>
-                            <div class="row justify-content-center pt-1">
-                                <a href="/shop" class="btn btn-success">Shop Now</a> 
-                            </div> 
-                            @endif
-                         </div>
                         </div>
                     </div>
+                    
                     <div class="card text-center">
                         <div class="card-header" id="headingThree">
                         <h5 class="mb-0">

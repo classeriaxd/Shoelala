@@ -24,7 +24,6 @@ Route::get('/', function () {
         $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->limit(1);}, 
         'shoes.shoeImages' => function ($query) {
         $query->where('image_angle_id', '3')->pluck('image');},])
-    ->orderBy('name', 'ASC')
     ->get();
     $brands = Brand::with(['shoes' => function ($query) {
         $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->limit(3);}, 

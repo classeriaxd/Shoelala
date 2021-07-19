@@ -153,12 +153,11 @@ $expiredTotal=OrderController::expiredOrderItem();
             @yield('content')
         </main>
     </header>
+
+    @stack('custom-scripts')
+
     <footer class="page-footer font-small blue">
         @include('layouts.footer')
     </footer>
-    @stack('custom-scripts')
-
-    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
-    
 </body>
 </html>
