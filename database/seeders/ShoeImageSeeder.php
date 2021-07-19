@@ -50,6 +50,25 @@ class ShoeImageSeeder extends Seeder
             ['shoe_id' => '9', 'image' => 'seeds/shoeimages/VANS-Anaheim Factory Sid DX WHITE-F.jpg', 'image_angle_id' => '1',],
             ['shoe_id' => '9', 'image' => 'seeds/shoeimages/VANS-Anaheim Factory Sid DX WHITE-L.jpg', 'image_angle_id' => '4',],
             ['shoe_id' => '9', 'image' => 'seeds/shoeimages/VANS-Anaheim Factory Sid DX WHITE-R.jpg', 'image_angle_id' => '3',],
+
+            ['shoe_id' => '10', 'image' => 'seeds/shoeimages/NIKE-Air Max 90-F.jpg', 'image_angle_id' => '1',],
+            ['shoe_id' => '10', 'image' => 'seeds/shoeimages/NIKE-Air Max 90-L.jpg', 'image_angle_id' => '4',],
+            ['shoe_id' => '10', 'image' => 'seeds/shoeimages/NIKE-Air Max 90-R.jpg', 'image_angle_id' => '3',],
+
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/NIKE-Ryz 365 2-F.jpg', 'image_angle_id' => '1',],
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/NIKE-Ryz 365 2-L.jpg', 'image_angle_id' => '4',],
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/NIKE-Ryz 365 2-R.jpg', 'image_angle_id' => '3',],
+
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/PUMA-SEUDE HEART GALAXY BLACK-F.jpg', 'image_angle_id' => '1',],
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/PUMA-SUEDE HEART GALAXY BLACK-R.jpg', 'image_angle_id' => '3',],
+
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/ADIDAS-Ultra Boost Dna-F.jpg', 'image_angle_id' => '1',],
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/ADIDAS-Ultra Boost Dna-R.jpg', 'image_angle_id' => '3',],
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/ADIDAS-Ultra Boost Dna-F.jpg', 'image_angle_id' => '1',],
+
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/ADIDAS-Falcon-F.jpg', 'image_angle_id' => '1',],
+            ['shoe_id' => '11', 'image' => 'seeds/shoeimages/ADIDAS-Falcon-R.jpg', 'image_angle_id' => '3',],
+        ];
         ];
             
         DB::table('shoe_images')->insert($data);    
