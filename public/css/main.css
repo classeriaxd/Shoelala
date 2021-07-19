@@ -43,15 +43,15 @@ html, body
     width: 100%;
     height: 100vh;
     background-color: #161616;
-    transition: 1s;
+    transition: 1.5s;
 }
 
 .loader
 {
     position: absolute;
-    top: 40%;
-    left: 60%;
-    font-size: 5em;
+    top: 50%;
+    left: 50%;
+    font-size: 6em;
     transform: translate(-50%, -50%);
     color: whitesmoke;
 }
@@ -70,6 +70,7 @@ html, body
 {
     position: relative;
     display: inline-block;
+    font-weight: bolder;
     bottom: -20px;
     opacity: 0;
 }
@@ -112,14 +113,14 @@ html, body
 
 .nav-item
 {
-    margin-left: 5rem;
+    margin-left: 2.5rem;
 }
 
 .nav-link
 {
     text-decoration: none;
     font-size: 20px;
-    margin-top: 25px;
+    margin-top: 20px;
     position: relative;
     display: inline-block;
     color: #272121;
@@ -235,9 +236,11 @@ html, body
     border-radius: 0.25rem;
 }
 
-#otherOrders {
+#submenuitem
+{
 
-    margin-left: -.7rem;
+    margin-left: -.5rem;
+    font-size: 14px;
 
 }
 

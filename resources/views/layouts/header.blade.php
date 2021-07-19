@@ -1,7 +1,11 @@
 <?php
-use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 $total=CartController::cartItem();
+$pendingTotal=OrderController::pendingOrderItem();
+$completedTotal=OrderController::completedOrderItem();
+$cancelledTotal=OrderController::cancelledOrderItem();
+$expiredTotal=OrderController::expiredOrderItem();
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -14,7 +18,6 @@ $total=CartController::cartItem();
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="http://fonts.cdnfonts.com/css/bebas" rel="stylesheet">
         <link rel="stylesheet" href="/css/main.css">
         <link rel="shortcut icon" href="{{ asset('imgs/favicon.svg') }}">
 
@@ -22,69 +25,41 @@ $total=CartController::cartItem();
     <body id="body" class="antialiased">
 
         <header class="header">
-            <nav id="navbar" class="navbar navbar-expand-xl fixed-top">
+            <nav id="navbar" class="navbar fixed-top navbar-expand-lg shadow-sm">
                 <div class="container">
-                    <a class="navbar-brand" href="/">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         <img id="navbar-logo" src="/imgs/re-logo2.png" alt="logo">
                     </a>
 
                         <ul class="nav-menu">
-                            @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="/">HOME</a>
                             </li>
-                            @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="/home">Dashboard</a>
-                            </li>
-                            @endguest
-                            
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="/shop">SHOP</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">ABOUT</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">CONTACT</a>
+                                <a class="nav-link" href="/abtcont">ABOUT</a>
                             </li>
 
                             @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('LOGIN') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTER') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown" href="{{ route('home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <ul class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link" style="text-transform: uppercase;" href="{{ route('home') }}">
                                     {{ Auth::user()->first_name}}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @role('User')
-                                    <a class="dropdown-item" href="/c/cartlist">cart({{$total}})</a>
-                                    @endrole
-                                    <a class="dropdown-item" href="{{ route('home') }}">
-                                        {{ __('Dashboard') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                            </ul>
 
                         @endguest
                         </ul>

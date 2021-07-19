@@ -18,7 +18,7 @@
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go Back</button>
             </a>
         @else
-            <a href="/s">
+            <a href="/shop">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go Back</button>
             </a>
         @endrole

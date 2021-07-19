@@ -6,8 +6,8 @@ use Carbon\Carbon;
 ?>
 <div class="container">
    <div class="row">
-        <div id="main-container" class="container">
-        <h1>Expired Orders</h1>
+        <div id="main-container" class="container" style="margin-top: 150px;">
+        <h1 class="display-1 text-center">Expired Orders</h1>
         @if ($expiredOrders->count()>0)
         @foreach ($expiredOrders as $expiredOrder)
         <div class="card">

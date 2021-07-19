@@ -20,6 +20,12 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', function () {
+    $brands3 = Brand::with(['shoes' => function ($query) {
+        $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->limit(1);}, 
+        'shoes.shoeImages' => function ($query) {
+        $query->where('image_angle_id', '3')->pluck('image');},])
+    ->orderBy('name', 'ASC')
+    ->get();
     $brands = Brand::with(['shoes' => function ($query) {
         $query->where(DB::raw('date_sub(now(), interval 336 HOUR)'),'>=','created_at')->orderBy('created_at', 'DESC')->limit(3);}, 
         'shoes.shoeImages' => function ($query) {
@@ -32,12 +38,13 @@ Route::get('/', function () {
         $query->where('image_angle_id', '3')->pluck('image');},])
     ->orderBy('name', 'ASC')
     ->get();
-    return view('welcome', compact('brands','brands2'));
+    return view('welcome', compact('brands3','brands','brands2'));
 });
 
 Auth::routes(['verify'=> true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/abtcont', [App\Http\Controllers\AbtContController::class, 'abtcont']);
 
 // Todo: custom shoe 404, 403
 Route::get('/s/restore-index', [App\Http\Controllers\ShoesController::class, 'restore_index'])->name('shoes.restore')->middleware(['auth','role_auth:Super Admin']); 

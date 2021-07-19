@@ -5,7 +5,10 @@
 <div class="container">
    <div class="row">
         <div id="main-container" class="container">
-        <h1>Pending Orders</h1>
+        <h1 class="display-1 text-center">Pending Orders</h1>
+        <a href="/home">
+            <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+        </a>
         @if ($pendingOrders->count()>0)
         @foreach ($pendingOrders as $pendingOrder)
         <div class="card">
