@@ -69,7 +69,6 @@ class ShoeImageSeeder extends Seeder
             ['shoe_id' => '11', 'image' => 'seeds/shoeimages/ADIDAS-Falcon-F.jpg', 'image_angle_id' => '1',],
             ['shoe_id' => '11', 'image' => 'seeds/shoeimages/ADIDAS-Falcon-R.jpg', 'image_angle_id' => '3',],
         ];
-        ];
             
         DB::table('shoe_images')->insert($data);    
     }
