@@ -60,8 +60,8 @@ class ShoeImageSeeder extends Seeder
             ['shoe_id' => '11', 'image' => 'seeds/shoeimages/NIKE-Ryz 365 2-R.jpg', 'image_angle_id' => '3',],
 
             ['shoe_id' => '12', 'image' => 'seeds/shoeimages/ADIDAS-ZX 2K BOOST-F.jpg', 'image_angle_id' => '1',],
-            ['shoe_id' => '12', 'image' => 'seeds/shoeimages/ADIDAS-ZX 2K BOOST-F.jpg', 'image_angle_id' => '4',],
-            ['shoe_id' => '12', 'image' => 'seeds/shoeimages/ADIDAS-ZX 2K BOOST-F.jpg', 'image_angle_id' => '3',],
+            ['shoe_id' => '12', 'image' => 'seeds/shoeimages/ADIDAS-ZX 2K BOOST-L.jpg', 'image_angle_id' => '4',],
+            ['shoe_id' => '12', 'image' => 'seeds/shoeimages/ADIDAS-ZX 2K BOOST-R.jpg', 'image_angle_id' => '3',],
 
             ['shoe_id' => '13', 'image' => 'seeds/shoeimages/PUMA-SEUDE HEART GALAXY BLACK-F.jpg', 'image_angle_id' => '1',],
             ['shoe_id' => '13', 'image' => 'seeds/shoeimages/PUMA-SUEDE HEART GALAXY BLACK-R.jpg', 'image_angle_id' => '3',],
