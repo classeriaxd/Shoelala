@@ -47,8 +47,8 @@ $expiredTotal=HomeController::expiredCount();
                 </div>
             {{-- Stocks --}}
                 <div class="row justify-content-center mb-2"> 
-                    <div class="collapse" id="collapseStocks">
-                        <div class="d-flex flex-column text-center">
+                    <div class="collapse text-center" id="collapseStocks">
+                            <hr>
                             <p class="mb-1">Stocks</p>
                             <a class="btn btn-link mb-1" href="/stocks">View Stocks</a>
                             <hr>
@@ -59,30 +59,38 @@ $expiredTotal=HomeController::expiredCount();
                             <p class="mb-1">Shoes</p>
                             <a class="btn btn-link mb-1" href="/s">View Shoes</a>
                             <a class="btn btn-link mb-1" href="/s/create">Add Shoes</a>
-                        </div>
+                            <hr>
                     </div>
                 </div>
             {{-- Reports --}}
                 <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseReports">
+                        <hr>
                         <a class="btn btn-link" href="/reports/orders">Order Report</a>
+                        <hr>
                         <a class="btn btn-link" href="/reports/stocks">Stock Report</a>
+                        <hr>
                         <a class="btn btn-link" data-toggle="collapse" href="#collapseUserReports" role="button" aria-expanded="false" aria-controls="collapseUserReports">
                             User Report
                         </a>
                         <div class="row justify-content-center mb-2"> 
                             <div class="collapse" id="collapseUserReports">
+                                <hr>
                                 <a class="btn btn-link" href="reports/users/verified">Verified Users</a>
+                                <hr>
                                 <a class="btn btn-link" href="reports/users/notverified">Non-verified Users</a>
+                                <hr>
                                 <a class="btn btn-link" href="reports/users/purchasers">Top Purchasers</a>
+                                <hr>
                             </div>
                         </div>
+                        <hr>
                     </div>
                 </div>
             {{-- Maintenance --}}
                 <div class="row justify-content-center mb-2"> 
-                    <div class="collapse" id="collapseMaintenance">
-                        <div class="d-flex flex-column text-center">
+                    <div class="collapse text-center" id="collapseMaintenance">
+                            <hr>
                             <p class="mb-1">Users</p>
                             <a class="btn btn-link mb-1" href="/maintenance/users">Manage Users</a>
                             <hr>
@@ -95,7 +103,7 @@ $expiredTotal=HomeController::expiredCount();
                             <p class="mb-1">Restore</p>
                             <a class="btn btn-link mb-1" href="/s/restore-index">Shoes</a>
                             <a class="btn btn-link mb-1" href="/b/restore-index">Brands</a>
-                        </div>
+                            <hr>
                     </div>
                 </div>
 
@@ -141,7 +149,7 @@ $expiredTotal=HomeController::expiredCount();
                         </h5>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body text-center">
                         @if ($cartlist->count()>0)
                         <table class="table table-hover">

@@ -54,10 +54,12 @@ body
 
 .navbar
 {
+    position: fixed;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    padding: 1rem 1.5rem;
     background-color: rgba(255,255,255,.9);
 }
 
@@ -115,6 +117,11 @@ body
     width: 100%;
 }
 
+.dropdown-item
+{
+    font-size: 16px;
+}
+
 .dropdown-item:hover
 {
     background-position: 0 100%;
@@ -129,6 +136,7 @@ body
 {
     margin-top: 100px;
 }
+
 .dropdown-submenu {
     position: relative;
 }
@@ -201,4 +209,10 @@ body
 #submenuitem
 {
     margin-left: -.5rem;
+    font-size: 14px;
+}
+
+#abtcontcard
+{
+    background-color: rgba(255,255,255,.6);
 }

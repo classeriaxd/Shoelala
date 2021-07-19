@@ -100,7 +100,6 @@
                       <a class="card-block stretched-link text-decoration-none" href="/s/{{$shoe->brandslug}}/{{$shoe->shoeslug}}" class="btn" style="text-transform: uppercase">Buy</a>
                     </div>
                 </div>
-
               </div>
              
             @endforeach

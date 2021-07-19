@@ -8,7 +8,7 @@ $completedTotal=OrderController::completedOrderItem();
 $cancelledTotal=OrderController::cancelledOrderItem();
 $expiredTotal=OrderController::expiredOrderItem();
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -30,23 +30,18 @@ $expiredTotal=OrderController::expiredOrderItem();
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('imgs/favicon-logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/layout-css.css') }}">
+    <link rel="shortcut icon" href="{{ asset('imgs/favicon.svg') }}">
 
     @stack('scripts')
 
 </head>
-<body>
+<body id="body" class="antialiased">
     <header id="app">
         <nav id="navbar" class="navbar fixed-top navbar-expand-lg shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img id="navbar-logo" src="/imgs/re-logo2.png" alt="logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="nav-menu">
                         @guest
                             <li class="nav-item">
@@ -54,17 +49,14 @@ $expiredTotal=OrderController::expiredOrderItem();
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/home">Dashboard</a>
+                                <a class="nav-link" href="/home">DASHBOARD</a>
                             </li>
                         @endguest
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="/shop">SHOP</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">ABOUT</a>
-                        </li>
-                        <li class="nav-item">    
-                            <a class="nav-link" href="#">CONTACT</a>
+                            <a class="nav-link" href="/abtcont">ABOUT</a>
                         </li>
 
                     <!-- Right Side Of Navbar -->
@@ -72,20 +64,20 @@ $expiredTotal=OrderController::expiredOrderItem();
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('LOGIN') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTER') }}</a>
                                 </li>
                             @endif
                         @else
                             <div class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown" href="{{ route('home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown" style="text-transform: uppercase;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name}}
-                            </a>
+                                </a>
                         @role('User')
                             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                                 <li>
@@ -103,7 +95,7 @@ $expiredTotal=OrderController::expiredOrderItem();
                                 </li>
                                 <li class="divider"></li>
                                 <li class="dropdown-submenu" >
-                                    <a style="margin-left: 29px">My Other Orders</a>
+                                    <a style="margin-left: 29px; font-size: 16px;">My Other Orders</a>
                                     <ul class="dropdown-menu" >
                                     <li><a id="submenuitem" class="dropdown-item" href="/c/completedOrders" >Completed Items({{$completedTotal}})</a></li>
                                     <li><a id="submenuitem" class="dropdown-item" href="/c/cancelledOrders" >Cancelled Items({{$cancelledTotal}})</a></li>
@@ -154,7 +146,6 @@ $expiredTotal=OrderController::expiredOrderItem();
   
                         @endguest
                     </ul>
-                </div>
             </div>
         </nav>
 
@@ -162,8 +153,12 @@ $expiredTotal=OrderController::expiredOrderItem();
             @yield('content')
         </main>
     </header>
-
+    <footer class="page-footer font-small blue">
+        @include('layouts.footer')
+    </footer>
     @stack('custom-scripts')
+
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
     
 </body>
 </html>
