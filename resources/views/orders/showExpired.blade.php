@@ -1,10 +1,10 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container" style="margin-top: 100px;" id="main-container">
+<div class="container" style="margin-top: 120px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h2 class="display-1 text-center mt-1">Expired Orders</h2>
+            <h2 class="display-1 text-center">Expired Orders</h2>
             <a href="/orders">
                 <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
             </a>

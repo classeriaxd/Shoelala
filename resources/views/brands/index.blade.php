@@ -17,7 +17,6 @@
             @endrole
             
             <div class="card card-body">
-
                 <div class="container-fluid content-row">
                     <div class="row">
                         @foreach($brands as $brand)
@@ -34,8 +33,7 @@
                         </a>
                         @endforeach
                     </div>
-                </div>
-                
+                </div> 
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@
                         <a class="card-block stretched-link text-decoration-none" href="/s/{{$brand->slug}}/{{$shoe->slug}}" class="btn" style="text-transform: uppercase">Buy</a>
                       </div>
           @endforeach
-        @endforeach
+        @endforeach  
     </div>
   </div>
 

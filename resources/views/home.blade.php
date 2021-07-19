@@ -177,13 +177,13 @@ $expiredTotal=HomeController::expiredCount();
                             @endforeach
                         </table>
                         </div>
-                        <div class="row justify-content-center pt-1">
+                        <div class="row justify-content-center pt-1 mb-2">
                             <a href="/c/cartlist" class="btn btn-success">Go to Cart</a> 
                         </div> 
                         @else
                         <h2>There are no items in your cart.</h2>
                         <div class="row justify-content-center pt-1">
-                            <a href="/s" class="btn btn-success">Shop Now</a> 
+                            <a href="/shop" class="btn btn-success">Shop Now</a> 
                         </div> 
                         @endif
                         </div>
@@ -229,14 +229,14 @@ $expiredTotal=HomeController::expiredCount();
                                 </table>
                             </div>
                             @endforeach
-                            <div class="row justify-content-center pt-1">
+                            <div class="row justify-content-center pt-2 pb-2">
                                 <a href="/c/pendingOrders" class="btn btn-success">Go to Pending Orders</a> 
                             </div> 
                             </div>
                             @else
                             <h4 class="text-center">There are no items in your cart.</h4>
                             <div class="row justify-content-center pt-1">
-                                <a href="/s" class="btn btn-success">Shop Now</a> 
+                                <a href="/shop" class="btn btn-success">Shop Now</a> 
                             </div> 
                             @endif
                          </div>
@@ -290,7 +290,7 @@ $expiredTotal=HomeController::expiredCount();
                                     @else
                                     <h4 class="text-center">There are no items in your cart.</h4>
                                     <div class="row justify-content-center pt-1">
-                                        <a href="/s" class="btn btn-success">Shop Now</a> 
+                                        <a href="/shop" class="btn btn-success">Shop Now</a> 
                                     </div> 
                                     @endif
                             </div>
@@ -336,14 +336,14 @@ $expiredTotal=HomeController::expiredCount();
                             </table>
                             </div>
                             @endforeach
-                            <div class="row justify-content-center pt-1">
+                            <div class="row justify-content-center pt-2 pb-2">
                                             <a href="/c/expiredOrders" class="btn btn-success">Go to Expired Orders</a> 
                             </div> 
                             </div>
                             @else
                             <h2>There are no items in your cart.</h2>
                             <div class="row justify-content-center pt-1">
-                                <a href="/s" class="btn btn-success">Shop Now</a> 
+                                <a href="/shop" class="btn btn-success">Shop Now</a> 
                             </div> 
                             @endif
                             </div>
@@ -391,14 +391,14 @@ $expiredTotal=HomeController::expiredCount();
                             </table>
                             </div>
                             @endforeach
-                            <div class="row justify-content-center pt-1">
+                            <div class="row justify-content-center pt-2 pb-2">
                                             <a href="/c/cancelledOrders" class="btn btn-success">Go to Cancelled Orders</a> 
                             </div> 
                             </div>
                             @else
                             <h2>There are no items in your cart.</h2>
                             <div class="row justify-content-center pt-1">
-                                <a href="/s" class="btn btn-success">Shop Now</a> 
+                                <a href="/shop" class="btn btn-success">Shop Now</a> 
                             </div> 
                             @endif                  
                             </div>

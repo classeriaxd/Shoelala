@@ -80,17 +80,14 @@
     
       <div class="container-fluid content-row">
         <div class="row">
-            @foreach($shoe as $shoe)
-              
+            @foreach($shoe as $shoe)     
               <div class="col-lg-4 d-flex float-left">
-
-                <div class="card flex-fill">
-                    
+                <div class="card flex-fill">                    
                     @if($shoe->image_angle_id == 3)
                     <img id="cardimg" class="card-img-top"
                       src="{{'/storage/'.$shoe->image}}" alt="Card image cap">
                     @endif
-                    
+            
                     <div class="card-body">
                       <h4 class="card-title" style="text-transform: uppercase">{{$shoe->shoes}}</h4>
                       <!--<p class="card-text">{{$shoe->description}}</p>-->
@@ -100,11 +97,11 @@
                       <a class="card-block stretched-link text-decoration-none" href="/s/{{$shoe->brandslug}}/{{$shoe->shoeslug}}" class="btn" style="text-transform: uppercase">Buy</a>
                     </div>
                 </div>
-              </div>
-             
+              </div>             
             @endforeach
         </div>
       </div>
+
     </div>
 
 

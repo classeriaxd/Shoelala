@@ -49,7 +49,7 @@ $expiredTotal=OrderController::expiredOrderItem();
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/home">DASHBOARD</a>
+                                <a class="nav-link" href="/">HOME</a>
                             </li>
                         @endguest
                         <li class="nav-item dropdown">
