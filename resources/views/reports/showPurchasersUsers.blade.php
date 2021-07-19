@@ -18,7 +18,6 @@
                 <tbody>
                     <tr class="bg-dark" style="color: white;">
                         <th scope="col">#</th>
-                        <th scope="col">Order ID</th>
                         <th scope="col">USER</th>
                         <th scope="col">AMOUNT PURCHASED</th>
                     </tr>
@@ -26,7 +25,6 @@
                 @foreach($purchasers as $user)
                     <tr>
                         <td scope="row">{{$i}}</td>
-                        <td scope="row">{{$user->order_id}}</td>
                         <td scope="row">{{$user->user_fullName}}</td>
                         <td scope="row">{{$user->amount}}</td>
                     </tr>

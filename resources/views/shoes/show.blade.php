@@ -55,21 +55,26 @@
 @elserole('User')
 
 @if($stocks->count() > 0)
-                        <div class="col-md-4 d-flex flex-column justify-content-center m-auto">
-                            <form action="/c/add_to_cart" method="POST">
+                        <div class="col-md-4 d-flex flex-column justify-content-center m-auto ">
+                            <form action="/c/add_to_cart" method="POST" required>
                                 @csrf
                             
-                                <input type="hidden" name="shoe_id" value="{{$shoe->shoe_id}}">
-                                <input type="hidden" name="type_id" value="{{$shoe->type_id}}">
+                                <input type="hidden" name="shoe_id" value="{{$shoe->shoe_id}}" required>
+                                <input type="hidden" name="type_id" value="{{$shoe->type_id}}" required>
                                 <label for="size">{{ __('Size') }}</label>
-                                        <select class="form-control @error('size') is-invalid @enderror" id="stock_id" name="stock_id" required> 
+                                        <select class="form-control  @error('stock_id') is-invalid @enderror" id="stock_id" name="stock_id" required> 
                                             <option value="-1">Select Size</option>
                                         @foreach ($stocks as $stock)
                                             <option {{ old('stock_id')==$stock->stock_id ? 'selected="selected"' : '' }} value="{{$stock->stock_id}}">{{$stock->size_us}}</option>
                                         @endforeach
                                         </select>
+                                        @error('stock_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                             <label for="quantity">Quantity: </label>
-                            <input type="number" name="cart_quantity" min="1" max="5" value="{{$shoe->cart_quantity}}">
+                            <input type="number" name="cart_quantity" min="1" max="5" value="{{$shoe->cart_quantity}}" required>
                             <br><br>
                             <button class="btn btn-primary">Add to cart</button>
                             </form>

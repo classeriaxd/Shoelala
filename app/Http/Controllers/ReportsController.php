@@ -324,20 +324,24 @@ class ReportsController extends Controller
             else
                 abort(404);
             // Query Date of Verified Users within the Start and End date
+            
+            
             $purchasers = DB::table('orders')
                 ->join('users as buyers', 'buyers.user_id', '=', 'orders.user_id')
                 ->join('order_items','order_items.order_id','=','orders.order_id')
                 ->join('stocks','stocks.stock_id','=','order_items.stock_id')
                 ->join('sizes','sizes.size_id','=','stocks.size_id')
                 ->join('shoes','shoes.shoe_id','=','stocks.shoe_id')
-                ->where('orders.status', '2')
+                ->where('orders.status', '2') 
                 ->where('orders.completed_date', '>=', $start)
                 ->where('orders.completed_date', '<=', $end)
-                ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name) as user_fullName'),
-                DB::raw('shoes.price * order_items.quantity as amount'),'orders.order_id as order_id')
-                ->groupBy('order_id')
+                
+                ->select(DB::raw('CONCAT(buyers.last_name, ", ", buyers.first_name) as user_fullName'),DB::raw('sum(order_items.quantity * shoes.price) as amount','buyers.user_id as user_id') )
+                ->groupBy('user_fullName')
                 ->orderBy('amount','DESC')
                 ->get();
+          
+                //dd($purchasers);
             $startDate = Carbon::parse($start)->format('F d, Y');
             $endDate = Carbon::parse($end)->format('F d, Y');
             return view('reports.showPurchasersUsers', compact('purchasers', 'startDate', 'endDate'));

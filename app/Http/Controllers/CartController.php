@@ -24,6 +24,12 @@ class CartController extends Controller
 {
     public function addToCart(Request $req)
     {
+        $data = request()->validate([
+            'stock_id' => 'required|regex:/^\d+(\.\d{1,2})?$/'
+        ]);
+        $stock_data = [
+            'stock_id' => $data['stock_id']
+        ];
         if (Cart::where('user_id', Auth::user()->user_id)->exists()) {//kung may userid
             if (Cart::where('stock_id', request('stock_id'))->exists()) { //kung andun na ung same stockid or size
                  //abort(404);
