@@ -14,10 +14,10 @@ $expiredTotal=HomeController::expiredCount();
         <div class="row justify-content-center">
             <div class="col-md-12">
         @role('Super Admin')
-                <h3 class="display-2 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
-                <h6 class="text-muted text-center">Super Admin</h6>
+                <h5 class="display-2 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h5>
+                <h5 class="text-muted text-center">Super Admin</h5>
                 <hr>
-                <h6 class="display-6 text-center">What do you want to do for today?</h6>
+                <h5 class="display-6 text-center">What do you want to do for today?</h5>
             {{-- Collapse Buttons --}}
                 <div class="row justify-content-center mb-1"> 
                     <a class="btn btn-outline-dark mr-5" data-toggle="collapse" href="#collapseOrders" role="button" aria-expanded="false" aria-controls="collapseOrders">
@@ -101,10 +101,10 @@ $expiredTotal=HomeController::expiredCount();
                 </div>
 
         @elserole('Admin')
-                    <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
-                    <h6 class="text-muted text-center">Cashier</h6>
+                    <h3 class="display-2 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
+                    <h5 class="text-muted text-center">Cashier</h5>
                     <hr>
-                    <h6 class="display-6 text-center">What do you want to do for today?</h6>
+                    <h5 class="display-6 text-center">What do you want to do for today?</h5>
             {{-- Collapse Buttons --}}
                     <div class="row justify-content-center">
                         <a class="btn btn-outline-dark mr-5" data-toggle="collapse" href="#collapseOrders-cashier" role="button" aria-expanded="false" aria-controls="collapseOrders-cashier">
@@ -130,8 +130,8 @@ $expiredTotal=HomeController::expiredCount();
                     </div>
 
         @elserole('User')
-                    <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
-                    <h6 class="text-muted text-center">User</h6>
+                    <h3 class="display-2 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
+                    <h5 class="text-muted text-center">User</h5>
                     <div id="accordion">
                     <div class="card text-center">
                         <div class="card-header" id="headingOne">
@@ -174,7 +174,7 @@ $expiredTotal=HomeController::expiredCount();
                             <a href="/c/cartlist" class="btn btn-success">Go to Cart</a> 
                         </div> 
                         @else
-                        <h2>There are no items in your cart.</h2>
+                        <h5>There are no items in your cart.</h5>
                         <div class="row justify-content-center pt-1">
                             <a href="/shop" class="btn btn-success">Shop Now</a> 
                         </div> 
@@ -229,7 +229,7 @@ $expiredTotal=HomeController::expiredCount();
 
                                 </div>
                                     @else
-                                    <h4 class="text-center">There are no pending orders.</h4>
+                                    <h5 class="text-center">There are no pending orders.</h5>
                                     <div class="row justify-content-center pt-1">
                                         <a href="/shop" class="btn btn-success">Shop Now</a> 
                                     </div> 
@@ -284,7 +284,7 @@ $expiredTotal=HomeController::expiredCount();
                                         </div> 
                                     </div>
                                     @else
-                                    <h4 class="text-center">There are no items in your cart.</h4>
+                                    <h5 class="text-center">There are no items in your cart.</h5>
                                     <div class="row justify-content-center pt-1">
                                         <a href="/shop" class="btn btn-success">Shop Now</a> 
                                     </div> 
@@ -337,7 +337,7 @@ $expiredTotal=HomeController::expiredCount();
                             </div> 
                             </div>
                             @else
-                            <h2>There are no items in your cart.</h2>
+                            <h5>There are no items in your cart.</h5>
                             <div class="row justify-content-center pt-1">
                                 <a href="/shop" class="btn btn-success">Shop Now</a> 
                             </div> 
@@ -392,7 +392,7 @@ $expiredTotal=HomeController::expiredCount();
                             </div> 
                             </div>
                             @else
-                            <h2>There are no items in your cart.</h2>
+                            <h5>There are no items in your cart.</h5>
                             <div class="row justify-content-center pt-1">
                                 <a href="/shop" class="btn btn-success">Shop Now</a> 
                             </div> 
