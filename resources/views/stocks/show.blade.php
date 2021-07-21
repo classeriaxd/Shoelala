@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h2 class="display-1 text-center">{{$brand->name}}</h2>
-            <h5 class="display-2 text-center">{{$shoe->name}}</h5>
+            <h5 class="display-2 text-center mb-2">{{$shoe->name}}</h5>
+            <a href="/stocks">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
             @php $i = 1; @endphp
             <table class="table table-striped table-bordered table-hover">
                 <thead>
@@ -14,8 +17,8 @@
                         <th scope="col">Type</th>
                         <th scope="col">Size</th>
                         <th scope="col">Stocks</th>
-                        <th scope="col" class="col-md-2"></th>
-                        <th scope="col" class="col-md-2"></th>
+                        <th scope="col" class="col-md-2">Action</th>
+                        <th scope="col" class="col-md-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,10 +51,5 @@
         </div>
     </div>
     <br>
-        <div class="row justify-content-center pt-1">
-            <a href="/stocks">
-                <button class="btn btn-secondary">Go back</button>
-            </a>
-        </div>
 </div>
 @endsection

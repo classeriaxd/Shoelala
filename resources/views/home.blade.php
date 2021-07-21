@@ -14,7 +14,7 @@ $expiredTotal=HomeController::expiredCount();
         <div class="row justify-content-center">
             <div class="col-md-12">
         @role('Super Admin')
-                <h3 class="display-4 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
+                <h3 class="display-2 text-center mt-2">Currently logged as {{Auth::user()->first_name}}</h3>
                 <h6 class="text-muted text-center">Super Admin</h6>
                 <hr>
                 <h6 class="display-6 text-center">What do you want to do for today?</h6>
@@ -65,26 +65,19 @@ $expiredTotal=HomeController::expiredCount();
             {{-- Reports --}}
                 <div class="row justify-content-center mb-2"> 
                     <div class="collapse" id="collapseReports">
-                        <hr>
                         <a class="btn btn-link" href="/reports/orders">Order Report</a>
-                        <hr>
                         <a class="btn btn-link" href="/reports/stocks">Stock Report</a>
-                        <hr>
                         <a class="btn btn-link" data-toggle="collapse" href="#collapseUserReports" role="button" aria-expanded="false" aria-controls="collapseUserReports">
                             User Report
                         </a>
                         <div class="row justify-content-center mb-2"> 
                             <div class="collapse" id="collapseUserReports">
-                                <hr>
                                 <a class="btn btn-link" href="reports/users/verified">Verified Users</a>
-                                <hr>
                                 <a class="btn btn-link" href="reports/users/notverified">Non-verified Users</a>
-                                <hr>
                                 <a class="btn btn-link" href="reports/users/purchasers">Top Purchasers</a>
-                                <hr>
                             </div>
                         </div>
-                        <hr>
+                        
                     </div>
                 </div>
             {{-- Maintenance --}}

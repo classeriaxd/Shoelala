@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div id="main-container" class="container text-center" style="margin-top: 140px;">
-    <div id="abtcontcard" class="card" style="width: 100%;">
+<div id="main-container" class="container" style="margin-top: 140px;">
+    <div id="abtcontcard" class="card text-center" style="width: 100%">
         <div class="card-body">
-          <img src="/imgs/draft.png" alt="">
-          <h5 class="display-1 mb-4">About SHOELALA</h5>
+          <h5 class="display-2 mb-5">ABOUT</h5>
+          <img src="/imgs/shoelala-logo2.svg" class="w-50 h-25 mb-5" alt="shoelala">
           <p class="card-text mb-5" style="line-height: 2;">Shoelala aims to provide an opportunity to every sneaker head to reserve and buy the sneaker they’ve been waiting for. Customers are our main focus, because they are what propels SHOELALA to expand our ideas, creativity, and collaborations.</p>
           <h5 class="display-2 mb-2">CONTACT SHOELALA</h5>
           <a href="https://www.facebook.com/brynlsrn" class="card-link">
