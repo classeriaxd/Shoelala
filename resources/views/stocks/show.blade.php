@@ -17,8 +17,7 @@
                         <th scope="col">Type</th>
                         <th scope="col">Size</th>
                         <th scope="col">Stocks</th>
-                        <th scope="col" class="col-md-2">Action</th>
-                        <th scope="col" class="col-md-2">Action</th>
+                        <th scope="col" colspan="2" class="col-md-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>

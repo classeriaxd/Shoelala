@@ -39,7 +39,7 @@ class BrandsController extends Controller
             $logoPath = request('logo')->store('uploads/logo','public');
             $image = Image::make(public_path("storage/{$logoPath}"));
             // Resize Brand Logo to 400x200 size
-            $image->resize(400,200)->save();
+            $image->save();
 
             if(
             Brand::create([
