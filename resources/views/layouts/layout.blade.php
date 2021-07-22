@@ -30,7 +30,7 @@ $expiredTotal=OrderController::expiredOrderItem();
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('imgs/favicon-logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/layout-css.css') }}">
-    <link rel="shortcut icon" href="{{ asset('imgs/favicon.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('imgs/shoelala-logo.svg') }}">
 
     @stack('scripts')
 

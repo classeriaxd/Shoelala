@@ -42,7 +42,7 @@ $expiredTotal=OrderController::expiredOrderItem();
                                 <a class="nav-link" href="/abtcont">ABOUT</a>
                             </li>
 
-                            @guest
+                        @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('LOGIN') }}</a>

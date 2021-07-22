@@ -6,7 +6,10 @@
 <div class="container" style="margin-top: 100px;" id="main-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="display-1 text-center">Edit User</h2>
+            <h2 class="display-1 text-center mb-2">Edit User</h2>
+            <a href="/maintenance/users">
+                <button class="btn btn-secondary col-md-12 btn-lg mb-2">Go back</button>
+            </a>
             <div class="card">
                 <div class="card-header">Edit {{$users->first_name}}</div>
                 <div class="card-body">
@@ -108,9 +111,7 @@
             </div>
             <br>
             <div class="row justify-content-center pt-1">
-                <a href="/maintenance/users">
-                    <button class="btn btn-secondary">Go back</button>
-                </a>
+                
             </div>
         </div>
     </div>
