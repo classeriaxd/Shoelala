@@ -29,7 +29,7 @@ class ShoeImagesController extends Controller
             $shoeImagePath = request('shoe_image')->store('uploads/shoeImages','public');
             $image = Image::make(public_path("storage/{$shoeImagePath}"));
             // Resize Image to 720x720 size 
-            $image->resize(720)->save();
+            $image->save();
             $shoe = Shoe::where('slug', $shoe_slug)->first();
             if (ShoeImage::create([
                 'shoe_id' => $shoe->shoe_id,
