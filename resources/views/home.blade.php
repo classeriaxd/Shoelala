@@ -116,16 +116,22 @@ $expiredTotal=HomeController::expiredCount();
                     </div>  
             {{-- Orders --}}  
                     <div class="row justify-content-center mb-2">
-                        <div class="collapse" id="collapseOrders-cashier">
+                        <div class="collapse text-center" id="collapseOrders-cashier">
+                            <hr>
                             <a class="btn btn-link" href="/orders">Pending Orders of this week</a>
+                            <hr>
                             <a class="btn btn-link" href="/orders/scan">Scan QR</a>
+                            <hr>
                             <a class="btn btn-link mb-1" href="/orders/e">Tag Overdue Orders</a>
+                            <hr>
                         </div>
                     </div>
             {{-- Stocks --}}
                     <div class="row justify-content-center mb-2">
                         <div class="collapse" id="collapseStocks-cashier">
+                            <hr>
                             <a class="btn btn-link" href="/stocks">View Stocks</a>
+                            <hr>
                         </div>
                     </div>
 
